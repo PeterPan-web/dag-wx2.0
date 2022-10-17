@@ -1,22 +1,15 @@
 <template>
-  <!-- <headernav :title="title">
-      <mt-button icon="back" slot="left" @click="goBack">返回</mt-button>
-	  <img :src="url" style="width:25px" />
-    </headernav> -->
-	<div>
-		<div><user></user></div>
-		<div style="margin-top:30%;left:5%;position:absolute;width:90%"><user1></user1></div>
-		
+	<div class="loginPage">
+    <div class="login">
+      <div class="loginShow">请完成微信授权以继续使用</div>
+      <div class="loginBtn" @click="getLogin()">
+        <p>获取用户信息</p>
+      </div>
+    </div>
 	</div>
 </template>
 
 <script>
-import {
-    Toast
-  } from 'mint-ui';
-  import headernav from'../components/header.vue'
-  import user from'../components/user.vue'
-  import user1 from'../components/user1.vue'
   export default {
     name: "people",
     data() {
@@ -27,17 +20,37 @@ import {
         };
     },
     methods:{
+      getLogin(){
+        console.log(1);
+      },
       goBack(){
       	this.$router.back(-1);
       }
-    },
-    components: {
-      headernav,
-	  user,
-	  user1
-    },
-  };
+    }
+  }
 </script>
+<style scoped>
+.loginPage{
+  position: relative;
+}
+.login{
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%,0);
+  top: 520px;
 
-<style>
+}
+.loginShow{
+  width: 200px;
+  font-size: 15px;
+  margin-bottom: 10px;
+}
+.loginBtn{
+  
+  background-color: rgb(138, 207, 138);
+  text-align: center;
+  border: none;
+  border-radius: 5px;
+  padding: 20px 30px 20px 30px;
+}
 </style>
