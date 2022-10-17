@@ -1,6 +1,6 @@
 <template>
 	<div style="text-align: center;">
-		<div v-for ="(item,index) in imgPath" style="display:inline-block" class="upload">
+		<div v-for ="(item,index) in imgPath" :key="index" style="display:inline-block" class="upload">
 			<div style="position:relative">
 				<span class="close" @click="del(index)" v-if ="item.isShow">x</span>
 				<img :src="item.url" alt="" @click ="actionPicture(index,item.isShow)" width ="80px" height="80px"/>
