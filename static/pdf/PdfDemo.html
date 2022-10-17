@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--<input type="button" onclick="openPDF()" value="点我"/>-->
+<a href="javascript:;"onclick="openPDF()">pdf</a>
+<iframe src="" frameborder="0" name="pdf" width="800" height="600" id="iframe"></iframe>
+<script>
+    function openPDF(){
+    	var url="http://127.0.0.1:8020/pdf/demo.pdf";
+    	window.open("/pdf/web/viewer.jsp?file="+url)
+//      var url="http://127.0.0.1:8020/pdf/demo.pdf";
+//      var iframe=document.getElementById("iframe");
+//      iframe.src="/pdf/web/viewer.jsp?file="+url
+//      window.open("pdfjs/web/viewer.html?file="+url);
+    }
+</script>
+</body>
+</html>

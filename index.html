@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <!--<meta name="viewport" content="width=device-width,initial-scale=1.0">-->
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link rel="stylesheet" href="static/js/swiper.min.css" />
+    <!-- 去掉这个百度地图的引用 -->
+    <!-- <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=SlbtinGAO0W3RyUjlX4B8lUXCqOewGNF"></script> -->
+    <script src="static/js/mui.min.js"></script>
+    <script type="text/javascript" src="static/js/common.js"></script>
+    <script src="static/js/wx.js"></script>
+    <script type="text/javascript" src="static/js/swiper.min.js"></script>
+    <script type="text/javascript" src="static/tour.js"></script>
+   <!-- <script type="text/javascript" src="./static/config.js"></script> -->
+    <title></title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <!-- built files will be auto injected -->
+  </body>
+  <script>
+  	document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+			WeixinJSBridge.call('hideToolbar');
+			WeixinJSBridge.call('hideOptionMenu');
+		});
+  </script>
+</html>
