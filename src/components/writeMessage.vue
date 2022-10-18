@@ -1,11 +1,8 @@
 <template>
 	<div>
-		<mt-header :title="title" fixed>
-		    <mt-button icon="back" slot="left" @click="goBack">返回</mt-button>
-			<mt-button slot="right" @click="toWrite">
-				<img width="22px" src="static/img/history.png"/>
-			</mt-button>
-		</mt-header>
+		<van-nav-bar :title="title" left-text="返回" left-arrow @click-left="onClickLeft" fixed>
+				<img width="22px" slot="right" src="static/img/history.png" @click="toWrite"/>
+				</van-nav-bar >
 	</div>
 </template>
 
@@ -27,9 +24,12 @@
           }
         });
 			},
-			goBack(){
+			onClickLeft(){
+				if(this.up){
+					return;
+				}
 				this.$router.back(-1);
-			}
+			},
 		}
 	}
 </script>

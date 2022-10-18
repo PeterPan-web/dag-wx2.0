@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<headernav :title="title"></headernav>
+		<headernav :title="title" ></headernav>
 		<div class="search" style="margin-top:50px;display: flex;align-items: center">
     		<input  type="search" class="searchText" placeholder="请输入关键字" v-model="keyWord" @keyup.enter ="searchFile" />
     		<div class="btn">
@@ -11,14 +11,13 @@
     	<div id="listContent">
     		<mt-loadmore :bottom-method="loadBottom"  :top-method="loadTop" :bottom-all-loaded="allLoaded" ref="loadmore" :auto-fill="false">
 				<ul>
-				    <li v-for="item in fileList" @click ="toDetail(item)" style="padding:6px 0px;border-bottom:1px solid #ccc">
+				    <li v-for="(item,index) in fileList" :key="index" @click ="toDetail(item)" class="items">
 				    	<span class="mainTitle">{{item.CONTENT}}</span>
 				    	<span class="mainTitle1">浏览{{item.BROWSE}}</span>
 				    	<span class="time">{{item.CREATEDATE}}</span>
 				    </li>
 				</ul>
 			  </mt-loadmore>
-
         <mt-button @click="toWrite()" type="primary" size="large" style="width:100%;margin:10px 0%">我要留言咨询</mt-button>
       </div>
   </div>
@@ -178,4 +177,10 @@
 		text-align: right;
 		font-size:13px;
 	}
+  .items{
+    height: 30px;
+    font-size: 17px;
+    padding:15px 0px 15px 0px;
+    border-bottom:1px solid #ccc
+  }
 </style>
