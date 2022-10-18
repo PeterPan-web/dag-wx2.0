@@ -2,18 +2,6 @@
   <div>
     <swipercomponent></swipercomponent>
     <mainbtncomponent :list="list"></mainbtncomponent>
-<!--    <navcomponent :nav="nav"></navcomponent>-->
-<!--    <div>-->
-<!--			<mt-loadmore  :top-method="loadTop" :bottom-all-loaded="allLoaded" ref="loadmore" :auto-fill="false">-->
-<!--				<ul>-->
-<!--				    <li v-for="item in fileList" @click ="toDetail(item)" style="padding:6px 0px;border-bottom:1px solid #ccc">-->
-<!--				    	<span class="mainTitle">{{item.CONTENT}}</span>-->
-<!--				    	<span class="mainTitle1">浏览{{item.BROWSE}}</span>-->
-<!--				    	<span class="time">{{item.CREATEDATE}}</span>-->
-<!--				    </li>-->
-<!--				</ul>-->
-<!--			</mt-loadmore>-->
-<!--		</div>-->
     <near :url="nearUrl"></near>
   </div>
 </template>

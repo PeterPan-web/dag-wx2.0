@@ -17,7 +17,7 @@ import { Cell } from 'mint-ui';
 import { Tabbar, TabItem } from 'mint-ui';
 
   
-import { Form ,Field,CellGroup,Picker,Popup,Collapse, CollapseItem,DatetimePicker,RadioGroup,Dialog,Icon,List,Step, Steps,Rate,Uploader  } from 'vant';
+import { Form ,Field,CellGroup,Picker,Popup,Collapse, CollapseItem,DatetimePicker,RadioGroup,Dialog,Icon,List,Step, Steps,Rate,Uploader, Image as VanImage, Grid, GridItem ,NavBar } from 'vant';
 
 Vue.use(Field);
 Vue.use(CellGroup);
@@ -35,6 +35,10 @@ Vue.use(Step);
 Vue.use(Steps);
 Vue.use(Rate);
 Vue.use(Uploader);
+Vue.use(Grid);
+Vue.use(GridItem);
+Vue.component(NavBar.name, NavBar);
+Vue.component(VanImage.name, VanImage);
 Vue.component(Cell.name, Cell);
 Vue.component(Toast.name, Toast);
 Vue.component(Radio.name, Radio);
@@ -44,7 +48,6 @@ Vue.component(Loadmore.name, Loadmore);
 Vue.component(Swipe.name, Swipe);
 Vue.component(SwipeItem.name, SwipeItem);
 Vue.component(Popup.name, Popup);
-//Vue.component(Field.name, Field);
 Vue.use(Mint)
 Vue.use(Navigation, {router})
 Vue.config.productionTip = false

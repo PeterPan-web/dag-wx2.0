@@ -1,9 +1,8 @@
 <template>
 	<div>
-		<mt-header :title="title" fixed>
-		    <mt-button icon="back" slot="left" @click="goBack">返回</mt-button>
+		<van-nav-bar :title="title" left-text="返回" left-arrow @click-left="onClickLeft" fixed>
 		    <img :src="url" v-show="show" slot="right" style="width:25px" @click="searchHistory"/>
-		</mt-header>
+		</van-nav-bar >
 	</div>
 </template>
 
@@ -17,7 +16,7 @@
 			}
 		},
 		methods:{
-			goBack(){
+			onClickLeft(){
 				if(this.up){
 					return;
 				}
@@ -26,7 +25,8 @@
 			searchHistory(){
 				this.$router.push({path:"/realNameReg"});
 			}
-		}
+		},
+
 	}
 </script>
 
