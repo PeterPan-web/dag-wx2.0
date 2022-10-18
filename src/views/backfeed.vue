@@ -116,6 +116,7 @@
 		margin-top:50px;
 	}
 	.search{
+		
 		margin-top:50px;
 		height:50px;
 		background:#D7D7D7;

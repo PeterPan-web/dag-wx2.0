@@ -1,10 +1,10 @@
 <template>
 	<div>
 		<headernav :title="title"></headernav>
-		<div class="search" style="margin-top:40px">
+		<div class="search" style="margin-top:40px;display: flex;align-items: center">
     		<input  type="search" class="searchText" placeholder="请输入题名进行搜索" @keyup.enter ="searchFile" v-model="keyWord" @focus="pushText"/>
     		<div class="btn">
-    			<mt-button size="small" slot="right" @click="searchFile">搜索</mt-button>
+    			<mt-button style="line-height: 33px" size="small" slot="right" @click="searchFile">搜索</mt-button>
     		</div>
 
     	</div>
