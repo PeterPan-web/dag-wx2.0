@@ -18,7 +18,7 @@
 				    </li>
 				</ul>
 			  </mt-loadmore>
-        <mt-button @click="toWrite()" type="primary" size="large" style="width:100%;margin:10px 0%">我要留言咨询</mt-button>
+        <mt-button @click="toWrite()" type="primary" size="large" style="position:fixed;bottom:0;width:100%;margin:10px 0%">我要留言咨询</mt-button>
       </div>
   </div>
 </template>
@@ -154,6 +154,7 @@
 	#listContent{
 		height:calc(100vh - 10px);
     overflow: auto;
+	
 	}
 	.mainTitle{
 		display: inline-block;
