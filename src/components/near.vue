@@ -4,7 +4,7 @@
 		<span class="more" @click="toNearSearch()">更多></span>
 		<mt-loadmore  :top-method="loadTop" :bottom-all-loaded="allLoaded" ref="loadmore" :auto-fill="false">
 			<ul >
-			    <li v-for="item in list" @click="toDetail(item)" style="height:40px;border-bottom: #ccc solid 1px;overflow: hidden;">
+			    <li v-for="(item,index) in list" :key="index" @click="toDetail(item)" style="height:40px;border-bottom: #ccc solid 1px;overflow: hidden;">
 				    	<span class="nearList" style="padding:8px 0px;width:95vw;overflow: hidden;">
 				    		<p style="overflow: hidden;white-space:nowrap;text-overflow:ellipsis;font-weight: 800;">{{item.NAME}}&nbsp;&nbsp;{{item.ADDRESS}}</p>
 				    	</span>
