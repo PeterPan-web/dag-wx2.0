@@ -1,19 +1,28 @@
 <template>
 	<div>
-    	<div id="listContent" style="height:calc(100vh - 309px);overflow: auto;">
+    	<div id="listContent">
 	    	<mt-loadmore :bottom-method="loadBottom" :top-method="loadTop" :bottom-all-loaded="allLoaded" :auto-fill="false" ref="loadmore">
 				<ul style="width:100vw;margin:0 auto;overflow: auto;">
-				    <li v-for="item in list" @click="toDetail(item)" style="margin:10px 0px;border-bottom:#cc083c solid 1px">
-				    	<span class="Left">
-				    		<img  v-if ="item.PICTURE ==null" :src="item.PICTURE" style="display:none"/>
-				    		<img  v-else :src="com+item.PICTURE"/>
-				    	</span>
-				    	<span class="message">
-				    		<p class="oneLine">{{item.TITLE}}</p>
-				    		<p>日期 ：{{item.PUBLISHDATE}}</p>
-				    		<p style="height:34px;overflow: hidden;line-height: 18px;">{{item.CONTENT}}</p>
-				    	</span>
-				    </li>
+					<li v-for="item in list">
+						<div  class="a1" >
+							<p class="message" >{{item.TITLE}}</p>
+						</div>
+						<div class="a2">
+							<div class="a2-1">
+								<span class="left">
+									<img  v-if ="item.PICTURE ==null" :src="item.PICTURE" style="display:none"/>
+									<img  v-else :src="com+item.PICTURE"/>
+								</span>
+							</div>
+							<div class="a2-2">
+								<p style="font-size:12px;">日期 ：{{item.PUBLISHDATE}}</p>
+								<p style="font-size:12px;height:34px;overflow: hidden;line-height: 18px;">{{item.CONTENT}}</p></div>
+							<div class="a2-3">
+								<img  @click="toDetail(item)" src="static/img/xiao.png"  />
+							</div>
+						</div>	
+					
+					</li>
 				</ul>
 			</mt-loadmore>
 		</div>
@@ -36,7 +45,8 @@
 				currentPage:1,
 				pageSize:15,
 				com:HOST_HOME,
-				params:{}
+				params:{},
+				url:"static/img/xiao.png"
 			}
 		},
 		created(){
@@ -124,6 +134,86 @@
 </script>
 
 <style>
+	.a1{
+		vertical-align:top;
+		
+		width:100%;
+		height:30%;
+	}
+	.a2{
+		vertical-align:bottom;
+		
+		height:70%;
+
+	}
+	.a2-1{
+		
+        position:flex;
+		flex-direction:row;
+		width:25%;
+		
+		height:100%;
+		display:inline-block;
+		vertical-align:bottom;
+	}
+	.left{
+		
+		display:inline-block;
+		width:70px;
+		height:70px;
+		
+		padding:0px;
+		
+		
+	}
+	.left img{
+		width:100%;
+		height:100%;
+	}
+	.a2-2{
+		position:flex;
+		flex-direction:row;
+		width:60%;
+		
+		height:100%;
+		display:inline-block;
+		vertical-align:bottom;
+	}
+	.a2-3{
+		vertical-align:bottom;
+		position:flex;
+		flex-direction:row;
+		width:10%;
+		
+		height:100%;
+		display:inline-block;
+		
+		
+	}
+	.a2-3 img{
+		padding:15px 0px;
+		width:25px;
+		height:25px;
+	}
+	#listContent{
+		height:calc(100vh - 309px);
+		overflow: auto;
+		background-color:Gainsboro;
+		
+	}
+	.message{
+		display: inline-block;
+		text-align: center;
+		font-size:20px;
+	
+	}
+	
+	li{
+		height:120px;
+		margin:15px 15px;
+		background-color:white;
+
+	}
 	.search{
 		margin-top:50px;
 		height:50px;
@@ -167,40 +257,5 @@
 		height:calc(100vh - 100px);
 		overflow:auto;
 	}
-	.Left{
-		display: inline-block;
-		width:51px;
-		height:51px;
-		vertical-align: top;
-		margin-left:10px;
-	}
-	.Left img{
-		width:100%;
-		height:100%;
-	}
-	.message{
-		display: inline-block;
-		width:75vw;
-		text-align: left;
-		padding-left:2vw;
-		font-size:13px;
-		height:78px;
-		overflow:hidden;
-	}
-
-	.message p{
-		margin:3px 0px;
-		width:100%;
-		word-wrap: break-word;
-  		word-break: break-all;
-  		overflow: hidden;
-	}
-	.message .oneLine{
-		overflow: hidden;/*超出部分隐藏*/
-		white-space: nowrap;/*不换行*/
-		text-overflow:ellipsis;
-	}
-	.message p:first-child{
-		margin:0px 0px 3px 0px;
-	}
+	
 </style>
