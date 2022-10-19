@@ -20,14 +20,23 @@
 <!--          <div>{{item.archNo}}</div>-->
 <!--        </div>-->
         <van-cell-group>
-          <van-field
+          <!-- <van-field
             readonly
             clickable
             name="picker"
             :value="purpose"
             label="*查档目的"
-            placeholder="请选择查档目的"
+            placeholder="请输入查档目的"
             @click="showPop(1)"
+          /> -->
+                    <van-field
+            v-model="item.Purpose"
+            rows="1"
+            autosize
+            label="*查档目的"
+            type="textarea"
+            placeholder="请输入查档目的"
+            show-word-limit
           />
 <!--          <van-field-->
 <!--            readonly-->
@@ -40,7 +49,7 @@
 <!--          />-->
           <van-field
             v-model="item.remark"
-            rows="2"
+            rows="1"
             autosize
             label="*查档内容"
             type="textarea"
@@ -71,7 +80,7 @@
           show-toolbar
           :columns="lyfs"
           value-key="NAME"
-          @confirm="onConfirm2":formatter="formatter1"
+          @confirm="onConfirm2" :formatter="formatter1"
           @cancel="onCancel2"
         />
       </van-popup>
@@ -97,8 +106,8 @@
         showPickerDate:false,
         popupVisible1:false,
         popupVisible2:false,
-        lyMd:[],   //查档目的内容空缺
-        lyfs:[],    //这块内容找不到啊
+      //  lyMd:[],   //查档目的内容空缺
+      //  lyfs:[],    //这块内容找不到啊
         purpose:'',
         modeClass:'',
         item:{
@@ -113,6 +122,7 @@
           address:'',
           purpose:'',
           modeClass :'',
+          Purpose:"",
           remark :'',
           cratetime :'',
         }
@@ -167,26 +177,26 @@
 
       /**
        * 显示弹窗
-       * @type 1 利用目的 2 利用方式
-       */
-      showPop(type){
-        if(type == 1){
-          this.popupVisible1 = true
-        }else{
-          this.popupVisible2 = true;
-        }
-      },
+      //  * @type 1 利用目的 2 利用方式
+      //  */
+      // showPop(type){
+      //   if(type == 1){
+      //     this.popupVisible1 = true
+      //   }else{
+      //     this.popupVisible2 = true;
+      //   }
+      // },
       /**
        * 关闭事件
        * @type 1 利用目的 2 利用方式
        */
-      closePop:function (type) {
-        if(type == 1){
-          this.popupVisible1 = false
-        }else{
-          this.popupVisible2 = false;
-        }
-      },
+      // closePop:function (type) {
+      //   if(type == 1){
+      //     this.popupVisible1 = false
+      //   }else{
+      //     this.popupVisible2 = false;
+      //   }
+      // },
       /**
        * 确认事件
        */

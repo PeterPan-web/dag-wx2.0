@@ -7,12 +7,12 @@
 
 			<!--<imgcomponent :imgList="imgList" :com="com"></imgcomponent>-->
 			<textcomponent :text="textContent" style="text-align: left;"></textcomponent>
-			<iconcomponent></iconcomponent>
+			<!-- <iconcomponent></iconcomponent> -->
 			<morecomponent :argument="argument" :url="url"></morecomponent>
 		</div>
-		<mt-tabbar v-model="selected" fixed>
+		<!-- <mt-tabbar v-model="selected" fixed>
 	 		   <bottomcomponent :list="List"></bottomcomponent>
-	 	</mt-tabbar>
+	 	</mt-tabbar> -->
 	</div>
 </template>
 
