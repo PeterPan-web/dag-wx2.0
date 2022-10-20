@@ -5,15 +5,14 @@
     		<div class="btn">
     			<mt-button size="small" slot="right" @click="searchFile">搜索</mt-button>
     		</div>
-
     	</div>
     	<div class="swiper-container" style="height:200px">
 		  <div class="swiper-wrapper">
-		    <div class="swiper-slide" v-for="(item,index) in imgList" :key='index' :style="item.obj" @click="toDetail(item)">
-		    	<p class="bottom" style="z-index:10">
-		    	<span class="left">{{item.TITLE}}</span>
-		    	<span class="right">{{total==0?0:index+1}}/{{total}}</span>
-		    </p>
+		    <div class="swiper-slide" v-for="(item,index) in imgList" :style="item.obj" @click="toDetail(item)">
+		    	<p class="bottom" style="z-index:10;color:white;">
+		    		<span class="left2">{{item.TITLE}}</span>
+		    		<span class="right">{{total==0?0:index+1}}/{{total}}</span>
+		    	</p>
 		    </div>
 
 		  </div>
@@ -141,5 +140,29 @@
 .search{
   display: flex;
   align-items: center;
+}
+.left2{
+	display:inline-block;
+	margin-top:15px;
+	border:1px solid white;
+	position:flex;
+	flex-direction:row;
+	justify-content:space-between;
+}
+.right{
+	display:inline-block;
+	position:flex;
+	flex-direction:row;
+	border:1px solid white;
+}
+.bottom{
+	display:inline-block;
+	border:1px solid white;
+	margin-top:150px;
+	width:380px;
+	height:45px;
+	
+	
+
 }
 </style>
