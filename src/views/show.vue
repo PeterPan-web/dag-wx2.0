@@ -5,7 +5,6 @@
     		<div class="btn">
     			<mt-button size="small" slot="right" @click="searchFile">搜索</mt-button>
     		</div>
-
     	</div>
     	<div class="swiper-container" style="height:200px">
 		  <div class="swiper-wrapper">
@@ -39,7 +38,6 @@
 
 <script>
 	import Bus from '../components/bus.js'
-	import headernav from '../components/header.vue'
 	import searchcomponent from '../components/consultNew.vue'
 	export default{
 		name:"show",
@@ -63,7 +61,6 @@
 			}
 		},
 		components:{
-			headernav,
 			searchcomponent
 		},
 		created(){

@@ -31,7 +31,7 @@ export default {
           path: "/survey",
           url: "static/img/consult3.png"
         },
-        { content: "个人中心", path: "/people", url: "static/img/people.png" }
+        // { content: "个人中心", path: "/people", url: "static/img/people.png" }
       ],
       mark: "feed",
       nav: "问题反馈",

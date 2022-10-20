@@ -12,6 +12,8 @@
 import Bus from './components/bus.js'
 export default {
   name: 'App',
+  components:{
+  },
   data(){
   	return{
   		up:false
