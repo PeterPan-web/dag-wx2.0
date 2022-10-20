@@ -61,7 +61,7 @@
         </mt-loadmore>
       </div>
     <div v-else>
-      <div style="height: 24px; line-height: 24px;margin-top:0px;border-bottom:5px solid #ffa860">
+      <div style="height: 24px; line-height: 24px;margin-top:0px;">
         <span class="his">历史记录</span>
         <span class="clear" @click="clearCode"></span>
       </div>

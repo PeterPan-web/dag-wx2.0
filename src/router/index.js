@@ -282,11 +282,11 @@ export default new Router({
     },
     {
       path: '/',
-      name: 'interaction',
+      name: 'site',
       meta:{
       	index:0
       },
-      component: Interaction
+      component: Site
     }
   ]
 })
