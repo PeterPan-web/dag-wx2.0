@@ -11,7 +11,7 @@
     	<div id="listContent">
 	    	<mt-loadmore :bottom-method="loadBottom" :top-method="loadTop" :bottom-all-loaded="allLoaded" :auto-fill="false" ref="loadmore">
 				<ul style="width:100vw;margin:0 auto;overflow: auto;">
-				    <li v-for="item in list" @click="toDetail(item)" style="margin:10px 0px;border-bottom:#ccc solid 1px">
+				    <li v-for="(item,index) in list" :key="index" @click="toDetail(item)" style="margin:10px 0px;border-bottom:#ccc solid 1px">
 				    	<span class="mess">
 				    		<p style="font-size:16px;font-weight: 600;">{{item.NAME}}</p>
 				    		<p style="height:38px;overflow: hidden;line-height: 18px;font-size:14px">{{item.ADDRESS}}</p>

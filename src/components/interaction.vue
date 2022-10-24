@@ -10,7 +10,7 @@
 import swipercomponent from "../components/swiper.vue";
 import navcomponent from "../components/nav.vue";
 import mainbtncomponent from "../components/mainButton.vue";
-import Near from "./near";
+import Near from "./near.vue";
 export default {
   name: "site",
   data() {
@@ -37,39 +37,10 @@ export default {
       nav: "问题反馈",
       url: FEED_URL,
       nearUrl: NEAR_URL,
-      allLoaded: false,
-      fileList: []
     };
   },
   created() {
-    this.getFile();
     document.title = "微服务";
-  },
-  methods: {
-    loadTop() {
-      this.allLoaded = false;
-      this.$refs.loadmore.onTopLoaded();
-      this.getFile();
-    },
-    getFile() {
-      var _this = this;
-      $.ajax({
-        type: "post",
-        url: _this.url,
-        data: {
-          key: null,
-          currentPage: 1,
-          pageSize: 5
-        },
-        dataType: "json",
-        success: function(res) {
-          _this.fileList = res.result[0].backfeed;
-        }
-      });
-    },
-    toDetail(item) {
-      this.$router.push({ path: "/feedDetail", query: { argument: item } });
-    }
   },
   components: {
     Near,
@@ -80,7 +51,6 @@ export default {
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 h1,
 h2 {

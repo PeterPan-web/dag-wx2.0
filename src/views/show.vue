@@ -8,7 +8,7 @@
     	</div>
     	<div class="swiper-container" style="height:200px">
 		  <div class="swiper-wrapper">
-		    <div class="swiper-slide" v-for="(item,index) in imgList" :style="item.obj" @click="toDetail(item)">
+		    <div class="swiper-slide" v-for="(item,index) in imgList" :key="index" :style="item.obj" @click="toDetail(item)">
 		    	<p class="bottom" style="z-index:10;color:white;">
 		    		<span class="left2">{{item.TITLE}}</span>
 		    		<span class="right">{{total==0?0:index+1}}/{{total}}</span>
@@ -92,7 +92,6 @@
 					},
 					dataType:"json",
 					success:function(res){
-						console.log(res)
 						_this.list = res.result[0].encodes;
 						_this.imgList = res.result[0].pic;
 						if(_this.imgList.length>0){
@@ -141,28 +140,16 @@
   display: flex;
   align-items: center;
 }
-.left2{
-	display:inline-block;
-	margin-top:15px;
-	border:1px solid white;
-	position:flex;
-	flex-direction:row;
-	justify-content:space-between;
-}
+
 .right{
-	display:inline-block;
-	position:flex;
-	flex-direction:row;
-	border:1px solid white;
+      margin-left: 20px;
 }
 .bottom{
-	display:inline-block;
-	border:1px solid white;
+  justify-content: space-around;
 	margin-top:150px;
 	width:380px;
 	height:45px;
-	
-	
-
+  padding-top: 20px;
+  justify-content: space-evenly;
 }
 </style>
