@@ -40,7 +40,7 @@ export default {
     };
   },
   created() {
-    document.title = "微服务";
+    document.title = "微互动";
   },
   components: {
     Near,

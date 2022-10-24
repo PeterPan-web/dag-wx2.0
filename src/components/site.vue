@@ -31,7 +31,7 @@ export default {
     }
   },
   created(){
-  	document.title="微档案";
+  	document.title="微服务";
   },
   methods:{
   	next(){
