@@ -10,13 +10,17 @@
     	<div id="listContent">
 	    	<mt-loadmore :bottom-method="loadBottom" :top-method="loadTop" :bottom-all-loaded="allLoaded" :auto-fill="false" ref="loadmore">
 				<ul style="width:100vw;margin:0 auto;overflow: auto;">
+<<<<<<< HEAD
 				    <li v-for="(item,index) in list" :key="index" @click="toDetail(item)" style="margin:10px 0px;border-bottom:#ccc solid 1px ;background:white;">
+=======
+				    <li v-for="item in list" @click="toDetail(item)" style="margin:10px 10px;border-bottom:#ccc solid 1px">
+>>>>>>> 06ee563b0651b9860474fa93c0190af15ced1840
 				    	<span class="Left">
 				    		<img v-if ="item.PICTURE ==null" style="display: false;"/>
 				    		<img v-else :src="com+item.PICTURE"/>
 				    	</span>
-				    	<span class="message">
-				    		<p style="width:calc(100vw - 100px);overflow:hidden;white-space: nowrap;text-overflow:ellipsis;">{{item.TITLE}}</p>
+				    	<span class="Left1">
+				    		<p style="font-size:20px;width:calc(100vw - 100px);overflow:auto;white-space: nowrap;text-overflow:ellipsis;">{{item.TITLE}}</p>
 				    		<p>日期 ：{{item.PUBLISHDATE}}</p>
 				    		<p style="height:34px;overflow: hidden;line-height: 18px;">{{item.CONTENT}}</p>
 				    	</span>
@@ -170,24 +174,43 @@
 		overflow:auto;
 	}
 	.Left{
+		position:flex;
+		flex-direction:row;
 		display: inline-block;
-		width:51px;
-		height:51px;
-		vertical-align: top;
+		width:71px;
+		height:71px;
+		vertical-align:left;
+		
 	}
 	.Left img{
 		width:100%;
 		height:100%;
-		margin-top: 10px;
+		
+	}
+	.Left1{
+		position:flex;
+		flex-direction:row;
+		display: inline-block;
+		width:300px;
+		height:100px;
+		vertical-align:left;
+		
+		background-color:	Gainsboro;
+		margin-bottom:10px;
+		box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.5);
 	}
 /*	.message{
+		position:flex;
+		flex-direction:row;
 		display: inline-block;
-		width:75vw;
-		text-align: left;
+		width:35px;
+		text-align: center;
 		padding-left:2vw;
 		font-size:13px;
 		height:78px;
 		overflow:hidden;
+		
+		
 	}
 
 	.message p{
