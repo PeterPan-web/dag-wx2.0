@@ -43,7 +43,7 @@ export default {
   },
   created() {
     this.getFile();
-    document.title = "微服务";
+    document.title = "微互动";
   },
   methods: {
     loadTop() {

@@ -73,6 +73,7 @@
 					},
 					dataType:"json",
 					success:function(res){
+            console.log(res);
 						_this.total = res.result[0].count;
 						_this.fileList.push.apply(_this.fileList,res.result[0].backfeed);
 					}

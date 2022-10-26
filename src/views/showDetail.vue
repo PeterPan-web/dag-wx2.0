@@ -10,9 +10,11 @@
 			<!-- <iconcomponent></iconcomponent> -->
 			<morecomponent :argument="argument" :url="url"></morecomponent>
 		</div>
-		<!-- <mt-tabbar v-model="selected" fixed>
+
+    <!-- 下方投诉 -->
+		 <!-- <mt-tabbar v-model="selected" fixed>
 	 		   <bottomcomponent :list="List"></bottomcomponent>
-	 	</mt-tabbar> -->
+	 	</mt-tabbar>  -->
 	</div>
 </template>
 

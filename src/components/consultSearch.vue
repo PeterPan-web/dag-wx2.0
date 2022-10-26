@@ -10,7 +10,7 @@
     	<div id="listContent">
 	    	<mt-loadmore :bottom-method="loadBottom" :top-method="loadTop" :bottom-all-loaded="allLoaded" :auto-fill="false" ref="loadmore">
 				<ul style="width:100vw;margin:0 auto;overflow: auto;">
-				    <li v-for="item in list" @click="toDetail(item)" style="margin:10px 0px;border-bottom:#ccc solid 1px">
+				    <li v-for="(item,index) in list" :key="index" @click="toDetail(item)" style="margin:10px 0px;border-bottom:#ccc solid 1px ;background:white;">
 				    	<span class="Left">
 				    		<img v-if ="item.PICTURE ==null" style="display: false;"/>
 				    		<img v-else :src="com+item.PICTURE"/>

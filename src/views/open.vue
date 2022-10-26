@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<headernav :title="title"></headernav>
-		<searchcomponent :ps="ps" style="margin-top:50px"></searchcomponent>
+		<searchcomponent :ps="ps" style="margin-top:48px"></searchcomponent>
 	</div>
 </template>
 

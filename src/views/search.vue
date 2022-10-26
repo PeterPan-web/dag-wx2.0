@@ -1,134 +1,109 @@
 <template>
   <div>
-    <headernav :title="title" :show="show"></headernav>
-    <div class="search" style="height:50px;border:1px solid transparent;margin-top:45px;">
-   <!-- <div class="search" style="margin-top: 50px"> -->
-      <div class="row" style="padding: 0em 0.5em;" :style="isShow?'display:block':'display:none'">
+    <headernav :title="title"
+               :show="show"></headernav>
+    <div class="search"
+         style="height:50px;border:1px solid transparent;margin-top:45px;">
+      <!-- <div class="search" style="margin-top: 50px"> -->
+      <div class="row"
+           style="padding: 0em 0.5em;"
+           :style="isShow?'display:block':'display:none'">
         <div>
           <span>已选分类:</span>
-          <span  v-for="(item, index) in selectTableList"
-                  :key="index">
-            <span class="rich-text-color" id="selected_type">{{item.OPTIONNAME}}档案</span>
+          <span v-for="(item, index) in selectTableList"
+                :key="index">
+            <span class="rich-text-color"
+                  id="selected_type">{{item.OPTIONNAME}}档案</span>
             <span @click="close(index)">
-              <svg xmlns="http://www.w3.org/2000/svg" class="svg-icon" viewBox="0 0 24 24" width="0.8em" height="0.8em" style="fill: rgb(174, 174, 174);"><path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm5 13.59L15.59 17 12 13.41 8.41 17 7 15.59 10.59 12 7 8.41 8.41 7 12 10.59 15.59 7 17 8.41 13.41 12 17 15.59z"></path></svg>
+              <svg xmlns="http://www.w3.org/2000/svg"
+                   class="svg-icon"
+                   viewBox="0 0 24 24"
+                   width="0.8em"
+                   height="0.8em"
+                   style="fill: rgb(174, 174, 174);">
+                <path
+                      d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm5 13.59L15.59 17 12 13.41 8.41 17 7 15.59 10.59 12 7 8.41 8.41 7 12 10.59 15.59 7 17 8.41 13.41 12 17 15.59z">
+                </path>
+              </svg>
             </span>
           </span>
         </div>
       </div>
 
+      <div class="searchLeft">
+        <input style="width: 100%; padding-left: 5%"
+               type="search"
+               class="searchText"
+               placeholder="请输入关键字"
+               @keyup.enter="searchFile"
+               v-model="keyWord"
+               @focusin="pushText" />
+      </div>
 
-        <div class="searchLeft" >
-          <input
-            style="width: 100%; padding-left: 5%"
-            type="search"
-            class="searchText"
-            placeholder="请输入关键字"
-            @keyup.enter="searchFile"
-            v-model="keyWord"
-            @focusin="pushText"
-          />
-        </div>
-
-        <div class="btn">
-          <mt-button size="small" slot="right" @click="searchFile"
-            >搜索</mt-button
-          >
-        </div>
-
+      <div class="btn">
+        <mt-button size="small"
+                   slot="right"
+                   @click="searchFile">搜索</mt-button>
+      </div>
 
     </div>
-	  <div v-if="focus">
-        <mt-loadmore
-          :bottom-method="loadBottom"
-          :bottom-all-loaded="allLoaded"
-          :auto-fill="false"
-          ref="loadmore"
-        >
-          <ul style="width: 90vw; margin: 0 auto; overflow: auto">
-            <li
-              v-for="item in list"
+    <div v-if="focus">
+      <mt-loadmore :bottom-method="loadBottom"
+                   :bottom-all-loaded="allLoaded"
+                   :auto-fill="false"
+                   ref="loadmore">
+        <ul style="width: 90vw; margin: 0 auto; overflow: auto">
+          <li v-for="(item,index) in list"
+              :key="index"
               @click="toDetail(item)"
-              style="border-bottom: #ccc solid 1px; width: 100%"
-            >
-              <p class="searchTitle">{{ item.TITLE }}</p>
-              <p class="searchContent">
-                {{ item.ARCHNO }}&nbsp;&nbsp;{{ item.FILEYEAR }}&nbsp;&nbsp;{{
+              style="border-bottom: #ccc solid 1px; width: 100%;padding-bottom:1vw">
+            <p class="searchTitle">{{ item.TITLE }}</p>
+            <p class="searchContent">
+              {{ item.ARCHNO }}&nbsp;&nbsp;{{ item.FILEYEAR }}&nbsp;&nbsp;{{
                   item.LIMITED
                 }}
-              </p>
-            </li>
-          </ul>
-        </mt-loadmore>
-      </div>
+            </p>
+          </li>
+        </ul>
+      </mt-loadmore>
+    </div>
     <div v-else>
       <div style="height: 24px; line-height: 24px;margin-top:0px;border-bottom:5px solid #ffa860">
         <span class="his">历史记录</span>
-        <span class="clear" @click="clearCode"></span>
+        <span class="clear"
+              @click="clearCode"></span>
       </div>
+      <div>
+        <ul style="height:100px;width:100%;line-height: 24px;text-align: left;margin-top:10px;border:1px solid transparent;">
 
-      <ul style="height:100px;width:100%;line-height: 24px;text-align: left;margin-top:10px;border:1px solid transparent;">
-
-       <li  v-for="item1 in historyList"
-          @click="toSearch(item1.TITLE)"
-           style="display: inline-block"><span style="
+          <li v-for="(item1,index) in historyList"
+              :key="index"
+              @click="toSearch(item1.TITLE)"
+              style="display: inline-block"><span style="
               font-size: 13px;
               display: inline-block;
               text-align: center;
               background: #ddd;
               border:1px solid transparent;
               border-radius: 3px;
-              margin: 0px 15px 15px 5px;
+              margin: 0px 5px 5px 5px;
               height:20px;
               width:50px;
-            "
-            >{{ item1.TITLE }}</span></li>
-      </ul>
-    </div>
-    <!-- <div id="listContent">
-
-      <div class="form">
-        <div class="row">
-          <div class="col-12">
-            <h4>常用分类</h4>
-            <div class="row">
-              <div
-                class="col-2"
-                v-for="(item, index) in tableList"
-                :key="index"
-				@click="selectTable(item)"
-              >
-                <div
-                  class="box circle select_type"
-                  :class="
-                    index == 1
-                      ? 'pink'
-                      : index == 3
-                      ? 'yellow'
-                      : index == 5
-                      ? 'green'
-                      : 'blue'
-                  "
-                >
-                  <span> {{ item.OPTIONNAME }}<br />档案 </span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+            ">{{ item1.TITLE }}</span></li>
+        </ul>
       </div>
-    </div> -->
-  </div>
     </div>
+  </div>
 </template>
 
 <script>
-import headernav from "../components/header.vue";
+import headernav from '../components/header.vue'
 export default {
-  name: "index",
+  name: 'index',
   data() {
     return {
-      title: "档案检索",
-      keyWord: "",
+      title: '档案检索',
+      keyWord: '',
       list: [],
       selectTableList: [],
       tableList: [],
@@ -138,21 +113,21 @@ export default {
       pageSize: 15,
       total: 0,
       focus: false,
-	    show: true,
-	    isShow:false,
-	    params: {},
-	    curTable:''
-    };
+      show: true,
+      isShow: false,
+      params: {},
+      curTable: '',
+    }
   },
-  created(){
-    this.getHistory();
+  created() {
+    this.getHistory()
   },
   mounted() {
-    this.getTableList();
+    this.getTableList()
   },
   activated() {
-    WeixinJSBridge.call("hideToolbar");
-    WeixinJSBridge.call("hideOptionMenu");
+    WeixinJSBridge.call('hideToolbar')
+    WeixinJSBridge.call('hideOptionMenu')
     // if (typeof this.params.top == "undefined") {
     //   this.getHistory();
     //   }
@@ -162,98 +137,98 @@ export default {
   },
 
   methods: {
-	close(index){
-		var _this = this;
-		_this.selectTableList.splice(index, 1);
-		if(_this.selectTableList.length == 0){
-			_this.isShow = false;
-		}
-	},
+    close(index) {
+      var _this = this
+      _this.selectTableList.splice(index, 1)
+      if (_this.selectTableList.length == 0) {
+        _this.isShow = false
+      }
+    },
     getTableList() {
-	  var openId = localStorage.getItem("openId");
-	  var _this = this;
+      var openId = localStorage.getItem('openId')
+      var _this = this
       $.ajax({
-        type: "post",
+        type: 'post',
         url: TABLE_URL,
         data: {
-		  openid: openId
+          openid: openId,
         },
-        dataType: "json",
+        dataType: 'json',
         success: function (res) {
-          	_this.tableList = res.result.tables;
+          _this.tableList = res.result.tables
         },
-      });
-	},
-	selectTable(item){
-		var _this = this;
-		_this.isShow = true;
-		var flag=false;
-		if(_this.selectTableList.length > 0){
-			for(var i=0;i<_this.selectTableList.length;i++){
-				if(_this.selectTableList[i].ID == item.ID){
-					flag=true;
-				}
-			}
-		}
-		if(!flag){
-			_this.selectTableList.push(item);
-		}
-	},
+      })
+    },
+    selectTable(item) {
+      var _this = this
+      _this.isShow = true
+      var flag = false
+      if (_this.selectTableList.length > 0) {
+        for (var i = 0; i < _this.selectTableList.length; i++) {
+          if (_this.selectTableList[i].ID == item.ID) {
+            flag = true
+          }
+        }
+      }
+      if (!flag) {
+        _this.selectTableList.push(item)
+      }
+    },
     getAccessToken(code) {
       if (code) {
         $.ajax({
-          type: "post",
+          type: 'post',
           url: GETCODE_URL,
           data: {
             code: code,
           },
-          dataType: "json",
+          dataType: 'json',
           success: function (res) {},
-        });
+        })
       }
     },
     loadBottom() {
-      this.allLoaded = true;
+      this.allLoaded = true
       if (this.total > 0 && this.list.length < this.total) {
-        this.allLoaded = false;
-        this.currentPage++;
-        this.commonGet();
+        this.allLoaded = false
+        this.currentPage++
+        this.commonGet()
       }
-      this.$refs.loadmore.onBottomLoaded();
+      this.$refs.loadmore.onBottomLoaded()
     },
     searchFile() {
-      this.list = [];
-      this.focus = true;
-      $(".searchText").blur();
-      this.commonGet();
-	},
-	gettableIds(){
-		var str='';
-		for(var i=0;i<this.selectTableList.length;i++){
-			if(i+1 == this.selectTableList.length){
-				str += this.selectTableList[i].ID;
-			}else{
-				str += this.selectTableList[i].ID+",";
-			}
-		}
-		return str;
-	},
+      this.list = []
+      this.focus = true
+      $('.searchText').blur()
+      this.commonGet()
+    },
+    gettableIds() {
+      var str = ''
+      for (var i = 0; i < this.selectTableList.length; i++) {
+        if (i + 1 == this.selectTableList.length) {
+          str += this.selectTableList[i].ID
+        } else {
+          str += this.selectTableList[i].ID + ','
+        }
+      }
+      return str
+    },
     commonGet() {
-      var _this = this;
-	  var openId = localStorage.getItem("openId"),
-	   tableIds = _this.gettableIds();
+      var _this = this
+      var openId = localStorage.getItem('openId'),
+        tableIds = _this.gettableIds()
 
       $.ajax({
-        type: "post",
+        type: 'post',
         url: SEARCH_URL,
         data: {
           key: _this.keyWord,
           openid: openId,
           currentPage: _this.currentPage,
-		  pageSize: _this.pageSize,
-		  tableIds:tableIds
+          pageSize: _this.pageSize,
+          tableIds: tableIds,
         },
-        dataType: "json",
+        dataType: 'json',
         success: function (res) {
           console.log(res)
           if (res.success) {
@@ -261,77 +236,77 @@ export default {
             //   _this.$toast("请关注公众号");
             //   return;
             // }
-            _this.total = res.result[0].count;
-            _this.list.push.apply(_this.list, res.result[0].rows);
-            _this.historyList = res.result[0].history;
+            _this.total = res.result[0].count
+            _this.list.push.apply(_this.list, res.result[0].rows)
+            _this.historyList = res.result[0].history
           }
         },
-      });
+      })
     },
 
     toDetail(item) {
       //this.params.top = document.getElementById("listContent").scrollTop;
-      localStorage.setItem("argument", JSON.stringify(item));
-      localStorage.setItem("mark", 0);
+      localStorage.setItem('argument', JSON.stringify(item))
+      localStorage.setItem('mark', 0)
       this.$router.push({
-        path: "/archDetail",
+        path: '/archDetail',
         query: { argument: item, mark: 0 },
-      });
+      })
     },
     getParams() {
-      this.params = this.$router.history.current.query;
+      this.params = this.$router.history.current.query
     },
     pushText() {
-      this.focus = false;
+      this.focus = false
     },
     toSearch(title) {
-      this.keyWord = title;
-      this.searchFile();
+      this.keyWord = title
+      this.searchFile()
     },
     getHistory() {
-      var _this = this;
-      var openId = localStorage.getItem("openId");
+      var _this = this
+      var openId = localStorage.getItem('openId')
       $.ajax({
         url: HISTORY_URL,
-        type: "post",
+        type: 'post',
         data: {
           openid: openId,
         },
         success: function (res) {
-          _this.historyList = res.result[0].history;
+          _this.historyList = res.result[0].history
         },
         error: function (status) {},
-      });
+      })
     },
     clearCode() {
-      var _this = this;
-      var openId = localStorage.getItem("openId");
+      var _this = this
+      var openId = localStorage.getItem('openId')
       $.ajax({
-        type: "post",
+        type: 'post',
         url: CLEAR_URL,
         data: {
           openid: openId,
         },
-        dataType: "json",
+        dataType: 'json',
         success: function (res) {
-          _this.historyList = [];
+          _this.historyList = []
         },
-      });
+      })
     },
     setColor() {
-      var _this = this;
-      var txt = this.txt;
-      var newRegExp = new RegExp(_this.keyWord, "gm");
+      var _this = this
+      var txt = this.txt
+      var newRegExp = new RegExp(_this.keyWord, 'gm')
       this.txt1 = txt.replace(
         newRegExp,
-        "<span style='color:red'>" + _this.keyWord + "</span>"
-      );
+        "<span style='color:red'>" + _this.keyWord + '</span>'
+      )
     },
   },
   components: {
     headernav,
   },
-};
+}
 </script>
 
 <style>
@@ -342,7 +317,7 @@ body {
 .container:before,
 .row:after {
   display: table;
-  content: " ";
+  content: ' ';
 }
 .row:after {
   clear: both;
@@ -388,7 +363,7 @@ body {
   margin-left: 2%;
   padding-left: 1%;
   display: inline-block;
-  border:1px solid transparent;
+  border: 1px solid transparent;
 }
 .searchText {
   background: #f4f4f4;
@@ -397,7 +372,7 @@ body {
   padding-left: 2%;
   border: none;
   border-radius: 4px;
-  line-height:33px;
+  line-height: 33px;
 }
 .searchTitle {
   overflow: hidden;
@@ -422,7 +397,7 @@ ul {
   display: inline-block;
   width: 22%;
   text-align: center;
-  border:1px solid transparent;
+  border: 1px solid transparent;
 }
 #listContent {
   height: calc(100vh - 100px);
@@ -432,14 +407,15 @@ ul {
   display: inline-block;
   font-size: 14px;
   float: left;
- margin-left: 0px;
+  margin-left: 0px;
   font-weight: 600;
-  border:1px solid transparent;
-  color:#ffaa7f;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  border: 1px solid transparent;
+  color: #ffaa7f;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+    'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 .clear {
- display: inline-block;
+  display: inline-block;
   width: 20px;
   height: 20px;
   background: url(../static/img/clear.jpg);
@@ -447,7 +423,7 @@ ul {
   float: right;
   margin-right: 0px;
   margin-top: 2px;
-  border:1px solid transparent;
+  border: 1px solid transparent;
 }
 .box.circle {
   border-radius: 50%;
@@ -456,7 +432,7 @@ ul {
   padding-top: 10px;
   font-size: 16px;
   line-height: 18px;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   width: 60px;
   height: 48px;
 }
@@ -487,7 +463,7 @@ ul {
   background-color: rgb(244, 251, 243);
   border-color: rgb(187, 187, 187);
 }
-[class*="col-"] {
+[class*='col-'] {
   padding-top: 0.5em;
   padding-bottom: 0.5em;
   position: relative;
@@ -541,6 +517,6 @@ h4 {
 }
 .mint-button {
   line-height: 33px;
-  height:33px;
+  height: 33px;
 }
 </style>

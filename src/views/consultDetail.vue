@@ -6,13 +6,13 @@
 			<p style="padding:8px 0px;text-align: left;"><span style="color:#0B8DEF;display: inline-block;padding:0px 15px">{{argument.INFORMATIONTYPE}}</span><span>{{argument.PUBLISHDATE}}</span></p>
 
 			<!--<imgcomponent :imgList="imgList" :com="com"></imgcomponent>-->
-			<textcomponent :text="textContent" style="text-align: left;"></textcomponent>
+			<textcomponent  :text="textContent" style="text-align: left;"></textcomponent>
 			<iconcomponent></iconcomponent>
-			<morecomponent :argument="argument" :url="url" :getComment="List.getComment"></morecomponent>
+			<morecomponent :url="url" :getComment="List.getComment"></morecomponent>
 		</div>
-		<mt-tabbar v-model="selected" fixed>
+		<!-- <mt-tabbar v-model="selected" fixed>
 	 		   <bottomcomponent :list="List"></bottomcomponent>
-	 	</mt-tabbar>
+	 	</mt-tabbar> -->
 	</div>
 </template>
 
@@ -87,6 +87,7 @@
 
 <style>
 	.main{
+
 		overflow: auto;
 	}
 </style>

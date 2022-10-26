@@ -23,6 +23,7 @@ export default {
       	{content:"移动展厅",path:"/show",url:"static/img/show2.png"},
       	{content:"档案资讯",path:"/consult",url:"static/img/consult2.png"},
       	{content:"信息公开",path:"/open",url:"static/img/open2.png"}
+        // {content:"3D展厅",path:"/open",url:"static/img/3Dshow.png"}
       ],
       mark:"consult",
 			nav:"最新资讯",
@@ -31,7 +32,7 @@ export default {
     }
   },
   created(){
-  	document.title="微档案";
+  	document.title="微服务";
   },
   methods:{
   	next(){

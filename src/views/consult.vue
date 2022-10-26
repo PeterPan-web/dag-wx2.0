@@ -9,7 +9,7 @@
     	</div>
     	<div class="swiper-container" style="height:200px">
 		  <div class="swiper-wrapper">
-		    <div class="swiper-slide" v-for="(item,index) in imgList" :style="item.obj" @click="toDetail(item)">
+		    <div class="swiper-slide" v-for="(item,index) in imgList" :key="index" :style="item.obj" @click="toDetail(item)">
 		    	<p class="bottom" style="z-index:10">
 		    	<span class="left">{{item.TITLE}}</span>
 		    	<span class="right">{{total==0?0:index+1}}/{{total}}</span>

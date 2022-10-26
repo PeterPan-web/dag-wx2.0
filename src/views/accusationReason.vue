@@ -198,7 +198,6 @@ export default {
       }
     },
     goCommit(item) {
-      console.log(1111);
       var _this = this;
       _this.display = 1;
       _this.curList = item;
@@ -231,7 +230,7 @@ export default {
       console.log(_this.successImgStr);
       $.ajax({
         type: "post",
-        url: SAVECOMPLAINRt_URL,
+         url: SAVECOMPLAINRt_URL,
         data: {
           fileId: _this.id,
           complaintDescribe: _this.complaintDescribe,
@@ -242,16 +241,18 @@ export default {
         dataType: "json",
         success: function (res) {
           if(res.success == true){
-            if(res.result[0].loginS == 0){
-              _this.$toast("请关注公众号");
-            }else if(res.result[0].loginS == true){
-              _this.$toast("提交成功");
-              _this.display = 0;
-              _this.back();
-            }
-          }else{
-            _this.$toast("提交失败");
-          }
+            _this.$toast("提交成功");
+            _this.back();
+          //   if(res.result[0].loginS == 0){
+          //     _this.$toast("请关注公众号");
+          //   }else if(res.result[0].loginS == true){
+          //     _this.$toast("提交成功");
+          //     _this.display = 0;
+          //     _this.back();
+          //   }
+          // }else{
+          //   _this.$toast("提交失败");
+           }
         },
           error: function(){
             _this.$toast("提交失败");
