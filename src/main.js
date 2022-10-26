@@ -15,7 +15,6 @@ import { Radio } from 'mint-ui';
 import { Toast } from 'mint-ui';
 import { Cell } from 'mint-ui';
 import { Tabbar, TabItem } from 'mint-ui';
-
 import { Form ,Field,CellGroup,Picker,Popup,Collapse, CollapseItem,DatetimePicker,RadioGroup,Dialog,Icon,List,Step, Steps,Rate,Uploader, Image as VanImage, Grid, GridItem ,NavBar ,Calendar} from 'vant';
 Vue.use(Calendar);
 Vue.use(Field);

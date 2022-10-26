@@ -14,7 +14,7 @@
                      label="*联系电话"
                      placeholder="请输入联系电话" />
           <van-field v-model="item.address"
-                     label="*联系地址"
+                     label="联系地址"
                      placeholder="请输入联系地址" />
         </van-cell-group>
 
@@ -37,17 +37,37 @@
                      placeholder="请输入查档内容"
                      show-word-limit />
         </van-cell-group>
-
+<div class="timeCheck">
         <van-field
   readonly
   clickable
   name="calendar"
-  :value="item.cratetime"
-  label="预约时间"
-  placeholder="点击选择日期"
+  :value="item.createDay "
+  label="*预约日期"
+  placeholder="日期"
   @click="showCalendar = true"
+  style="width: 15em !important; " 
 />
 <van-calendar v-model="showCalendar" @confirm="onConfirm" />
+<van-field
+  readonly
+  clickable
+  label="*时间"
+  :value="item.createTime"
+  placeholder="时间段"
+  @click="showPicker = true"
+  style="width: 15em !important; " 
+/>
+<van-popup v-model="showPicker" round position="bottom">
+  <van-picker
+    show-toolbar
+    :columns="columns"
+    @cancel="showPicker = false"
+    @confirm="onConfirmTime"
+  />
+</van-popup>
+</div>
+
       </div>
       <div style="display: flex;margin: 10px 5%;width: 90%">
         <mt-button type="default"
@@ -103,7 +123,10 @@ export default {
       popupVisible1: false,
       popupVisible2: false,
       showCalendar: false,
-      value:"",
+      Day:"",
+      time:"",
+      showPicker: false,
+      columns: ['8:00-12:00', '2:30-5:30'],
       modeClass: '',
       item: {
         pKey: '',
@@ -118,7 +141,8 @@ export default {
         modeClass: '',
         Purpose: '',
         remark: '',
-        cratetime: '',
+        createDay: '',
+        createTime:'',
       },
     }
   },
@@ -132,10 +156,13 @@ export default {
     Object.assign(this.item, query)
   },
   methods: {
-        onConfirm(date) {
-      this.value = `${date.getMonth() + 1}/${date.getDate()}`;
-      this.item.cratetime = `${date.getMonth() + 1}/${date.getDate()}`;
+      onConfirm(date) {
+      this.item.createDay = `${date.getMonth() + 1}/${date.getDate()}`;
       this.showCalendar = false;
+    },
+     onConfirmTime(time) {
+      this.item.createTime = time;
+      this.showPicker = false;
     },
     // onConfirm(time) {
     //   this.value = time
@@ -181,14 +208,14 @@ export default {
         Toast('联系电话不能为空~')
         return false
       }
-      // if (this.item.phone.length != 11) {
-      //   Toast('联系电话必须为11位数')
+      if (this.item.phone.length != 11) {
+         Toast('联系电话必须为11位数')
+         return false
+       }
+      // if (this.item.address == '') {
+      //   Toast('联系地址不能为空~')
       //   return false
       // }
-      if (this.item.address == '') {
-        Toast('联系地址不能为空~')
-        return false
-      }
        if(this.item.Purpose == ''){
          Toast('查档目的不能为空~');
          return false;
@@ -246,7 +273,7 @@ export default {
     //     },
     //   })
     // },
-  },
+  }
 }
 </script>
 
@@ -286,11 +313,16 @@ html {
   text-indent: 1em;
   margin-bottom: 10px;
 }
+
 .van-field__label {
   width: 5.2em !important;
   text-align: right !important;
 }
 .van-field__control--right {
   text-align: left !important;
+  
+}
+.timeCheck{
+display: flex;
 }
 </style>
