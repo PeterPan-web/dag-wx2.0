@@ -145,34 +145,12 @@
 		text-align: left;
 		margin-top:10px;
 	}
-	.bottom{
-		line-height:30px;
-		text-align:left;
-		color:#fff;
-		height:30px;
-		width:98%;
-		padding-left: 2%;
-		background:rgba(199,187,177,0.5);
-		position:absolute;
-		bottom:0px;
-		overflow: hidden;
-	}
-	.bottom span{
-		display: inline-block;
-	}
-	.bottom .left{
-		width:80%;
-		overflow: hidden;
-		white-space: nowrap;
-		text-overflow: ellipsis;
-		line-height: 30px;
+  .bottom{
+	margin-top:150px;
+  text-align: center;
+  background-color: rgba(0,0,0,0);
+  padding-top: 18px;
+  color: white;
+}
 
-	}
-	.bottom .right{
-		width:15%;
-		position: absolute;
-		bottom:0px;
-		height:30px;
-		line-height: 30px;
-	}
 </style>

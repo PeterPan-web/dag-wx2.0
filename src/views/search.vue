@@ -74,22 +74,11 @@
               @click="clearCode"></span>
       </div>
       <div>
-        <ul style="height:100px;width:100%;line-height: 24px;text-align: left;margin-top:10px;border:1px solid transparent;">
-
+        <ul class="itemCard">
           <li v-for="(item1,index) in historyList"
               :key="index"
               @click="toSearch(item1.TITLE)"
-              style="display: inline-block"><span style="
-              font-size: 13px;
-              display: inline-block;
-              text-align: center;
-              background: #ddd;
-              border:1px solid transparent;
-              border-radius: 3px;
-              margin: 0px 5px 5px 5px;
-              height:20px;
-              width:50px;
-            ">{{ item1.TITLE }}</span></li>
+              style="display: inline-block"><span class="itemWord">{{ item1.TITLE }}</span></li>
         </ul>
       </div>
     </div>
@@ -435,6 +424,23 @@ ul {
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   width: 60px;
   height: 48px;
+}
+.itemCard {
+  height: 100px;
+  width: 100%;
+  line-height: 24px;
+  text-align: left;
+  margin-top: 10px;
+}
+.itemWord {
+  font-size: 13px;
+  display: inline-block;
+  text-align: center;
+  background: #ddd;
+  border-radius: 3px;
+  margin: 0px 5px 5px 5px;
+  height: 20px;
+  width: 50px;
 }
 .paddingLeft-xs {
   padding: 0em 1em;

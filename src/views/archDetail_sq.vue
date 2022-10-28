@@ -46,26 +46,18 @@
   label="*预约日期"
   placeholder="日期"
   @click="showCalendar = true"
-  style="width: 15em !important; " 
+  
 />
 <van-calendar v-model="showCalendar" @confirm="onConfirm" />
-<van-field
+ <van-field
   readonly
   clickable
-  label="*时间"
+  label="*预约时间"
   :value="item.createTime"
   placeholder="时间段"
   @click="showPicker = true"
-  style="width: 15em !important; " 
 />
-<van-popup v-model="showPicker" round position="bottom">
-  <van-picker
-    show-toolbar
-    :columns="columns"
-    @cancel="showPicker = false"
-    @confirm="onConfirmTime"
-  />
-</van-popup>
+<van-action-sheet v-model="showPicker" :actions="actions" @select="onSelect" />
 </div>
 
       </div>
@@ -79,31 +71,6 @@
                    @click="qrDj()"
                    style="font-size: 14px">确认登记</mt-button>
       </div>
-      <!-- <van-popup v-model="popupVisible1" position="bottom">
-        <van-picker
-          title="选择利用目的"
-          show-toolbar
-          :columns="lyMd"
-          value-key="NAME"
-          @confirm="onConfirm1"
-          @cancel="onCancel1"
-        />
-      </van-popup>
-      <van-popup v-model="popupVisible2" position="bottom">
-        <van-picker
-          title="选择利用方式"
-          show-toolbar
-          :columns="lyfs"
-          value-key="NAME"
-          @confirm="onConfirm2" :formatter="formatter1"
-          @cancel="onCancel2"
-        />
-      </van-popup> -->
-      <!--日期选择弹框-->
-      <!-- <van-popup v-model="showPickerDate" position="bottom">
-        <van-datetime-picker  v-model="cratetime" @cancel="onCancelDate()" @confirm="onConfirmDate" :formatter="formatter" />
-      </van-popup> -->
-
     </div>
   </div>
 </template>
@@ -126,8 +93,8 @@ export default {
       Day:"",
       time:"",
       showPicker: false,
-      columns: ['8:00-12:00', '2:30-5:30'],
       modeClass: '',
+      actions: [{ name: '8:00-12:00' }, { name: '2:30-5:30' }],
       item: {
         pKey: '',
         archNo: '',
@@ -163,6 +130,12 @@ export default {
      onConfirmTime(time) {
       this.item.createTime = time;
       this.showPicker = false;
+    },
+     onSelect(item) {
+      // 默认情况下点击选项时不会自动收起
+      // 可以通过 close-on-click-action 属性开启自动收起
+      this.showPicker = false;
+      this.item.createTime=item.name
     },
     // onConfirm(time) {
     //   this.value = time
@@ -220,11 +193,14 @@ export default {
          Toast('查档目的不能为空~');
          return false;
        }
-      if (this.item.cratetime == '') {
+      if (this.item.createDay == '') {
+        Toast('请选择预约日期~')
+        return false
+      }
+if (this.item.createTime == '') {
         Toast('请选择预约时间~')
         return false
       }
-
       Indicator.open({
         text: '处理中，请稍等...',
         spinnerType: 'fading-circle',
@@ -284,6 +260,7 @@ export default {
   height: calc(100vh - 100px);
   overflow: auto;
   background: #ffffff;
+  
 }
 .mint-cell-title {
   text-align: left;
@@ -322,7 +299,5 @@ html {
   text-align: left !important;
   
 }
-.timeCheck{
-display: flex;
-}
+
 </style>

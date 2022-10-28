@@ -9,6 +9,7 @@
 </template>
 
 <script>
+import { postSlow } from "../http/api/Universal";
 import swipercomponent from '../components/swiper.vue'
 import navcomponent from '../components/nav.vue'
 import listcomponent from '../components/list.vue'
@@ -28,11 +29,14 @@ export default {
       mark:"consult",
 			nav:"最新资讯",
 			url:NEWCONSULT_URL,
-			nearUrl:NEAR_URL
+			nearUrl:NEAR_URL,
+      imgList:[],
     }
   },
   created(){
   	document.title="微服务";
+     postSlow()
+   // this.postFlow()
   },
   methods:{
   	next(){
