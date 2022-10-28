@@ -14,13 +14,14 @@
                      label="*联系电话"
                      placeholder="请输入联系电话" />
           <van-field v-model="item.address"
+
                      label="联系地址"
+
                      placeholder="请输入联系地址" />
         </van-cell-group>
 
         <h4 class="title"><span>利用档案信息</span>(带*均为必填项)</h4>
         <van-cell-group>
-
           <van-field v-model="item.Purpose"
                      rows="1"
                      autosize
@@ -37,6 +38,7 @@
                      placeholder="请输入查档内容"
                      show-word-limit />
         </van-cell-group>
+
 <div class="timeCheck">
         <van-field
   readonly
@@ -60,6 +62,16 @@
 <van-action-sheet v-model="showPicker" :actions="actions" @select="onSelect" />
 </div>
 
+        <van-field readonly
+                   clickable
+                   name="calendar"
+                   :value="item.cratetime"
+                   label="*预约时期"
+                   placeholder="点击选择预约日期"
+                   @click="showCalendar = true" />
+        <van-calendar v-model="showCalendar"
+                      @confirm="onConfirm" />
+        <!-- 点击登陆 -->
       </div>
       <div style="display: flex;margin: 10px 5%;width: 90%">
         <mt-button type="default"
@@ -71,12 +83,14 @@
                    @click="qrDj()"
                    style="font-size: 14px">确认登记</mt-button>
       </div>
+
     </div>
   </div>
 </template>
 
 <script>
 import headnav from '../components/header.vue'
+
 import Bus from '../components/bus'
 import { Dialog } from 'vant'
 import { Indicator, Toast } from 'mint-ui'
@@ -90,6 +104,7 @@ export default {
       popupVisible1: false,
       popupVisible2: false,
       showCalendar: false,
+
       Day:"",
       time:"",
       showPicker: false,
@@ -105,11 +120,13 @@ export default {
         cardNo: '',
         phone: '',
         address: '',
+
         modeClass: '',
         Purpose: '',
         remark: '',
         createDay: '',
         createTime:'',
+
       },
     }
   },
@@ -119,6 +136,7 @@ export default {
   mounted() {
     // this.getSelect(3)
     // this.getSelect(5)
+
     var query = this.$route.query
     Object.assign(this.item, query)
   },
@@ -260,7 +278,6 @@ if (this.item.createTime == '') {
   height: calc(100vh - 100px);
   overflow: auto;
   background: #ffffff;
-  
 }
 .mint-cell-title {
   text-align: left;

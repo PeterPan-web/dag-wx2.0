@@ -17,6 +17,7 @@ import { Toast } from 'mint-ui';
 import { Form ,Field,CellGroup,Picker,Popup,Collapse, CollapseItem,DatetimePicker,RadioGroup,Dialog,Icon,List,Step, Steps,Rate,Uploader, Image as VanImage, Grid, GridItem ,NavBar ,Calendar,ActionSheet,Cell} from 'vant';
 Vue.use(Cell);
 Vue.use(ActionSheet);
+
 Vue.use(Calendar);
 Vue.use(Field);
 Vue.use(CellGroup);
@@ -55,6 +56,7 @@ Vue.config.productionTip = false
 new Vue({
   el: '#app',
   router,
+  store ,
   components: { App },
   template: '<App/>'
 })
