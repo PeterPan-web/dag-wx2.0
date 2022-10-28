@@ -1,5 +1,11 @@
 var HOST_SERVER = "http://43.142.92.150:80/hfdagl/";
 var HOST_HOME = "http://43.142.92.150:80/hfdagl/";
+
+
+
+//流量入口
+var POST_flow = HOST_SERVER + "hfdagl/wechat!count.action";
+
 //获取openId
 var GETID_URL = HOST_SERVER + "wechat!getOpenid.action";
 //snsapi_userinfo

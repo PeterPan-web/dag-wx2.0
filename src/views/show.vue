@@ -10,8 +10,8 @@
 		  <div class="swiper-wrapper">
 		    <div class="swiper-slide" v-for="(item,index) in imgList" :key="index" :style="item.obj" @click="toDetail(item)">
 		    	<p class="bottom" style="z-index:10;color:white;">
-		    		<span class="left2">{{item.TITLE}}</span>
-		    		<span class="right">{{total==0?0:index+1}}/{{total}}</span>
+		    		<span >{{item.TITLE}}</span>
+		    		<span >{{total==0?0:index+1}}/{{total}}</span>
 		    	</p>
 		    </div>
 
@@ -140,16 +140,11 @@
   display: flex;
   align-items: center;
 }
-
-.right{
-      margin-left: 20px;
-}
 .bottom{
-  justify-content: space-around;
 	margin-top:150px;
-	width:380px;
-	height:45px;
-  padding-top: 20px;
-  justify-content: space-evenly;
+  text-align: center;
+  background-color: rgba(0,0,0,0);
+  
 }
+
 </style>

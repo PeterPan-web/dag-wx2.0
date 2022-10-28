@@ -2,7 +2,7 @@
 	<div>
 		<mt-loadmore :bottom-method="loadBottom"  :top-method="loadTop" :bottom-all-loaded="allLoaded" ref="loadmore" :auto-fill="false">
 			<ul>
-			    <li v-for="item in fileList" style="padding:6px 0px;border-bottom:1px solid #ccc" @click="goNext">
+			    <li v-for="(item,index) in fileList" :key="index" style="padding:6px 0px;border-bottom:1px solid #ccc" @click="goNext">
 			    	<span class="mainTitle">{{item.CONTENT}}</span>
 			    	<span class="time">{{item.CREATEDATE}}</span>
 			    </li>

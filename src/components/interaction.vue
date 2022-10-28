@@ -7,6 +7,7 @@
 </template>
 
 <script>
+import {postSlow} from "../http/api/Universal";
 import swipercomponent from "../components/swiper.vue";
 import navcomponent from "../components/nav.vue";
 import mainbtncomponent from "../components/mainButton.vue";
@@ -31,7 +32,7 @@ export default {
           path: "/survey",
           url: "static/img/consult3.png"
         },
-        // { content: "个人中心", path: "/people", url: "static/img/people.png" }
+         { content: "个人中心", path: "/people", url: "static/img/people.png" }
       ],
       mark: "feed",
       nav: "问题反馈",
@@ -40,7 +41,35 @@ export default {
     };
   },
   created() {
+    postSlow()
+    this.getFile();
     document.title = "微互动";
+  },
+  methods: {
+    loadTop() {
+      this.allLoaded = false;
+      this.$refs.loadmore.onTopLoaded();
+      this.getFile();
+    },
+    getFile() {
+      var _this = this;
+      $.ajax({
+        type: "post",
+        url: _this.url,
+        data: {
+          key: null,
+          currentPage: 1,
+          pageSize: 5
+        },
+        dataType: "json",
+        success: function(res) {
+          _this.fileList = res.result[0].backfeed;
+        }
+      });
+    },
+    toDetail(item) {
+      this.$router.push({ path: "/feedDetail", query: { argument: item } });
+    }
   },
   components: {
     Near,

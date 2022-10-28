@@ -30,7 +30,7 @@ import HaveDetail from '@/views/haveDetail.vue'
 import FeedDetail from '@/views/feedDetail.vue'
 import FileDetail from '@/views/fileDetail.vue'
 import accusationReason from '@/views/accusationReason.vue'
-import People from '@/views/people.vue'
+import People from '@/views/people/people.vue'
 
 Vue.use(Router)
 
@@ -193,6 +193,22 @@ export default new Router({
       },
       component: OpenDetail
     },
+    // {
+    //   path: '/threeshow',
+    //   name:"threeshow",
+    //    meta:{
+    //   	index:1
+    //   },
+    //   component: Threeshow
+    // },
+    // {
+    //   path: '/openDetail',
+    //   name:"openDetail",
+    //    meta:{
+    //   	index:2
+    //   },
+    //   component: OpenDetail
+    // },
     {
       path: '/center',
       name:"center",

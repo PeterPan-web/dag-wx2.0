@@ -41,7 +41,7 @@
         >
           <ul style="width: 90vw; margin: 0 auto; overflow: auto">
             <li
-              v-for="item in list"
+              v-for="(item,index) in list" :key="index"
               @click="toDetail(item)"
               style="border-bottom: #ccc solid 1px; width: 100%"
             >
@@ -62,7 +62,8 @@
         </div>
         <ul style="text-align: left;margin-top:30px">
           <li
-            v-for="item1 in historyList"
+            v-for="(item1,index) in historyList"
+            :key="index"
             @click="toSearch(item1.TITLE)"
             style="display: inline-block"
           >

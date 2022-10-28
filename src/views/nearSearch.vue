@@ -14,7 +14,7 @@
 				    <li v-for="(item,index) in list" :key="index" @click="toDetail(item)" style="margin:10px 0px;border-bottom:#ccc solid 1px">
 				    	<span class="mess">
 				    		<p style="font-size:16px;font-weight: 600;">{{item.NAME}}</p>
-				    		<p style="height:38px;overflow: hidden;line-height: 18px;font-size:14px">{{item.ADDRESS}}</p>
+				    		<p style="height:18px;overflow: hidden;line-height: 18px;font-size:14px">{{item.ADDRESS}}</p>
 				    	</span>
 				    </li>
 				</ul>
@@ -163,7 +163,7 @@
 		text-align: left;
 		padding-left:2vw;
 		font-size:13px;
-		height:68px;
+		height:50px;
 		overflow:hidden;
 	}
 

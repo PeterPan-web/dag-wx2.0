@@ -13,12 +13,11 @@ import { Loadmore } from 'mint-ui';
 import { Swipe, SwipeItem } from 'mint-ui';
 import { Radio } from 'mint-ui';
 import { Toast } from 'mint-ui';
-import { Tabbar, TabItem } from 'mint-ui';
-import store from "./store";
-
-import { Form ,Field,CellGroup, Cell ,Picker,Popup,Collapse, CollapseItem,DatetimePicker,RadioGroup,Dialog,Icon,List,Step, Steps,Rate,Uploader, Image as VanImage, Grid, GridItem ,NavBar } from 'vant';
-import { Calendar } from 'vant';
+// import { Cell } from 'mint-ui';
+import { Form ,Field,CellGroup,Picker,Popup,Collapse, CollapseItem,DatetimePicker,RadioGroup,Dialog,Icon,List,Step, Steps,Rate,Uploader, Image as VanImage, Grid, GridItem ,NavBar ,Calendar,ActionSheet,Cell} from 'vant';
 Vue.use(Cell);
+Vue.use(ActionSheet);
+
 Vue.use(Calendar);
 Vue.use(Field);
 Vue.use(CellGroup);

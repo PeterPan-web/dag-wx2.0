@@ -1,27 +1,27 @@
 <template>
 	<div>
-    	<div id="listContent">
+    	<div id="listContent" >
 	    	<mt-loadmore :bottom-method="loadBottom" :top-method="loadTop" :bottom-all-loaded="allLoaded" :auto-fill="false" ref="loadmore">
 				<ul style="width:100vw;margin:0 auto;overflow: auto;">
-					<li v-for="item in list">
-						<div  class="a1" >
-							<p class="message" >{{item.TITLE}}</p>
-						</div>
-						<div class="a2">
-							<div class="a2-1">
-								<span class="left">
+					<li v-for="(item,index) in list" :key="index"  @click="toDetail(item)" style="display:flex">
+						<div class="cardLeft">
+								<span >
 									<img  v-if ="item.PICTURE ==null" :src="item.PICTURE" style="display:none"/>
 									<img  v-else :src="com+item.PICTURE"/>
 								</span>
 							</div>
-							<div class="a2-2">
+						<div class="cardRight">
+							<div  class="title" >
+							<p >{{item.TITLE}}</p>
+						</div>
+							<!-- <div class="time">
 								<p style="font-size:12px;">日期 ：{{item.PUBLISHDATE}}</p>
-								<p style="font-size:12px;height:34px;overflow: hidden;line-height: 18px;">{{item.CONTENT}}</p></div>
-							<div class="a2-3">
+								<p style="font-size:12px;height:34px;overflow: hidden;line-height: 18px;">{{item.CONTENT}}</p>
+                </div> -->
+							<!-- <div class="a2-3">
 								<img  @click="toDetail(item)" src="static/img/xiao.png"  />
-							</div>
+							</div> -->
 						</div>	
-					
 					</li>
 				</ul>
 			</mt-loadmore>
@@ -134,84 +134,47 @@
 </script>
 
 <style>
-	.a1{
-		vertical-align:top;
-		
+	#listContent{
+		height:calc(100vh - 309px);
+		overflow: auto;
+	}
+.cardLeft{
+		width:80px;
+		height:80px;
+    padding: 3px;
+}
+.cardLeft img{
 		width:100%;
-		height:30%;
-	}
-	.a2{
-		vertical-align:bottom;
-		
-		height:70%;
-
-	}
-	.a2-1{
-		
-        position:flex;
-		flex-direction:row;
-		width:25%;
-		
 		height:100%;
-		display:inline-block;
-		vertical-align:bottom;
 	}
-	.left{
-		
-		display:inline-block;
-		width:70px;
-		height:70px;
-		
-		padding:0px;
-		
-		
+  .cardRight{
+    flex: 1;
+  }
+.title{
+  width: 100%;
+  margin-top: 18px;
+  margin-left: 5px;
+    font-size:13px;
+    
+    font-weight: 700;
+    
 	}
+
+  .time{
+    text-align: left;
+  }
+	
+
+
 	.left img{
 		width:100%;
 		height:100%;
 	}
-	.a2-2{
-		position:flex;
-		flex-direction:row;
-		width:60%;
-		
-		height:100%;
-		display:inline-block;
-		vertical-align:bottom;
-	}
-	.a2-3{
-		vertical-align:bottom;
-		position:flex;
-		flex-direction:row;
-		width:10%;
-		
-		height:100%;
-		display:inline-block;
-		
-		
-	}
-	.a2-3 img{
-		padding:15px 0px;
-		width:25px;
-		height:25px;
-	}
-	#listContent{
-		height:calc(100vh - 309px);
-		overflow: auto;
-		background-color:Gainsboro;
-		
-	}
-	.message{
-		display: inline-block;
-		text-align: center;
-		font-size:20px;
-	
-	}
 	
 	li{
-		height:120px;
+		height:90px;
 		margin:15px 15px;
-		background-color:white;
+  border-bottom: 1px solid rgb(218, 215, 215);
 
 	}
 	.search{

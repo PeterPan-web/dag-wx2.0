@@ -4,7 +4,7 @@
 		<div class="mainCont">
 			<titlecomponet :title="titleContent"></titlecomponet>
 			<txtcomponet></txtcomponet>
-			<imgcomponent></imgcomponent>
+			<!-- <imgcomponent></imgcomponent> -->
 			<filecomponent></filecomponent>
 			<!-- <iconcomponent style="margin-top:10px"></iconcomponent> -->
 			<morecomponent :argument="List.ps" :url="url"></morecomponent>
@@ -20,8 +20,6 @@
 	import headnav from '../components/header.vue'
 	import titlecomponet from '../components/title.vue'
 	import txtcomponet from '../components/txt.vue'
-	// import iconcomponent from '../components/icon.vue'
-	// import bottomcomponent from '../components/bottom.vue'
 	import filecomponent from '../components/fileList.vue'
 	import morecomponent from '../components/loadMore.vue'
 
@@ -79,8 +77,8 @@
 			this.List.ps.tableName =  this.argument.TABLENAME;
 			this.List.ps.title =  this.argument.TITLE;
 			var _this = this;
-			WeixinJSBridge.call('hideToolbar');
-			WeixinJSBridge.call('hideOptionMenu');
+			 WeixinJSBridge.call('hideToolbar');
+			 WeixinJSBridge.call('hideOptionMenu');
 		},
 		methods:{
 			getParams(){
