@@ -92,7 +92,6 @@
 					},
 					dataType:"json",
 					success:function(res){
-						console.log(res)
 						_this.list = res.result[0].encodes;
 						_this.imgList = res.result[0].pic;
 						if(_this.imgList.length>0){

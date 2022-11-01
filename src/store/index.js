@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+<<<<<<< HEAD
 Vue.use(Vuex)
  
 // 用来存储数据
@@ -31,3 +32,16 @@ export default new Vuex.Store({
     getters
 })
  
+=======
+import counter from './modules/counter.js'
+
+Vue.use(Vuex)
+
+const store = new Vuex.Store({
+  modules: {
+    counter
+  }
+})
+
+export default store
+>>>>>>> 0b9e634e703719625707d9d84b2ece8be1985812

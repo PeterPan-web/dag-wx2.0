@@ -1,6 +1,9 @@
 <template>
 	<div style="padding:20px;display: flex;justify-content: space-between">
+
 		<div class="contentView" v-for="(item , index) in list" :key="index" @click="toNext(item.path)">
+
+
 			<img :src="item.url" alt="" style="width:35px;height:35px"/>
 			<p style="font-size:13px;padding: 2px 0px;">{{item.content}}</p>
 			<!--<span class="mainBtn" @click="toNext(item.path)">{{item.content}}</span>-->

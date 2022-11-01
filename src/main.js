@@ -18,6 +18,7 @@ import { Form ,Field,CellGroup,Picker,Popup,Collapse, CollapseItem,DatetimePicke
 Vue.use(Radio);
 Vue.use(Cell);
 Vue.use(ActionSheet);
+
 Vue.use(Calendar);
 Vue.use(Field);
 Vue.use(CellGroup);
@@ -56,7 +57,11 @@ Vue.config.productionTip = false
 new Vue({
   el: '#app',
   router,
+<<<<<<< HEAD
   store,
+=======
+  store ,
+>>>>>>> 0b9e634e703719625707d9d84b2ece8be1985812
   components: { App },
   template: '<App/>'
 })

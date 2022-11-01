@@ -11,7 +11,7 @@ import {postSlow} from "../http/api/Universal";
 import swipercomponent from "../components/swiper.vue";
 import navcomponent from "../components/nav.vue";
 import mainbtncomponent from "../components/mainButton.vue";
-import Near from "./near";
+import Near from "./near.vue";
 export default {
   name: "site",
   data() {
@@ -39,8 +39,6 @@ export default {
       nav: "问题反馈",
       url: FEED_URL,
       nearUrl: NEAR_URL,
-      allLoaded: false,
-      fileList: []
     };
   },
   created() {
@@ -84,7 +82,6 @@ export default {
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 h1,
 h2 {
