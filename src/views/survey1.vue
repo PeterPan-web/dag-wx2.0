@@ -4,7 +4,7 @@
       <headnav :title="selected" :path="path" :up="up"></headnav>
     </div>
     <div style="height:calc(100vh - 50px);overflow: auto;margin-top:50px;">
-      <mt-radio align="left" title="您通过本网站最想获取的信息？" v-model="webStatus" :options="opt1">
+      <mt-radio align="left" title="您通过本网站最想获取的信息?" v-model="webStatus" :options="opt1">
       </mt-radio>
       <mt-radio align="left" title="您对本网站信息获取的满意度评价如何？" v-model="searchStatus" :options="opt2">
       </mt-radio>

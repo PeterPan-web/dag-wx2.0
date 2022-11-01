@@ -139,7 +139,7 @@ import headernav from "../components/header.vue";
 export default {
   name: "index",
   data() {
-    return {
+    return {  
       title: "投诉详情",
       list: [],
       id: "",

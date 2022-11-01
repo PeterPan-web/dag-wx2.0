@@ -7,7 +7,9 @@
 				{{total}}
 			</span>
 		</span>
+    <!-- 点赞 -->
 		<span class="iconT" @click="tip"><img :src="tPath.path"/></span>
+    <!-- 收藏 -->
 		<span class="iconC" @click="collect"><img :src="cPath.path"/></span>
 		<span class="iconS" @click="toAccu"><img :src="sPath.path"/></span>
 		<mt-popup
@@ -31,6 +33,9 @@
 		props:["list"],
 		data(){
 			return{
+loginId:'',
+
+
 				popupVisible:false,
 				content:"",
 				total:0,
@@ -45,12 +50,14 @@
 					path:"static/img/collection.png"
 				},
 				sPath:{
-					status:false,
+					status:true,
 					path:"static/img/consultS.png"
 				}
 			}
 		},
 		created(){
+      this.readLocalStorage();
+      console.log(this.$store.state.loginStatus);
 			this.getCollect();
 			this.getPraise();
 		},
@@ -69,6 +76,26 @@
 			});
 		},
 		methods:{
+      //读取本地记录
+  readLocalStorage(){
+     this.loginId=JSON.parse(localStorage.getItem("loginId"))
+     console.log(this.loginId.openid);
+  },
+
+Judgelogin(){
+if (this.$store.state.loginStatus==0) {
+  //需要跳转登陆
+}else{
+//读取本地
+  this.readLocalStorage();
+}
+
+},
+
+
+
+
+
 			toAccu(){
 				var _this = this;
 				_this.$router.push({

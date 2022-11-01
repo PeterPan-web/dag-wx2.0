@@ -1,13 +1,8 @@
 <template>
 	<div>
 		<mt-loadmore   :bottom-all-loaded="allLoaded" ref="loadmore" :auto-fill="false">
-<!--			<ul style="width:90px;display:inline-block;vertical-align: top;margin-bottom:10px">-->
-<!--			    <li v-for="item in imgList" @click="toDetail(item)" style="width:80px;height:80px;margin-top:10px">-->
-<!--			    	<span class="listLeft"><img :src="commonUrl+item.PICTURE"/></span>-->
-<!--			    </li>-->
-<!--			</ul>-->
 			<ul style="width:calc(100vw - 10px);display: inline-block;vertical-align: top;margin-top: 5px;margin-left:10px">
-			    <li v-for="item in list" @click="toDetail(item)" style="height:60px;width:100%;border-bottom: #b0a5a9 solid 1px;overflow: hidden;padding: 5px;display: flex">
+			    <li v-for="(item,index) in list" :key="index" @click="toDetail(item)" style="height:60px;width:100%;border-bottom: #b0a5a9 solid 1px;overflow: hidden;padding: 5px;display: flex">
             <img style="height:60px;width:100px;margin-right: 10px;" :src="commonUrl+item.PICTURE">
 				    <p style="line-height:50px;text-align:left;overflow: auto;white-space:nowrap;text-overflow:ellipsis;font-weight: 600;">{{item.TITLE}}</p>
 			    </li>
@@ -53,7 +48,6 @@
 					},
 					dataType:"json",
 					success:function(res){
-
 						_this.list.push.apply(_this.list,res.result[0].pic);
 						_this.imgList.push.apply(_this.imgList,res.result[0].newPic);
 					}

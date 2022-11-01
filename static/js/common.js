@@ -17,6 +17,8 @@ var HOST_HOME = "http://112.30.184.184:80";*/
 var HOST_HOME = "http://edu.bhl-china.cn/hfdagl";*/
 /*var HOST_SERVER = "http://36.7.85.10:80/hfdagl/";
 var HOST_HOME = "http://36.7.85.10:80/hfdagl";*/
+//流量入口
+var POST_flow = HOST_SERVER + "hfdagl/wechat!count.action";
 //获取openId
 var GETID_URL = HOST_SERVER + "wechat!getOpenid.action";
 //snsapi_userinfo
