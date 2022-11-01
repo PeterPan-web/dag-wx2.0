@@ -69,6 +69,9 @@ export default {
       allLoaded: false,
     }
   },
+  created(){
+console.log(this.$store.state.loginStatus);
+  },
   activated() {
     var _this = this
     if (typeof this.params.top == 'undefined') {

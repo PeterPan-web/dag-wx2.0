@@ -5,13 +5,15 @@
 			<titlecomponent :title="titleT"></titlecomponent>
 			<p style="padding:8px 0px;text-align: center;color:#CCC"><span>发布时间：{{argument.PUBLISHDATE}}</span></p>
 			<textcomponent :text="textContent"></textcomponent>
+      <!-- 点赞和浏览 -->
 			<imgcomponent></imgcomponent>
-			<!-- <iconcomponent></iconcomponent>
-			<morecomponent :argument="argument" :url="url" :getComment="List.getComment"></morecomponent> -->
+			 <iconcomponent></iconcomponent>
+			<morecomponent :argument="argument" :url="url" :getComment="List.getComment"></morecomponent> 
 		</div>
-		<!-- <mt-tabbar v-model="selected" fixed>
+    <!-- 下方评论 -->
+		 <mt-tabbar v-model="selected" fixed>
 	 		   <bottomcomponent :list="List"></bottomcomponent>
-	 	</mt-tabbar> -->
+	 	</mt-tabbar> 
 	</div>
 </template>
 
