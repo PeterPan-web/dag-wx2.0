@@ -52,16 +52,10 @@ Vue.component(Popup.name, Popup);
 Vue.use(Mint)
 Vue.use(Navigation, {router})
 Vue.config.productionTip = false
-
-/* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
-<<<<<<< HEAD
   store,
-=======
-  store ,
->>>>>>> 0b9e634e703719625707d9d84b2ece8be1985812
   components: { App },
   template: '<App/>'
 })
