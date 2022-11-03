@@ -3,7 +3,7 @@
 		<div class="page-wrap">
 			<headnav :title="selected" :path="path" :up="up"></headnav>
 			<mt-tab-container class="page-tabbar-container" v-model="selected">
-				<!-- <mt-tab-container-item id="我来帮忙">
+				 <mt-tab-container-item id="我来帮忙">
 					<searchcomponent :id="selectedId" :url="mainList.help.baseUrl" :title="selected"></searchcomponent>
 				</mt-tab-container-item>
 				<mt-tab-container-item id="我的帮忙">
@@ -14,14 +14,14 @@
 				</mt-tab-container-item>
 				<mt-tab-container-item id="我的档案">
 					<searchcomponent1 :id="selectedId2" :url="mainList.have.otherUrl" :title="selected"></searchcomponent1>
-				</mt-tab-container-item> -->
+				</mt-tab-container-item> 
 				<mt-tab-container-item id="预约登记">
-        	<searchcomponent2 :id="selectedId3" :url="mainList.register.otherUrl" :title="selected"></searchcomponent2>
+        	<register :id="selectedId3" :url="mainList.register.otherUrl" :title="selected"></register>
         </mt-tab-container-item>
 			</mt-tab-container>
 		</div>
 		<mt-tabbar v-model="selected" >
-			<!-- <mt-tab-item id="我来帮忙">
+			 <mt-tab-item id="我来帮忙">
 				<img slot="icon" :src="imgList[0].url">
 				      我来帮忙
 			</mt-tab-item>
@@ -36,11 +36,11 @@
 			<mt-tab-item id="我的档案">
 				<img slot="icon" :src="imgList[3].url">
 				      我的档案
-			</mt-tab-item> -->
-		<!-- 	<mt-tab-item id="预约登记">
+			</mt-tab-item>
+			<mt-tab-item id="预约登记">
         <img slot="icon" :src="imgList[4].url">
               预约登记
-      </mt-tab-item> -->
+      </mt-tab-item> 
 		</mt-tabbar>
 	</div>
 
@@ -49,14 +49,14 @@
 </template>
 
 <script>
-	import headnav from '../components/header.vue'
-	import havecomponent from '../components/have.vue'
-	import searchcomponent from '../components/centerSearch.vue'
-	import searchcomponent1 from '../components/haveSearch.vue'
-	import searchcomponent2 from '../components/register.vue'
-	import Bus from '../components/bus.js'
+	import headnav from '../../components/header.vue'
+	import havecomponent from '../../components/have.vue'
+	import searchcomponent from '../../components/centerSearch.vue'
+	import searchcomponent1 from '../../components/haveSearch.vue'
+	import register from '../../components/register.vue'
+	import Bus from '../../components/bus.js'
 	export default{
-		name:"center",
+		name:"help",
 		data(){
 			return{
 				selected:"预约登记",
@@ -116,7 +116,8 @@
 		created(){
 			var _this = this;
 			this.imgLists = this.imgList;
-			this.imgLists[0].url = "static/img/help_after.png";
+      this.imgLists[4].url = "static/img/my_register_after.png";
+		//	this.imgLists[0].url = "static/img/help_after.png";
 			Bus.$on("setUp",(status)=>{
 				_this.up = status;
 			});
@@ -128,7 +129,7 @@
 			searchcomponent,
 			havecomponent,
 			searchcomponent1,
-			searchcomponent2
+			register
 		},
 		watch:{
 			selected(newVal,oldVal){
@@ -167,9 +168,9 @@
 			}
 		},
 		methods:{
-			getParams(){
-				this.to = this.$router.history.current.query.to
-			}
+			// getParams(){
+			// this.to = this.$router.history.current.query.to
+			// }
 		}
 
 	}

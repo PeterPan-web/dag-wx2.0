@@ -1,12 +1,12 @@
 <template>
 	<div style="width:100%;text-align: center;">
 		<p @click="showActions" class="bottomFrom" style="width:55%">请输入评论</p>
-		<span class="iconM">
+    <span class="iconM">
 			<img src="../assets/evalute.png"/>
-			<span class="num">
+			<span class="num">    
 				{{total}}
 			</span>
-		</span>
+		</span>  
     <!-- 点赞 -->
 		<span class="iconT" @click="tip"><img :src="tPath.path"/></span>
     <!-- 收藏 -->
@@ -27,15 +27,16 @@
 </template>
 
 <script>
+import {Judgelogin , readLocalStorageid} from "../utils/index";
 	import Bus from './bus.js'
 	export default{
 		name:"bottom",
 		props:["list"],
 		data(){
 			return{
-loginId:'',
-
-
+        // 评论
+        Remark:false,
+        loginId:'',
 				popupVisible:false,
 				content:"",
 				total:0,
@@ -56,8 +57,6 @@ loginId:'',
 			}
 		},
 		created(){
-      this.readLocalStorage();
-      console.log(this.$store.state.loginStatus);
 			this.getCollect();
 			this.getPraise();
 		},
@@ -77,25 +76,6 @@ loginId:'',
 		},
 		methods:{
       //读取本地记录
-  readLocalStorage(){
-     this.loginId=JSON.parse(localStorage.getItem("loginId"))
-     console.log(this.loginId.openid);
-  },
-
-Judgelogin(){
-if (this.$store.state.loginStatus==0) {
-  //需要跳转登陆
-}else{
-//读取本地
-  this.readLocalStorage();
-}
-
-},
-
-
-
-
-
 			toAccu(){
 				var _this = this;
 				_this.$router.push({
@@ -104,7 +84,14 @@ if (this.$store.state.loginStatus==0) {
 				});
 			},
 			showActions(){
-				this.isStop();
+      //  console.log(readLocalStorageid());
+        if (readLocalStorageid()==null) {
+          Judgelogin();
+        }else{
+         this.isStop(); 
+        }
+        
+				
 			},
 			hidePop(){
 				this.popupVisible = false;
@@ -122,21 +109,23 @@ if (this.$store.state.loginStatus==0) {
 			submit(){
 				var _this = this;
 				this.popupVisible = false;
-				var openId = localStorage.getItem("openId");
 				_this.list.ps.criticismInfo =_this.content;
-				_this.list.ps.openid =openId;
+				_this.list.ps.openid =readLocalStorageid();
+        //console.log(_this.list.commentUrl,);
+        //console.log(_this.list.ps);
 				$.ajax({
 					type:"post",
 					url:_this.list.commentUrl,
 					data:_this.list.ps,
 					success:function(res){
+            console.log(res);
 						if(res.result[0].status ==1){
 							_this.$toast("你已经被禁言，请联系系统管理员");
 							return;
 						}
 						if(res.success){
 						  if(res.result[0].loginS==0){
-                _this.$toast("请关注公众号");
+                _this.$toast("请先登陆");
                 return;
 						  }
 							if(res.result[0].msg==1){
@@ -154,8 +143,7 @@ if (this.$store.state.loginStatus==0) {
 			isStop(){
 				var _this = this;
 				this.popupVisible = false;
-				var openId = localStorage.getItem("openId");
-				_this.list.ps.openid = openId;
+				_this.list.ps.openid = readLocalStorageid();
 				$.ajax({
 					type:"post",
 					url:_this.list.forBidden,
@@ -174,9 +162,9 @@ if (this.$store.state.loginStatus==0) {
 				});
 			},
 			tip(){
+        Judgelogin();
 				var _this = this;
-				var openId = localStorage.getItem("openId");
-				_this.list.ps.openid =openId;
+				_this.list.ps.openid =readLocalStorageid();
 				$.ajax({
 					type:"post",
 					url:_this.list.praiseUrl,
@@ -185,7 +173,7 @@ if (this.$store.state.loginStatus==0) {
 					success:function(res){
 						if(res.success){
 						  if(res.result[0].loginS==0){
-							_this.$toast("请关注公众号");
+							_this.$toast("请先登陆");
 							return;
 						}
 							if(res.result[0].success ==1){
@@ -206,9 +194,9 @@ if (this.$store.state.loginStatus==0) {
 				});
 			},
 			collect(){
+        Judgelogin();
 				var _this = this;
-				var openId = localStorage.getItem("openId");
-				_this.list.ps.openid =openId;
+				_this.list.ps.openid =readLocalStorageid();
 				$.ajax({
 					type:"post",
 					url:_this.list.collectionUrl,
@@ -217,7 +205,7 @@ if (this.$store.state.loginStatus==0) {
 					success:function(res){
 						if(res.success){
 						  if(res.result[0].loginS==0){
-                _this.$toast("请关注公众号");
+                _this.$toast("请先登陆");
                 return;
               }
 							if(res.result[0].success ==1){
@@ -313,4 +301,22 @@ if (this.$store.state.loginStatus==0) {
 	.mint-cell-wrapper{
 		padding:0px!important;
 	}
+  .Remark{
+    position: fixed;
+    bottom: 0px;
+    height: 30%;
+    width: 100%;
+    background-color: white;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+  }
+  .Remarkicon{
+        padding: 4px;
+				border-radius: 50%;
+        width: 20px;
+        height: 20px;
+        position: absolute;
+        right: 5px;
+        top: 5px;
+  }
 </style>

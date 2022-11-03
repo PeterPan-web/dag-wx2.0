@@ -31,8 +31,10 @@ import FeedDetail from '@/views/feedDetail.vue'
 import FileDetail from '@/views/fileDetail.vue'
 import accusationReason from '@/views/accusationReason.vue'
 import People from '@/views/people/people.vue'
+import PeopleSite from '@/views/people/PeopleSite.vue'
 import getLogin from '@/views/people/getLogin.vue'
-
+import getLoginSite from '@/views/people/getLoginSite.vue'
+import Help from '@/views/help/help.vue'
 Vue.use(Router)
 
 export default new Router({
@@ -282,6 +284,22 @@ export default new Router({
        component:People
     },
     {
+      path:'/peopleSite',
+      name:"peopleSite",
+       meta:{
+         index:1
+       },
+       component:PeopleSite
+    },
+    {
+      path:'/help',
+      name:"help",
+       meta:{
+         index:1
+       },
+       component:Help
+    },
+    {
       path:'/getLogin',
       name:"getLogin",
        meta:{
@@ -290,12 +308,20 @@ export default new Router({
        component:getLogin
     },
     {
+      path:'/getLoginSite',
+      name:"getLoginSite",
+       meta:{
+         index:2
+       },
+       component:getLoginSite
+    },
+    {
       path: '/',
-      name: 'Site',
+      name: 'interaction',
       meta:{
       	index:0
       },
-      component: Site
+      component: Interaction
     }
   ]
 })

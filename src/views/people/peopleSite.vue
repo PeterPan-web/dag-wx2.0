@@ -40,10 +40,10 @@
 </template>
 
 <script>
-import {readLocalStorage} from "../../utils";
+import {readLocalStorage} from "../../utils/index";
 import  headernav  from "../../components/header.vue";
 export default {
-  name: "people",
+  name: "peopleSite",
   components:{
     headernav,
 		},
@@ -60,46 +60,18 @@ export default {
     this.readStorage()
     },
  methods: {
-loginRouter(){
-  this.$router.push('getLogin')
-},
-//  getCode() {
-//       // 非静默授权，第一次有弹框
-//       var appid = "wx09d4138d7b8a1252";
-//       var http="http://127.0.0.1/#/getLogin";
-//       let  loginId= this.loginId;
-     
-//       this.code = this.getUrlCode().code; // 截取code
-      
-//       if (this.code == null || this.code === '') {
-//         // 如果没有code，则去请求
-//         window.location.href = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=${appid}&redirect_uri=${encodeURIComponent(
-//            http
-//         )}&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect`;
-//       } else {
-//         // 当code不等于空时，调用后端接口获取用户信息
-        
-//         // 你自己的业务逻辑
-//       }
-//       if (loginId == null || loginId === ''||loginId == undefined) {
-//         // 如果没有openid，则去请求
-//         window.location.href = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=${appid}&redirect_uri=${encodeURIComponent(
-//            http
-//         )}&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect`;
-//       } else {
-//         this.state=true;
-//       }
-//     },
+   loginRouter(){
+  this.$router.push('getLoginSite')
+    },
    readStorage(){
-       if (this.$store.state.loginStatus==0) {
+    if (this.$store.state.loginStatus==0) {
       this.state=false
-      this.$router.push('getLogin')
+      this.$router.push('getLoginSite')
     }else{
       this.loginId=readLocalStorage()
      console.log(this.loginId); 
      this.state=true
     }
-      //this.getCode()
    }
 }
 };

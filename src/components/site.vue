@@ -24,7 +24,7 @@ export default {
       	{content:"移动展厅",path:"/show",url:"static/img/show2.png"},
       	{content:"档案资讯",path:"/consult",url:"static/img/consult2.png"},
       	{content:"信息公开",path:"/open",url:"static/img/open2.png"},
-        {content:"个人中心",path:"/people",url:"static/img/people.png"}
+        {content:"个人中心",path:"/peopleSite",url:"static/img/people.png"}
       ],
       mark:"consult",
 			nav:"最新资讯",
@@ -34,7 +34,6 @@ export default {
     }
   },
   created(){
-    console.log(this.$store.state.loginStatus);
   	document.title="微服务";
      postSlow()
   },

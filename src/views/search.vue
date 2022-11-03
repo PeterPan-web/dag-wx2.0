@@ -78,6 +78,7 @@
           <li v-for="(item1,index) in historyList"
               :key="index"
               @click="toSearch(item1.TITLE)"
+              class="itemMin"
               style="display: inline-block"><span class="itemWord">{{ item1.TITLE }}</span></li>
         </ul>
       </div>
@@ -86,6 +87,7 @@
 </template>
 
 <script>
+import { readLocalStorageid} from "../utils/index";
 import headernav from '../components/header.vue'
 export default {
   name: 'index',
@@ -110,9 +112,10 @@ export default {
   },
   created() {
     this.getHistory()
+    this.searchFile()
   },
   mounted() {
-    this.getTableList()
+   // this.getTableList()
   },
   activated() {
     WeixinJSBridge.call('hideToolbar')
@@ -133,21 +136,21 @@ export default {
         _this.isShow = false
       }
     },
-    getTableList() {
-      var openId = localStorage.getItem('openId')
-      var _this = this
-      $.ajax({
-        type: 'post',
-        url: TABLE_URL,
-        data: {
-          openid: openId,
-        },
-        dataType: 'json',
-        success: function (res) {
-          _this.tableList = res.result.tables
-        },
-      })
-    },
+    // getTableList() {
+    //   var openId = readLocalStorageid();
+    //   var _this = this
+    //   $.ajax({
+    //     type: 'post',
+    //     url: TABLE_URL,
+    //     data: {
+    //       openid: openId,
+    //     },
+    //     dataType: 'json',
+    //     success: function (res) {
+    //       _this.tableList = res.result.tables
+    //     },
+    //   })
+    // },
     selectTable(item) {
       var _this = this
       _this.isShow = true
@@ -191,21 +194,22 @@ export default {
       $('.searchText').blur()
       this.commonGet()
     },
-    gettableIds() {
-      var str = ''
-      for (var i = 0; i < this.selectTableList.length; i++) {
-        if (i + 1 == this.selectTableList.length) {
-          str += this.selectTableList[i].ID
-        } else {
-          str += this.selectTableList[i].ID + ','
-        }
-      }
-      return str
-    },
+    // gettableIds() {
+    //   var str = ''
+    //   for (var i = 0; i < this.selectTableList.length; i++) {
+    //     if (i + 1 == this.selectTableList.length) {
+    //       str += this.selectTableList[i].ID
+    //     } else {
+    //       str += this.selectTableList[i].ID + ','
+    //     }
+    //   }
+    
+    //   return str
+    // },
     commonGet() {
       var _this = this
-      var openId = localStorage.getItem('openId'),
-        tableIds = _this.gettableIds()
+      var openId = readLocalStorageid()
+        //tableIds = _this.gettableIds()
 
       $.ajax({
         type: 'post',
@@ -215,7 +219,7 @@ export default {
           openid: openId,
           currentPage: _this.currentPage,
           pageSize: _this.pageSize,
-          tableIds: tableIds,
+          //tableIds: tableIds,
         },
         dataType: 'json',
         success: function (res) {
@@ -254,7 +258,7 @@ export default {
     },
     getHistory() {
       var _this = this
-      var openId = localStorage.getItem('openId')
+      var openId = readLocalStorageid()
       $.ajax({
         url: HISTORY_URL,
         type: 'post',
@@ -269,7 +273,7 @@ export default {
     },
     clearCode() {
       var _this = this
-      var openId = localStorage.getItem('openId')
+      var openId = readLocalStorageid()
       $.ajax({
         type: 'post',
         url: CLEAR_URL,
@@ -426,7 +430,6 @@ ul {
   height: 48px;
 }
 .itemCard {
-  height: 100px;
   width: 100%;
   line-height: 24px;
   text-align: left;
@@ -438,9 +441,9 @@ ul {
   text-align: center;
   background: #ddd;
   border-radius: 3px;
-  margin: 0px 5px 5px 5px;
+  margin: 0px 5px 5px 10px;
   height: 20px;
-  width: 50px;
+  width: 70px;
 }
 .paddingLeft-xs {
   padding: 0em 1em;
@@ -525,4 +528,5 @@ h4 {
   line-height: 33px;
   height: 33px;
 }
+
 </style>

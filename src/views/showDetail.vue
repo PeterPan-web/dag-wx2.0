@@ -5,16 +5,16 @@
 			<titlecomponent :title="titleT"></titlecomponent>
 			<p style="padding:8px 0px;text-align: left;"><span style="color:#0B8DEF;display: inline-block;padding:0px 15px">{{argument.INFORMATIONTYPE}}</span><span>{{argument.PUBLISHDATE}}</span></p>
 
-			<!--<imgcomponent :imgList="imgList" :com="com"></imgcomponent>-->
+			<imgcomponent :imgList="imgList" :com="com"></imgcomponent>
 			<textcomponent :text="textContent" style="text-align: left;"></textcomponent>
-			<!-- <iconcomponent></iconcomponent> -->
+			<iconcomponent></iconcomponent>
 			<morecomponent :argument="argument" :url="url"></morecomponent>
 		</div>
 
     <!-- 下方投诉 -->
-		 <!-- <mt-tabbar v-model="selected" fixed>
+		  <mt-tabbar v-model="selected" fixed>
 	 		   <bottomcomponent :list="List"></bottomcomponent>
-	 	</mt-tabbar>  -->
+	 	</mt-tabbar>  
 	</div>
 </template>
 

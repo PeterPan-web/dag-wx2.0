@@ -3,7 +3,7 @@
     	<div :id="id" style="height:calc(100vh - 105px);overflow: auto;">
 	    	<mt-loadmore :bottom-method="loadBottom" :bottom-all-loaded="allLoaded" :auto-fill="false" ref="loadmore" :top-method="loadTop">
 				<ul style="width:100vw;margin:0 auto;overflow: auto;">
-				    <li v-for="item in list" @click="toDetail(item)" style="height:81px;margin:5px 0px;border-bottom: #ccc solid 1px;overflow: hidden;">
+				    <li v-for="(item,index) in list" :key="index" @click="toDetail(item)" style="height:81px;margin:5px 0px;border-bottom: #ccc solid 1px;overflow: hidden;">
 				    	<span class="listLeftCenter">
 				    		<img v-if="item.PICTURE ==null"  style="display:none;margin-top:5px"/>
 				    		<img v-else :src="com+item.PICTURE" style="margin-top:5px"/>

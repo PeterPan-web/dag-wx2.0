@@ -7,6 +7,7 @@
 </template>
 
 <script>
+import { Judgelogin } from "../utils/index";
 import {postSlow} from "../http/api/Universal";
 import swipercomponent from "../components/swiper.vue";
 import navcomponent from "../components/nav.vue";
@@ -32,7 +33,8 @@ export default {
           path: "/survey",
           url: "static/img/consult3.png"
         },
-        // { content: "个人中心", path: "/people", url: "static/img/people.png" },
+         { content: "我来帮忙", path: "/help", url: "static/img/people.png" },
+         { content: "个人中心", path: "/people", url: "static/img/people.png" }
         //{ content: "登陆页面", path: "/getLogin", url: "static/img/people.png" }
       ],
       mark: "feed",
@@ -42,7 +44,8 @@ export default {
     };
   },
   created() {
-    console.log(this.$store.state.loginStatus);
+    Judgelogin()
+   // console.log(this.$store.state.loginStatus);
      postSlow()
     this.getFile();
     document.title = "微互动";

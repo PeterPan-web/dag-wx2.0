@@ -10,9 +10,9 @@
 			<morecomponent :argument="List.ps" :url="url"></morecomponent>
 		</div>
 
-		<!-- <mt-tabbar v-model="selected" fixed>
+		 <mt-tabbar v-model="selected" fixed>
 	 		   <bottomcomponent :list="List"></bottomcomponent>
-	 	</mt-tabbar> -->
+	 	</mt-tabbar> 
 	</div>
 </template>
 

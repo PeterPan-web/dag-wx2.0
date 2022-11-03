@@ -5,7 +5,6 @@ import App from './App'
 import router from './router'
 import store from './store/index';
 import Navigation from 'vue-navigation'
-import $ from 'jquery'
 import Mint from 'mint-ui'
 import 'mint-ui/lib/style.css';
 import { Button  } from 'mint-ui';
@@ -13,12 +12,12 @@ import { Header } from 'mint-ui'
 import { Loadmore } from 'mint-ui';
 import { Swipe, SwipeItem } from 'mint-ui';
 import { Toast } from 'mint-ui';
-// import { Cell } from 'mint-ui';
-import { Form ,Field,CellGroup,Picker,Popup,Collapse, CollapseItem,DatetimePicker,RadioGroup,Dialog,Icon,List,Step, Steps,Rate,Uploader, Image as VanImage, Grid, GridItem ,NavBar ,Calendar,ActionSheet,Cell,Radio } from 'vant';
+import { Form ,Field,CellGroup,Picker,Popup,Collapse, CollapseItem,DatetimePicker,RadioGroup,Dialog,Icon,List,Step, Steps,Rate,Uploader, Image as VanImage, Grid, GridItem ,NavBar ,Calendar,ActionSheet,Cell,Radio,Badge,Switch} from 'vant';
+Vue.use(Badge);
 Vue.use(Radio);
 Vue.use(Cell);
 Vue.use(ActionSheet);
-
+Vue.use(Switch);
 Vue.use(Calendar);
 Vue.use(Field);
 Vue.use(CellGroup);
@@ -42,7 +41,6 @@ Vue.component(NavBar.name, NavBar);
 Vue.component(VanImage.name, VanImage);
 Vue.component(Cell.name, Cell);
 Vue.component(Toast.name, Toast);
-// Vue.component(Radio.name, Radio);
 Vue.component(Button.name, Button);
 Vue.component(Header.name, Header);
 Vue.component(Loadmore.name, Loadmore);

@@ -24,7 +24,7 @@
 			searchcomponent
 		},
     created(){
-      console.log(this.$store.state.loginStatus);
+      //console.log(this.$store.state.loginStatus);
     },
 		methods:{
 		}

@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import createPersistedState from 'vuex-persistedstate'
 Vue.use(Vuex)
  
 // 用来存储数据
@@ -28,5 +29,9 @@ export default new Vuex.Store({
     state,
     actions,
     mutations,
-    getters
+    getters,
+    plugins: [createPersistedState({
+      key:'Status',
+      paths: ['loginStatus']
+    })]
 })

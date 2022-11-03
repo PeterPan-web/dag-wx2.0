@@ -90,6 +90,7 @@ export default {
     },
     getFile() {
       var _this = this;
+      
       $.ajax({
         type: "post",
         url: _this.ps.url,
@@ -101,12 +102,15 @@ export default {
         },
         dataType: "json",
         success: function(res) {
-          console.log(res);
+         console.log(res);
           _this.total = res.result[0].count;
           if (typeof res.result[0].files == "undefined") {
+            //let csss=res.result[0].info;
             for (var i = 0; i < res.result[0].info.length; i++) {
               _this.list.push(res.result[0].info[i]);
             }
+           // console.log(csss);
+           // console.log(_this.list);
           } else {
             for (var i = 0; i < res.result[0].files.length; i++) {
               _this.list.push(res.result[0].files[i]);

@@ -10,9 +10,9 @@
     	<div :id="id" style="height:calc(100vh - 160px);overflow: auto;">
 	    	<mt-loadmore :bottom-method="loadBottom" :bottom-all-loaded="allLoaded" :auto-fill="false" ref="loadmore" :top-method="loadTop">
 				<ul style="width:100vw;margin:0 auto;overflow: auto;">
-				    <li v-for="item in list" @click="toDetail(item)" style="height:81px;margin:5px 0px;border-bottom: #ccc solid 1px;overflow: hidden;">
+				    <li v-for="(item,index) in list" :key="index" @click="toDetail(item)" style="height:81px;margin:5px 0px;border-bottom: #ccc solid 1px;overflow: hidden;">
 				    	<span class="listLeftCenter" style="margin-left:15px;">
-				    		<img v-if ="item.PICTURE ==null":src="item.PICTURE"/>
+				    		<img v-if ="item.PICTURE ==null" :src="item.PICTURE"/>
 				    		<img v-else :src="com+item.PICTURE"/>
 				    	</span>
 			    		<span class="messageListCenter" style="height:78px;">
@@ -72,8 +72,8 @@
 			}else{
 				document.getElementById(_this.id).scrollTop = this.params.top;
 			}
-			// WeixinJSBridge.call('hideToolbar');
-			// WeixinJSBridge.call('hideOptionMenu');
+			 WeixinJSBridge.call('hideToolbar');
+			 WeixinJSBridge.call('hideOptionMenu');
 		},
 		methods:{
 			pushText(ev){

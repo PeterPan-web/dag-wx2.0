@@ -2,14 +2,14 @@
 	<div style="font-family: 'mintui';overflow: auto;height:calc(100vh - 110px);text-align: center;padding:10px">
 	  <p>个人信息</p>
 		<mt-field label="姓名" placeholder="请输入姓名" v-model="name" class="mintStyle"></mt-field>
-    <mt-field label="性别"  v-model="gender" class="mintStyle">
-    <mt-switch v-model="value1"  ></mt-switch>
+    <mt-field label="性别"  disabled v-model="gender" class="mintStyle">
+      <van-switch v-model="checked"  size="24px" />
     </mt-field>
 		<mt-field label="手机号" placeholder="请输入手机号" :state="phoneS" v-model="phone" class="mintStyle"></mt-field>
 		<!-- <mt-field label="邮箱" placeholder="请输入邮箱" :state="mailboxS" v-model="mailbox" class="mintStyle"></mt-field> -->
 		<mt-field label="联系地址" placeholder="请输入联系地址" v-model="address" class="mintStyle"></mt-field>
-		<mt-field label="证件类型" placeholder="请选择证件类型" v-model="documentType"  class="mintStyle">
-		    <mt-button type="default" @click="changeID">选择</mt-button>
+		<mt-field label="证件类型"  disabled  placeholder="请选择证件类型" v-model="documentType"  class="mintStyle">
+		    <!-- <mt-button type="default" @click="changeID">选择</mt-button> -->
 		</mt-field>
 		<mt-field label="证件号码" placeholder="请输入证件号码" v-model="documentNumber" class="mintStyle"></mt-field>
 		<p>查档信息</p>
@@ -20,7 +20,7 @@
     <div style="display: table;
     padding: 3px 11px">内容</div>
     <mt-field placeholder="请输入内容" type="textarea" rows="5" v-model="content" class="mintStyle"></mt-field>
-		<!-- <mt-switch v-model="value" style="margin-left:20px;margin-top:20px">{{isOpen}}</mt-switch> -->
+		<mt-switch v-model="value" style="margin-left:20px;margin-top:20px">{{isOpen}}</mt-switch>
 		<span class="submitFlieBtn" @click="isStop">提交</span>
 
 		<mt-popup v-model="changeIDbox" popup-transition="popup-fade">
@@ -43,9 +43,7 @@
 </template>
 
 <script>
-	import { Indicator } from 'mint-ui';
-	import { Switch } from 'mint-ui';
-	import Bus from '../components/bus.js'
+	//import Bus from '../components/bus.js'
 	export default{
 		name:"register",
 		data(){
@@ -54,7 +52,11 @@
 				name:"",
 				changeIDbox:false,
 				changeIDOffice:false,
+        checked: true,
 				gender:"男",
+        genderStatus:1,
+
+
 				phone:"",
 				phoneS:"",//手机号校验
 				mailbox:"",
@@ -66,7 +68,6 @@
 				officeBranch:"",
 				content:"",
 				value:false,
-				value1:false,
 				isOpen:"公开",
 				status:0,
 				IDoptions:[
@@ -83,16 +84,17 @@
           {label: '效能建设',value: '效能建设'},
           {label: '其他事项',value: '其他事项'}
         ],
-				genderStatus:1,
+				
 
 			}
 		},
 		mounted(){
-			var _this = this;
-			Bus.$on("getList",(list) =>{
-				_this.list = list;
+      console.log('1');
+			// var _this = this;
+			// Bus.$on("getList",(list) =>{
+			// 	_this.list = list;
 
-			});
+			// });
 		},
 		activated(){
 
@@ -104,10 +106,11 @@
 						this.isOpen ="隐私";
 					}
 			},
-			value1(newValue,oldValue){
-          this.gender ="男";
+      checked(newValue,oldValue){
           if(newValue){
-            this.gender ="女";
+            this.gender ="男";
+          }else{
+             this.gender ="女";
           }
       },
       phone(newValue,oldValue){
@@ -162,7 +165,7 @@
         return;
       } */
       if(_this.value){_this.status = 1;}
-      if(_this.value1){_this.genderStatus = 0;}
+      if(_this.checked){_this.genderStatus = 0;}
       var document_type=0;
       var office_branch=1;
       if(_this.documentType=="身份证"){document_type=0;}
@@ -201,7 +204,7 @@
             }
               _this.$toast("提交成功");
               _this.name ="";
-              _this.value1 =false;
+              _this.checked =false;
               _this.phone ="";
               _this.mailbox ="";
               _this.address ="";
@@ -239,9 +242,6 @@
 </script>
 
 <style>
-#changeIDbox{
-
-}
 	.imgList{
 		margin-left:5px;
 		margin-top:10px;
