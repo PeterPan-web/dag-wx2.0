@@ -65,6 +65,13 @@ import {Judgelogin , readLocalStorageid} from "../utils/index";
 			Bus.$on("msg",(total) =>{
 				_this.total = total;
 			});
+//       if(this.$store.state.up=="1"){
+// _this.cPath.path ="static/img/collection_after.png";
+//       }
+//       if (this.$store.state.up=="1") {
+//         _this.tPath.path ="static/img/tip_after.png";
+//       }
+
 			Bus.$on("getStatus",(c,p) =>{
 				if(c=="1"){
 					_this.cPath.path ="static/img/collection_after.png";
@@ -84,8 +91,7 @@ import {Judgelogin , readLocalStorageid} from "../utils/index";
 				});
 			},
 			showActions(){
-      //  console.log(readLocalStorageid());
-        if (readLocalStorageid()==null) {
+        if (readLocalStorageid()==true) {
           Judgelogin();
         }else{
          this.isStop(); 
@@ -231,6 +237,7 @@ import {Judgelogin , readLocalStorageid} from "../utils/index";
 					data:_this.list.ps,
 					dataType:"json",
 					success:function(res){
+            console.log(res);
 						if(res.success){
 							if(res.result[0].status==1){
 								_this.cPath.path ="static/img/collection_after.png"
@@ -247,6 +254,7 @@ import {Judgelogin , readLocalStorageid} from "../utils/index";
 					data:_this.list.ps,
 					dataType:"json",
 					success:function(res){
+            console.log(res);
 						if(res.success){
 							Bus.$emit("getRead",res.result[0].count);
 							if(res.result[0].status==1){

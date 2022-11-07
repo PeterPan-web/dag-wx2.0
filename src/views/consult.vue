@@ -1,5 +1,6 @@
 <template>
 	<div>
+    <headernav :title="title" :show="show"  style="padding-bottom:50px"></headernav>
 		<div class="search" style="background:#ef6b42">
     		<input  type="search" class="searchText" placeholder="请输入题名进行搜索" @keyup.enter ="searchFile" v-model="keyWord" @focus="pushText"/>
     		<div class="btn">
@@ -44,6 +45,7 @@
 		data(){
 			return{
 				title:"档案资讯",
+        show:true,
 				selected:"",
 				keyWord:"",
 				selectTitle:"",

@@ -68,11 +68,15 @@
       </mt-loadmore>
     </div>
     <div v-else>
+      <div class="onshowlist" v-show="showlistWord">
+        <p style="text-align:center">未登录状态无法查看你的历史记录</p>
+      </div>
       <div style="height: 24px; line-height: 24px;margin-top:0px;">
         <span class="his">历史记录</span>
         <span class="clear"
               @click="clearCode"></span>
       </div>
+      
       <div>
         <ul class="itemCard">
           <li v-for="(item1,index) in historyList"
@@ -108,11 +112,12 @@ export default {
       isShow: false,
       params: {},
       curTable: '',
+      showlistWord:true,
     }
   },
   created() {
-    this.getHistory()
-    this.searchFile()
+    this.searchFile();
+    this.showlist();
   },
   mounted() {
    // this.getTableList()
@@ -129,6 +134,15 @@ export default {
   },
 
   methods: {
+    showlist(){
+      if(this.$store.state.loginStatus==0){
+        this.showlistWord=true,
+        this.getHistory()
+      }else{
+        this.showlistWord=false
+      }
+    },
+
     close(index) {
       var _this = this
       _this.selectTableList.splice(index, 1)
@@ -208,7 +222,7 @@ export default {
     // },
     commonGet() {
       var _this = this
-      var openId = readLocalStorageid()
+     // var openId = readLocalStorageid()
         //tableIds = _this.gettableIds()
 
       $.ajax({
@@ -216,7 +230,7 @@ export default {
         url: SEARCH_URL,
         data: {
           key: _this.keyWord,
-          openid: openId,
+        //  openid: openId,
           currentPage: _this.currentPage,
           pageSize: _this.pageSize,
           //tableIds: tableIds,
@@ -528,5 +542,8 @@ h4 {
   line-height: 33px;
   height: 33px;
 }
-
+.onshowlist{
+text-align: center;
+font-size: 16px;
+}
 </style>

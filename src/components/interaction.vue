@@ -7,7 +7,6 @@
 </template>
 
 <script>
-import { Judgelogin } from "../utils/index";
 import {postSlow} from "../http/api/Universal";
 import swipercomponent from "../components/swiper.vue";
 import navcomponent from "../components/nav.vue";
@@ -44,8 +43,6 @@ export default {
     };
   },
   created() {
-    Judgelogin()
-   // console.log(this.$store.state.loginStatus);
      postSlow()
     this.getFile();
     document.title = "微互动";

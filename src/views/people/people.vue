@@ -91,12 +91,12 @@ loginRouter(){
 //       }
 //     },
    readStorage(){
+    console.log(this.$store.state.loginStatus);
        if (this.$store.state.loginStatus==0) {
       this.state=false
       this.$router.push('getLogin')
     }else{
       this.loginId=readLocalStorage()
-     console.log(this.loginId); 
      this.state=true
     }
       //this.getCode()

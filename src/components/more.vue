@@ -55,8 +55,7 @@ import { readLocalStorageid} from "../utils/index";
             	}
             }
        	},
-		mounted(){
-      console.log(this.argument);
+		mounted(){  
 			this.id =  this.argument.ID;
 			this.optionName = this.argument.INFORMATIONTYPE;
       this.getFile();
@@ -80,12 +79,13 @@ import { readLocalStorageid} from "../utils/index";
 				this.$refs.loadmore.onTopLoaded();
 			},
 			getFile(){
+        var openid = readLocalStorageid();
 				var _this = this;
 				$.ajax({
 					type:"post",
 					url:_this.url,
 					data:{
-						//openid:openid,
+						openid:openid,
 						id:_this.id,
 						informationType:_this.optionName
 					},
@@ -97,6 +97,8 @@ import { readLocalStorageid} from "../utils/index";
 						Bus.$emit("getRead",res.result[0].count);
 						Bus.$emit("getTotal",res.result[0].praiseCount);
 						Bus.$emit("getStatus",res.result[0].c,res.result[0].p);
+            // _this.$store.commit("getUp",res.result[0].p)
+            // _this.$store.commit("getCollect",res.result[0].c)
 					}
 				});
 			},

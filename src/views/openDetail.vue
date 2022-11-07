@@ -78,7 +78,6 @@
 		methods:{
 			getParams(){
 				this.params = this.$route.query;
-        //console.log(this.params);
 			}
 		}
 	}

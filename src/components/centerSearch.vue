@@ -28,6 +28,7 @@
 </template>
 
 <script>
+import {readLocalStorageid } from "../utils/index";
 	export default{
 		name:"centerSearch",
 		props:["id","url","title"],
@@ -57,6 +58,8 @@
 				}
 			}
 		},
+    created(){
+    },
 		activated(){
 			var _this = this;
 			if(typeof(this.params.top) =="undefined"){
@@ -119,26 +122,24 @@
 			},
 			getFile(){
 				var _this = this;
-				var openId = localStorage.getItem("openId");
+        var openId = readLocalStorageid()
 				$.ajax({
 					type:"post",
 					url:_this.url,
 					data:{
 						key:_this.keyWord,
-						openid:openId,
+						 openid:openId,
 						currentPage:_this.currentPage,
 						pageSize:_this.pageSize
 					},
 					dataTypa:"json",
 					success:function(res){
-						console.log(res)
 						_this.total = res.result[0].count;
 						if(typeof(res.result[0].helpInfo) =="undefined"){
 							_this.list.push.apply(_this.list,res.result[0].list);
 						}else{
 							_this.list.push.apply(_this.list,res.result[0].helpInfo);
 						}
-
 					}
 				});
 			}

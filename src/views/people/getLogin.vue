@@ -102,10 +102,10 @@ export default {
        this.userinfo= user2 
       postUserinfo(user2)
       localStorage.setItem("loginId",JSON.stringify(this.userinfo))
-      this.backhome()
+      this.back()
     },
-    backhome(){
-     this.$router.push('interaction')
+    back(){
+      this.$router.push("interaction")
     }
   },
 }

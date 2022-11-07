@@ -49,6 +49,7 @@
 </template>
 
 <script>
+import { JudgeloginInteraction } from "../../utils/index";
 	import headnav from '../../components/header.vue'
 	import havecomponent from '../../components/have.vue'
 	import searchcomponent from '../../components/centerSearch.vue'
@@ -114,6 +115,7 @@
 			}
 		},
 		created(){
+      JudgeloginInteraction()
 			var _this = this;
 			this.imgLists = this.imgList;
       this.imgLists[4].url = "static/img/my_register_after.png";
