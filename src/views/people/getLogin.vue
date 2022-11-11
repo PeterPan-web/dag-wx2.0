@@ -21,8 +21,8 @@
       <van-grid>
         <van-grid-item icon="setting-o"
                        text="修改资料" />
-        <van-grid-item icon="user-o"
-                       text="个人中心" />
+         <van-grid-item icon="user-o"
+                       text="个人信息" /> 
         <van-grid-item icon="star-o"
                        text="收藏" />
         <van-grid-item icon="info-o"
@@ -47,7 +47,7 @@ export default {
       state: false,
       wxAppId: 'wx09d4138d7b8a1252',
       wxAppSecret: '6b3f8994da0ff9f4bb02e74840ffc675',
-      http: 'http://127.0.0.1/#/getLogin',
+      http: 'http://43.142.92.150/dist/#/getLogin',
       userinfo:"",
     }
   },
@@ -102,11 +102,8 @@ export default {
        this.userinfo= user2 
       postUserinfo(user2)
       localStorage.setItem("loginId",JSON.stringify(this.userinfo))
-      this.back()
-    },
-    back(){
       this.$router.push("interaction")
-    }
+    },
   },
 }
 </script>

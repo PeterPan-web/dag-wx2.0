@@ -94,6 +94,7 @@
                 :key="index"
 				@click="selectTable(item)"
               >
+              
                 <div
                   class="box circle select_type"
                   :class="
@@ -119,7 +120,7 @@
 </template>
 
 <script>
-import headernav from "../components/header.vue";
+import headernav from "../../components/header.vue";
 export default {
   name: "index",
   data() {

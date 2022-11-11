@@ -8,17 +8,17 @@ export function Judgelogin() {
     router.push('getLoginSite')
   }else{
   //读取本地
-  console.log('处于登陆状态');
+  //console.log('处于登陆状态');
   }
 }
 export function JudgeloginInteraction() {
   if (store.state.loginStatus==0) {
     //需要跳转登陆
-    console.log('还没登陆现在跳转');
+    //console.log('还没登陆现在跳转');
     router.push('getLogin')
   }else{
   //读取本地
-  console.log('处于登陆状态');
+  //console.log('处于登陆状态');
   }
 }
 //读取本地loginId

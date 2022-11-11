@@ -11,8 +11,8 @@
       <van-grid>
         <van-grid-item icon="setting-o"
                        text="修改资料" />
-        <van-grid-item icon="user-o"
-                       text="个人中心" />
+         <van-grid-item icon="user-o"
+                       text="个人信息" /> 
         <van-grid-item icon="star-o"
                        text="收藏" />
         <van-grid-item icon="info-o"
@@ -37,7 +37,7 @@ export default {
       state: false,
       wxAppId: 'wx09d4138d7b8a1252',
       wxAppSecret: '6b3f8994da0ff9f4bb02e74840ffc675',
-      http: 'http://127.0.0.1/#/getLoginSite',
+      http: 'http://43.142.92.150/dist/#/getLoginSite',
       userinfo:"",
     }
   },
@@ -49,6 +49,7 @@ export default {
     //判断是否登陆
     Judgelogin() {
       this.code = this.getUrlCode().code // 截取code
+      console.log(this.code );
       if (this.code == null || this.code === '') {
         // 如果没有code，则去请求
         window.location.href = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=${

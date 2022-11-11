@@ -25,12 +25,14 @@
       <van-grid>
         <van-grid-item icon="setting-o"
                        text="修改资料" />
-        <van-grid-item icon="user-o"
-                       text="个人中心" />
+         <van-grid-item icon="user-o"
+                       text="个人信息" /> 
         <van-grid-item icon="star-o"
                        text="收藏" />
         <van-grid-item icon="info-o"
-                       text="关于" />
+                       text="关于" 
+                       
+                       />
       </van-grid>
     </div>
     <div>
@@ -94,13 +96,18 @@ loginRouter(){
     console.log(this.$store.state.loginStatus);
        if (this.$store.state.loginStatus==0) {
       this.state=false
-      this.$router.push('getLogin')
+      this.loginRouter()
     }else{
       this.loginId=readLocalStorage()
      this.state=true
     }
       //this.getCode()
-   }
+   },
+  //  delLogin(){
+  //   localStorage.removeItem("loginId");
+  //     this.$router.push('interaction');
+      
+  //  }
 }
 };
 </script>

@@ -67,10 +67,8 @@
         </ul>
       </mt-loadmore>
     </div>
-    <div v-else>
-      <div class="onshowlist" v-show="showlistWord">
-        <p style="text-align:center">未登录状态无法查看你的历史记录</p>
-      </div>
+    
+    <div v-else v-show="!showlistWord">
       <div style="height: 24px; line-height: 24px;margin-top:0px;">
         <span class="his">历史记录</span>
         <span class="clear"
@@ -87,18 +85,21 @@
         </ul>
       </div>
     </div>
+    <div class="onshowlist" v-show="showlistWord">
+        <p style="text-align:center">未登录状态无法查看你的历史记录</p>
+      </div>
   </div>
 </template>
 
 <script>
-import { readLocalStorageid} from "../utils/index";
-import headernav from '../components/header.vue'
+import { readLocalStorageid } from "../utils/index";
+import headernav from "../components/header.vue";
 export default {
-  name: 'index',
+  name: "index",
   data() {
     return {
-      title: '档案检索',
-      keyWord: '',
+      title: "档案检索",
+      keyWord: "",
       list: [],
       selectTableList: [],
       tableList: [],
@@ -111,20 +112,20 @@ export default {
       show: true,
       isShow: false,
       params: {},
-      curTable: '',
-      showlistWord:true,
-    }
+      curTable: "",
+      showlistWord: true
+    };
   },
   created() {
     this.searchFile();
     this.showlist();
   },
   mounted() {
-   // this.getTableList()
+    // this.getTableList()
   },
   activated() {
-    WeixinJSBridge.call('hideToolbar')
-    WeixinJSBridge.call('hideOptionMenu')
+    WeixinJSBridge.call("hideToolbar");
+    WeixinJSBridge.call("hideOptionMenu");
     // if (typeof this.params.top == "undefined") {
     //   this.getHistory();
     //   }
@@ -134,20 +135,20 @@ export default {
   },
 
   methods: {
-    showlist(){
-      if(this.$store.state.loginStatus==0){
-        this.showlistWord=true,
-        this.getHistory()
-      }else{
-        this.showlistWord=false
+    showlist() {
+      if (this.$store.state.loginStatus == 0) {
+        this.showlistWord = true, 
+        this.getHistory();
+      } else {
+        this.showlistWord = false;
       }
     },
 
     close(index) {
-      var _this = this
-      _this.selectTableList.splice(index, 1)
+      var _this = this;
+      _this.selectTableList.splice(index, 1);
       if (_this.selectTableList.length == 0) {
-        _this.isShow = false
+        _this.isShow = false;
       }
     },
     // getTableList() {
@@ -166,47 +167,47 @@ export default {
     //   })
     // },
     selectTable(item) {
-      var _this = this
-      _this.isShow = true
-      var flag = false
+      var _this = this;
+      _this.isShow = true;
+      var flag = false;
       if (_this.selectTableList.length > 0) {
         for (var i = 0; i < _this.selectTableList.length; i++) {
           if (_this.selectTableList[i].ID == item.ID) {
-            flag = true
+            flag = true;
           }
         }
       }
       if (!flag) {
-        _this.selectTableList.push(item)
+        _this.selectTableList.push(item);
       }
     },
     getAccessToken(code) {
       if (code) {
         $.ajax({
-          type: 'post',
+          type: "post",
           url: GETCODE_URL,
           data: {
-            code: code,
+            code: code
           },
-          dataType: 'json',
-          success: function (res) {},
-        })
+          dataType: "json",
+          success: function(res) {}
+        });
       }
     },
     loadBottom() {
-      this.allLoaded = true
+      this.allLoaded = true;
       if (this.total > 0 && this.list.length < this.total) {
-        this.allLoaded = false
-        this.currentPage++
-        this.commonGet()
+        this.allLoaded = false;
+        this.currentPage++;
+        this.commonGet();
       }
-      this.$refs.loadmore.onBottomLoaded()
+      this.$refs.loadmore.onBottomLoaded();
     },
     searchFile() {
-      this.list = []
-      this.focus = true
-      $('.searchText').blur()
-      this.commonGet()
+      this.list = [];
+      this.focus = true;
+      $(".searchText").blur();
+      this.commonGet();
     },
     // gettableIds() {
     //   var str = ''
@@ -217,103 +218,108 @@ export default {
     //       str += this.selectTableList[i].ID + ','
     //     }
     //   }
-    
+
     //   return str
     // },
     commonGet() {
-      var _this = this
-     // var openId = readLocalStorageid()
-        //tableIds = _this.gettableIds()
+      var _this = this;
+      // var openId = readLocalStorageid()
+      //tableIds = _this.gettableIds()
 
       $.ajax({
-        type: 'post',
+        type: "post",
         url: SEARCH_URL,
         data: {
           key: _this.keyWord,
-        //  openid: openId,
+          //  openid: openId,
           currentPage: _this.currentPage,
-          pageSize: _this.pageSize,
+          pageSize: _this.pageSize
           //tableIds: tableIds,
         },
-        dataType: 'json',
-        success: function (res) {
-          console.log(res)
+        dataType: "json",
+        success: function(res) {
           if (res.success) {
             // if (res.result[0].loginS == 0) {
             //   _this.$toast("请关注公众号");
             //   return;
             // }
-            _this.total = res.result[0].count
-            _this.list.push.apply(_this.list, res.result[0].rows)
-            _this.historyList = res.result[0].history
+            _this.total = res.result[0].count;
+            _this.list.push.apply(_this.list, res.result[0].rows);
+            _this.historyList = res.result[0].history;
           }
-        },
-      })
+        }
+      });
     },
 
     toDetail(item) {
       //this.params.top = document.getElementById("listContent").scrollTop;
-      localStorage.setItem('argument', JSON.stringify(item))
-      localStorage.setItem('mark', 0)
+      localStorage.setItem("argument", JSON.stringify(item));
+      localStorage.setItem("mark", 0);
       this.$router.push({
-        path: '/archDetail',
-        query: { argument: item, mark: 0 },
-      })
+        path: "/archDetail",
+        query: { argument: item, mark: 0 }
+      });
     },
     getParams() {
-      this.params = this.$router.history.current.query
+      this.params = this.$router.history.current.query;
     },
     pushText() {
-      this.focus = false
+      this.focus = false;
     },
     toSearch(title) {
-      this.keyWord = title
-      this.searchFile()
+      this.keyWord = title;
+      this.searchFile();
     },
     getHistory() {
-      var _this = this
-      var openId = readLocalStorageid()
-      $.ajax({
+      var _this = this;
+      var openId = readLocalStorageid();
+      if (openId!==true) {
+         $.ajax({
         url: HISTORY_URL,
-        type: 'post',
+        type: "post",
         data: {
-          openid: openId,
+          openid: openId
         },
-        success: function (res) {
-          _this.historyList = res.result[0].history
+        success: function(res) {
+          console.log(res);
+          _this.historyList = res.result[0].history;
         },
-        error: function (status) {},
-      })
+        error: function(status) {}
+      });
+      }else{
+      }
     },
     clearCode() {
-      var _this = this
-      var openId = readLocalStorageid()
-      $.ajax({
-        type: 'post',
-        url: CLEAR_URL,
-        data: {
-          openid: openId,
-        },
-        dataType: 'json',
-        success: function (res) {
-          _this.historyList = []
-        },
-      })
+      var _this = this;
+      var openId = readLocalStorageid();
+      if (openId !== true) {
+        $.ajax({
+          type: "post",
+          url: CLEAR_URL,
+          data: {
+            openid: openId
+          },
+          dataType: "json",
+          success: function(res) {
+            _this.historyList = [];
+          }
+        });
+      }
     },
     setColor() {
-      var _this = this
-      var txt = this.txt
-      var newRegExp = new RegExp(_this.keyWord, 'gm')
+      var _this = this;
+      var txt = this.txt;
+      var newRegExp = new RegExp(_this.keyWord, "gm");
       this.txt1 = txt.replace(
         newRegExp,
-        "<span style='color:red'>" + _this.keyWord + '</span>'
-      )
-    },
+        "<span style='color:red'>" + _this.keyWord + "</span>"
+      );
+    }
   },
   components: {
-    headernav,
-  },
-}
+    headernav
+  }
+};
 </script>
 
 <style>
@@ -324,7 +330,7 @@ body {
 .container:before,
 .row:after {
   display: table;
-  content: ' ';
+  content: " ";
 }
 .row:after {
   clear: both;
@@ -418,8 +424,8 @@ ul {
   font-weight: 600;
   border: 1px solid transparent;
   color: #ffaa7f;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
-    'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
 .clear {
   display: inline-block;
@@ -439,7 +445,7 @@ ul {
   padding-top: 10px;
   font-size: 16px;
   line-height: 18px;
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   width: 60px;
   height: 48px;
 }
@@ -486,7 +492,7 @@ ul {
   background-color: rgb(244, 251, 243);
   border-color: rgb(187, 187, 187);
 }
-[class*='col-'] {
+[class*="col-"] {
   padding-top: 0.5em;
   padding-bottom: 0.5em;
   position: relative;
@@ -542,8 +548,8 @@ h4 {
   line-height: 33px;
   height: 33px;
 }
-.onshowlist{
-text-align: center;
-font-size: 16px;
+.onshowlist {
+  text-align: center;
+  font-size: 16px;
 }
 </style>

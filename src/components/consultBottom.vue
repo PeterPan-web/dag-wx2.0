@@ -169,6 +169,7 @@ import {Judgelogin , readLocalStorageid} from "../utils/index";
 			},
 			tip(){
         Judgelogin();
+        console.log("1");
 				var _this = this;
 				_this.list.ps.openid =readLocalStorageid();
 				$.ajax({
@@ -177,6 +178,7 @@ import {Judgelogin , readLocalStorageid} from "../utils/index";
 					data:_this.list.ps,
 					dataType:"json",
 					success:function(res){
+            console.log(res);
 						if(res.success){
 						  if(res.result[0].loginS==0){
 							_this.$toast("请先登陆");
