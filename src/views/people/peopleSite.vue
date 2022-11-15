@@ -2,8 +2,8 @@
   <div class="loginPage">
     <headernav :title="title"></headernav>
     <!--登录后个人页面-->
-        <div class="personal"
-v-if="this.loginId"
+    <div class="personal"
+     v-if="this.loginId"
          >
 <van-cell-group>
 <van-cell title="头像" class="logotext">
@@ -14,17 +14,18 @@ v-if="this.loginId"
 </van-cell>
   <van-cell title="用户名" :value="this.loginId.nickname" />
   <van-cell title="手机号" value="" />
+  <!-- <van-cell title="退出登录" style="text-align:center"  @click="signout"/> -->
 </van-cell-group>
-</div>
+    </div>
   </div>
 </template>
 
 <script>
-import {readLocalStorage} from "../../utils";
+import {readLocalStorage} from "../../utils/index";
 import  headernav  from "../../components/header.vue";
-import {  postCode } from '../../http/api/user'
+import { postCode } from '../../http/api/user.js'
 export default {
-  name: "people",
+  name: "peopleSite",
   components:{
     headernav,
 		},
@@ -48,7 +49,7 @@ export default {
     this.Judgelogin()
     },
  methods: {
-//判断是否登陆
+  //判断是否登陆
     Judgelogin() {
       this.code = this.getUrlCode().code // 截取code
       console.log(this.code);
@@ -59,11 +60,10 @@ export default {
         }&redirect_uri=${encodeURIComponent(
           this.http
         )}&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect`
-        
       } else {
         // 当code不等于空时，调用后端接口获取用户信息
         this.readStorage()
-        //this.getaccessToken(this.code)
+       // this.getaccessToken(this.code)
       }
     },
     // 从url中获取code返回
@@ -81,45 +81,45 @@ export default {
       }
       return theRequest
     },
-//      getaccessToken(code) {
-//       var _this = this;
-//       var url1 = `https://api.weixin.qq.com/sns/oauth2/access_token?appid=${this.wxAppId}&secret=${this.wxAppSecret}&code=${code}&grant_type=authorization_code`
-//      axios.get(url1)
-// 			.then(res=>{
-//         console.log(res.data) 
-//           _this.user1  =res.data
-//       this.getUserinfo(this.user1)
-//       })
-//       localStorage.setItem("accessToken",JSON.stringify(this.user1))
-//     },
+    //  getaccessToken(code) {
+    //   var _this = this;
+    //   var url1 = `https://api.weixin.qq.com/sns/oauth2/access_token?appid=${this.wxAppId}&secret=${this.wxAppSecret}&code=${code}&grant_type=authorization_code`
+    // axios.get(url1)
+		// 	.then(res=>{
+    //     console.log(res.data) 
+    //       _this.user1  =res.data
+    //   this.getUserinfo(this.user1)
+    //   })
+    //   // localStorage.setItem("accessToken",JSON.stringify(this.user1))
+    // },
 //     getUserinfo(res){
+//       var _this =this
 //       var url2 = `https://api.weixin.qq.com/sns/userinfo?access_token=${res.access_token}&openid=${res.openid}&lang=zh_CN`
-// axios.get(url2)
+//  axios.get(url2)
 // 			.then(res=>{
 //         console.log(res.data) 
 //          _this.userinfo  =res.data
 //         //发出去
 //   console.log('发送');
-
 //       postUserinfo(this.userinfo)
 //       localStorage.setItem("loginId",JSON.stringify(this.userinfo));
 //       })
-//       this.$router.push('interaction')
+//       this.$router.push('site')
+//        console.log('跳转');
 //     },
-
 readStorage(){
     if (readLocalStorage()==null) {
            postCode({code:this.code}).then(res=>{
           this.loginId =res.result[0].userInfo
           localStorage.setItem("loginId",JSON.stringify( this.loginId));
     })
-        this.$router.push('people')
-    }else{
-      this.loginId=readLocalStorage()
+this.$router.push('site')
+     }else{
+       this.loginId=readLocalStorage()
+     }
     }
-   },
 }
-};
+}
 </script>
 <style scoped>
 .loginPage {

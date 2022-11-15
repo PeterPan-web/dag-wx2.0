@@ -16,9 +16,13 @@
 </template>
 
 <script>
+import { Judgelogin } from "../utils/index";
 	export default{
 		name:"bottom",
 		props:["list"],
+    mounted(){
+     Judgelogin()
+    },
 		data(){
 			return{
 				popupVisible:false,
@@ -28,6 +32,12 @@
 			}
 		},
 		methods:{
+      getcode(){
+
+      }
+
+
+,
 			showActions(){
 				this.isStop();
 			},
@@ -51,9 +61,10 @@
 					_this.$toast("评论不能为空");
 					return;
 				}
-				var openId = localStorage.getItem("openId");
+        let loginId=JSON.parse(localStorage.getItem("loginId"))
 				_this.list.ps.commentInfo = _this.content;
-				_this.list.ps.openid = openId;
+				_this.list.ps.openid = loginId.openid;
+        console.log(_this.list.ps);
 				$.ajax({
 					type:"post",
 					url:_this.list.addComment,
@@ -80,8 +91,8 @@
 			isStop(){
 				var _this = this;
 				this.popupVisible = false;
-				var openId = localStorage.getItem("openId");
-				_this.list.ps.openid = openId;
+let loginId=JSON.parse(localStorage.getItem("loginId"))
+				_this.list.ps.openid = loginId.openid;
 				$.ajax({
 					type:"post",
 					url:_this.list.forBidden,

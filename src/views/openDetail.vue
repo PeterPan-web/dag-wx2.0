@@ -5,9 +5,11 @@
 			<titlecomponent :title="titleT"></titlecomponent>
 			<p style="padding:8px 0px;text-align: center;color:#CCC"><span>发布时间：{{argument.PUBLISHDATE}}</span></p>
 			<textcomponent :text="textContent"></textcomponent>
-      <!-- 点赞和浏览 -->
+      <!-- 图片的显示与否 -->
 			<imgcomponent></imgcomponent>
+      <!-- 点赞和浏览 -->
 			 <iconcomponent></iconcomponent>
+       <!-- 下方评论 -->
 			<morecomponent :argument="argument" :url="url" :getComment="List.getComment"></morecomponent> 
 		</div>
     <!-- 下方评论 -->

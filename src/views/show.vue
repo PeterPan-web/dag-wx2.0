@@ -1,6 +1,8 @@
 <template>
 	<div>
+    <headernav :title="title" :show="show" style="padding-bottom:50px"></headernav>
 		<div class="search" style="background:#ef6b42">
+      
     		<input  type="search" class="searchText" placeholder="请输入题名进行搜索" @keyup.enter ="searchFile" v-model="keyWord" @focus="pushText"/>
     		<div class="btn">
     			<mt-button size="small" slot="right" @click="searchFile">搜索</mt-button>
@@ -37,6 +39,7 @@
 </template>
 
 <script>
+import headernav from '../components/header.vue'
 	import Bus from '../components/bus.js'
 	import searchcomponent from '../components/consultNew.vue'
 	export default{
@@ -44,6 +47,7 @@
 		data(){
 			return{
 				title:"移动展厅",
+        show:true,
 				selected:"",
 				keyWord:"",
 				selectTitle:"",
@@ -61,7 +65,8 @@
 			}
 		},
 		components:{
-			searchcomponent
+			searchcomponent,
+      headernav
 		},
 		created(){
 			this.getFile();
@@ -139,6 +144,7 @@
 .search{
   display: flex;
   align-items: center;
+  
 }
 .bottom{
 	margin-top:150px;

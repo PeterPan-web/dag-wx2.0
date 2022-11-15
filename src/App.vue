@@ -57,7 +57,6 @@ export default {
 
 	/*	mui.plusReady(function(){
 				// 设置系统状态栏背景为红色
-
 				var type = plus.os.name;
 				if(type == "iOS") {
 					plus.navigator.setStatusBarBackground("#0b8def");
@@ -65,7 +64,6 @@ export default {
 				} else {
 					plus.navigator.setStatusBarBackground("#0b8def");
 					plus.navigator.setFullscreen(true);
-
 				}
 			});*/
 		mui.back = function() {

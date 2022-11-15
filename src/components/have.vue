@@ -2,13 +2,14 @@
 	<div style="overflow: auto;height:calc(100vh - 110px);text-align: center;">
 		<mt-field  placeholder="档案主题" v-model="title" style="border-bottom:1px solid #ccc;"></mt-field>
 		<mt-field placeholder="档案介绍" type="textarea" rows="5" v-model="content" style="border-bottom:1px solid #ccc;height:140px"></mt-field>
-		<uploadcomponent style="text-align: left;"></uploadcomponent>
+		<!-- <uploadcomponent style="text-align: left;"></uploadcomponent> -->
 		<mt-switch v-model="value" style="margin-left:20px;margin-top:20px">{{isOpen}}</mt-switch>
 		<span class="submitFlieBtn" @click="isStop">提交</span>
 	</div>
 </template>
 
 <script>
+import { readLocalStorageid } from "../utils/index";
 	import { Indicator } from 'mint-ui';
 	import { Switch } from 'mint-ui';
 	import Bus from '../components/bus.js'
@@ -48,7 +49,8 @@
 			isStop(){
 				var _this = this;
 				this.popupVisible = false;
-				var openId = localStorage.getItem("openId");
+        var openId = readLocalStorageid()
+        console.log(openId);
 				$.ajax({
 					type:"post",
 					url:FORBIDDEN_URL,
@@ -56,6 +58,7 @@
 						openid:openId
 					},
 					success:function(res){
+            console.log(res);
 						if(res.success){
 							if(res.result[0].status ==1){
 								_this.$toast("你已经被禁言，请联系系统管理员");
@@ -68,7 +71,7 @@
 			},
 			submitFile(){
 				var _this = this;
-				var openId = localStorage.getItem("openId");
+        var openId = readLocalStorageid()
 				if(_this.value){
 					_this.status = 1;
 				}
@@ -98,6 +101,7 @@
 					});
 				},
 				success:function(res){
+          console.log(res);
 					Indicator.close();
 
 					if(res.success){

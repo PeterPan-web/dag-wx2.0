@@ -70,7 +70,6 @@ export default {
     }
   },
   created(){
-console.log(this.$store.state.loginStatus);
   },
   activated() {
     var _this = this

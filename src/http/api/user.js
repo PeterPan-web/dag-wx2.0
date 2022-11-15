@@ -1,4 +1,13 @@
 import serviceAxios from "../index";
+//上传code
+export const postCode = (params) => {
+  return serviceAxios({
+    url:"/wechat!getUserinfo.action", 
+    method: "post",
+    params
+  });
+};
+
 //用户页面通用get
 export const currencyGet = (url) => {
   return serviceAxios({
@@ -9,24 +18,9 @@ export const currencyGet = (url) => {
 //返回用户信息
 export const postUserinfo = (params) => {
   return serviceAxios({
-    url:"/hfdagl/wechat!updateUserInfo.action", 
+    url:"/wechat!updateUserInfo.action", 
     method: "get",
     params
   });
 }
 
-
-
-// export const getUserInfo = (data) => {
-//   return serviceAxios({
-//     url: "/api/website/queryMenuWebsite",
-//     method: "post",
-//     data,
-//   });
-// };
-// export const login = (params) => {
-//   return serviceAxios({
-//     url: '/wxh5/login?code='+params,
-//     method: "post",
-//   });
-// };

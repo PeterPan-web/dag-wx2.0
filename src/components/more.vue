@@ -2,7 +2,7 @@
 	<div>
 		<mt-loadmore :bottom-method="loadBottom"  :top-method="loadTop" :bottom-all-loaded="allLoaded" ref="loadmore" :auto-fill="false">
 			<ul>
-			    <li v-for="item in fileList" style="padding:6px 0px;border-bottom:1px solid #ccc">
+			    <li v-for="(item,index) in fileList" :key="index" style="padding-top:10px;border-bottom:1px solid #ccc">
 			    	<span class="loadLeft">
 			    		<img v-if="item.PICTURE ==null" :src="comPath" style="border-radius: 15px;"/>
 			    		<img v-else :src="item.PICTURE" style="border-radius: 15px;"/>
@@ -19,6 +19,7 @@
 </template>
 
 <script>
+import { readLocalStorageid} from "../utils/index";
 	import Bus from './bus.js'
 	export default{
 		name:"more",
@@ -54,11 +55,10 @@
             	}
             }
        	},
-		mounted(){
+		mounted(){  
 			this.id =  this.argument.ID;
 			this.optionName = this.argument.INFORMATIONTYPE;
-			this.getFile();
-			
+      this.getFile();
 		},
 		methods:{
 			loadBottom(){
@@ -79,19 +79,18 @@
 				this.$refs.loadmore.onTopLoaded();
 			},
 			getFile(){
+        var openid = readLocalStorageid();
 				var _this = this;
-				var openId = localStorage.getItem("openId");
 				$.ajax({
 					type:"post",
 					url:_this.url,
 					data:{
-						openid:openId,
+						openid:openid,
 						id:_this.id,
 						informationType:_this.optionName
 					},
 					dataType:"json",
 					success:function(res){
-						console.log(res)
 						_this.total = res.result[0].criticismCount;
 						_this.fileList = res.result[0].criticism;
 						Bus.$emit("msg",_this.total);
@@ -103,13 +102,13 @@
 			},
 			getMore(){
 				var _this = this;
-				var openId = localStorage.getItem("openId");
+				var openid = readLocalStorageid();
 				$.ajax({
 					type:"post",
 					url:_this.getComment,
 					data:{
 						id:_this.id,
-						openid:openId,
+						openid:openid,
 						currentPage:_this.currentPage,
 						pageSize:_this.pageSize
 					},

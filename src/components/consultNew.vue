@@ -14,13 +14,10 @@
 							<div  class="title" >
 							<p >{{item.TITLE}}</p>
 						</div>
-							<!-- <div class="time">
-								<p style="font-size:12px;">日期 ：{{item.PUBLISHDATE}}</p>
-								<p style="font-size:12px;height:34px;overflow: hidden;line-height: 18px;">{{item.CONTENT}}</p>
-                </div> -->
-							<!-- <div class="a2-3">
-								<img  @click="toDetail(item)" src="static/img/xiao.png"  />
-							</div> -->
+							 <div class="time">
+								<p style="font-size:12px;">日期 :{{item.PUBLISHDATE}}</p>
+								<!-- <p style="font-size:12px;height:34px;overflow: hidden;line-height: 18px;">{{item.CONTENT}}</p> -->
+                </div> 
 						</div>	
 					</li>
 				</ul>

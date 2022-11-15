@@ -1,9 +1,9 @@
-var HOST_SERVER = "http://43.142.92.150:80/hfdagl/";
-var HOST_HOME = "http://43.142.92.150:80/hfdagl";
+//var HOST_SERVER = "http://43.142.92.150:80/hfdagl/";
+//var HOST_HOME = "http://43.142.92.150:80/hfdagl";
 
 
-// var HOST_SERVER = "http://192.168.31.177:8080/hfdagl/";
-// var HOST_HOME = "http://192.168.31.177:8080/hfdagl";
+ var HOST_SERVER = "http://192.168.31.177:8080/hfdagl/";
+ var HOST_HOME = "http://192.168.31.177:8080/hfdagl";
 
 // var HOST_SERVER = "http://localhost/dag-web/";
 // var HOST_HOME = "http://localhost/dag-web";

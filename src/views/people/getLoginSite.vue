@@ -1,16 +1,6 @@
 <template>
   <div class="loginPage">
     <headernav :title="title"></headernav>
-    <!--登录前个人页面-->
-    <!-- <div class="login"
-         v-if="!this.state">
-      <div class="loginShow">请完成微信授权以继续使用</div>
-      <div class="loginBtn">
-        <p>获取用户信息</p>
-      </div>
-    </div> -->
-
-    <!--登录后个人页面-->
     <div class="personal"
          v-if="this.state">
       <van-image round
@@ -47,7 +37,7 @@ export default {
       state: false,
       wxAppId: 'wx09d4138d7b8a1252',
       wxAppSecret: '6b3f8994da0ff9f4bb02e74840ffc675',
-      http: 'http://43.142.92.150/dist/#/getLogin',
+      http: 'http://43.142.92.150/dist/#/getLoginSite',
       userinfo:"",
     }
   },
@@ -58,6 +48,7 @@ export default {
     //判断是否登陆
     Judgelogin() {
       this.code = this.getUrlCode().code // 截取code
+      console.log(this.code );
       if (this.code == null || this.code === '') {
         // 如果没有code，则去请求
         window.location.href = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=${
@@ -100,9 +91,10 @@ export default {
       let user2=await currencyGet(url2)
        this.userinfo= user2 
       postUserinfo(user2)
-      localStorage.setItem("loginId",JSON.stringify(this.userinfo))
-      this.$router.push("interaction")
+      localStorage.setItem("loginId",JSON.stringify(this.userinfo));
+      this.$router.push('site')
     },
+
   },
 }
 </script>
