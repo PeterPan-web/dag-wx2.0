@@ -34,13 +34,13 @@ export default {
       title:'',
       code:'',
       loginId:'',
-      // wxAppId: 'wx3426368cce031df0',
-      // wxAppSecret: '9b9ba314751829beec9efd5592c643d5',
-      // http: 'http://zt.whztsj.com/dist/index.html#/peopleSite',
+      wxAppId: 'wx3426368cce031df0',
+      wxAppSecret: '9b9ba314751829beec9efd5592c643d5',
+      http: 'http://zt.whztsj.com/dist/index.html#/peopleSite',
       //测试
-      wxAppId: 'wx09d4138d7b8a1252',
-      wxAppSecret: '6b3f8994da0ff9f4bb02e74840ffc675',
-      http:'http://127.0.0.1/#/peopleSite',
+      // wxAppId: 'wx09d4138d7b8a1252',
+      // wxAppSecret: '6b3f8994da0ff9f4bb02e74840ffc675',
+      //http:'http://127.0.0.1/#/peopleSite',
       userinfo:"",
       user1:'',
     };
@@ -108,14 +108,17 @@ export default {
 //        console.log('跳转');
 //     },
 readStorage(){
+  console.log(readLocalStorage());
     if (readLocalStorage()==null) {
            postCode({code:this.code}).then(res=>{
           this.loginId =res.result[0].userInfo
+          console.log(this.loginId );
           localStorage.setItem("loginId",JSON.stringify( this.loginId));
     })
 this.$router.push('site')
      }else{
        this.loginId=readLocalStorage()
+       console.log(this.loginId);
      }
     }
 }
