@@ -97,8 +97,6 @@ import { readLocalStorageid} from "../utils/index";
 						Bus.$emit("getRead",res.result[0].count);
 						Bus.$emit("getTotal",res.result[0].praiseCount);
 						Bus.$emit("getStatus",res.result[0].c,res.result[0].p);
-            // _this.$store.commit("getUp",res.result[0].p)
-            // _this.$store.commit("getCollect",res.result[0].c)
 					}
 				});
 			},

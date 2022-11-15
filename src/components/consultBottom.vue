@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import {Judgelogin , readLocalStorageid} from "../utils/index";
+import {Judgelogin ,readLocalStorage, readLocalStorageid} from "../utils/index";
 	import Bus from './bus.js'
 	export default{
 		name:"bottom",
@@ -65,12 +65,6 @@ import {Judgelogin , readLocalStorageid} from "../utils/index";
 			Bus.$on("msg",(total) =>{
 				_this.total = total;
 			});
-//       if(this.$store.state.up=="1"){
-// _this.cPath.path ="static/img/collection_after.png";
-//       }
-//       if (this.$store.state.up=="1") {
-//         _this.tPath.path ="static/img/tip_after.png";
-//       }
 
 			Bus.$on("getStatus",(c,p) =>{
 				if(c=="1"){
@@ -91,13 +85,11 @@ import {Judgelogin , readLocalStorageid} from "../utils/index";
 				});
 			},
 			showActions(){
-        if (readLocalStorageid()==true) {
+        if (readLocalStorage()==null) {
           Judgelogin();
         }else{
          this.isStop(); 
         }
-        
-				
 			},
 			hidePop(){
 				this.popupVisible = false;
@@ -117,8 +109,6 @@ import {Judgelogin , readLocalStorageid} from "../utils/index";
 				this.popupVisible = false;
 				_this.list.ps.criticismInfo =_this.content;
 				_this.list.ps.openid =readLocalStorageid();
-        //console.log(_this.list.commentUrl,);
-        //console.log(_this.list.ps);
 				$.ajax({
 					type:"post",
 					url:_this.list.commentUrl,
@@ -169,7 +159,6 @@ import {Judgelogin , readLocalStorageid} from "../utils/index";
 			},
 			tip(){
         Judgelogin();
-        console.log("1");
 				var _this = this;
 				_this.list.ps.openid =readLocalStorageid();
 				$.ajax({

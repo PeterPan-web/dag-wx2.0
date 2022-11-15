@@ -92,7 +92,7 @@
 </template>
 
 <script>
-import { readLocalStorageid } from "../utils/index";
+import { readLocalStorageid ,readLocalStorage} from "../utils/index";
 import headernav from "../components/header.vue";
 export default {
   name: "index",
@@ -136,7 +136,7 @@ export default {
 
   methods: {
     showlist() {
-      if (this.$store.state.loginStatus == 0) {
+      if (readLocalStorage()==null) {
         this.showlistWord = true, 
         this.getHistory();
       } else {

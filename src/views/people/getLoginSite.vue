@@ -42,7 +42,6 @@ export default {
     }
   },
   created() {
-    this.$store.commit('showStatus')
     this.Judgelogin()
   },
   methods: {

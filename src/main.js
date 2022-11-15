@@ -12,7 +12,7 @@ import { Header } from 'mint-ui'
 import { Loadmore } from 'mint-ui';
 import { Swipe, SwipeItem } from 'mint-ui';
 import { Toast } from 'mint-ui';
-import {Form ,Field,CellGroup,Picker,Popup,Collapse, CollapseItem,DatetimePicker,RadioGroup,Dialog,Icon,List,Step, Steps,Rate,Uploader, Image as VanImage, Grid, GridItem ,NavBar ,Calendar,ActionSheet,Cell,Radio,Badge,Switch} from 'vant';
+import {Form ,Field,CellGroup,Picker,Popup,Collapse, CollapseItem,DatetimePicker,RadioGroup,Dialog,Icon,List,Step, Steps,Rate,Uploader, Image as VanImage, Grid, GridItem ,NavBar ,Calendar,ActionSheet,Cell,Radio,Badge,Switch } from 'vant';
 Vue.use(Badge);
 Vue.use(Radio);
 Vue.use(Cell);

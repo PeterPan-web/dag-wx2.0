@@ -3,29 +3,19 @@
     <headernav :title="title"></headernav>
     <!--登录后个人页面-->
     <div class="personal"
+     v-if="this.loginId"
          >
-      <van-image round
-                 width="8rem"
-                 height="8rem"
+<van-cell-group>
+<van-cell title="头像" class="logotext">
+  <van-image round class="logo"
+                 width="3rem"
+                 height="3rem"
                  :src="this.loginId.headimgurl" />
-                 <div>
-         {{this.loginId.nickname}} 
-                 </div>
-      <van-grid>
-        <van-grid-item icon="setting-o"
-                       text="修改资料" />
-         <van-grid-item icon="user-o"
-                       text="个人信息" /> 
-        <van-grid-item icon="star-o"
-                       text="收藏" />
-        <van-grid-item icon="info-o"
-                       text="关于" 
-                       
-                       />
-      </van-grid>
-    </div>
-    <div>
-      <center></center>
+</van-cell>
+  <van-cell title="用户名" :value="this.loginId.nickname" />
+  <van-cell title="手机号" value="" />
+  <!-- <van-cell title="退出登录" style="text-align:center"  @click="signout"/> -->
+</van-cell-group>
     </div>
   </div>
 </template>
@@ -33,7 +23,7 @@
 <script>
 import {readLocalStorage} from "../../utils/index";
 import  headernav  from "../../components/header.vue";
-import { currencyGet, postUserinfo } from '../../http/api/user'
+import { postCode } from '../../http/api/user.js'
 export default {
   name: "peopleSite",
   components:{
@@ -44,14 +34,19 @@ export default {
       title:'',
       code:'',
       loginId:'',
+      // wxAppId: 'wx3426368cce031df0',
+      // wxAppSecret: '9b9ba314751829beec9efd5592c643d5',
+      // http: 'http://zt.whztsj.com/dist/index.html#/peopleSite',
+      //测试
       wxAppId: 'wx09d4138d7b8a1252',
       wxAppSecret: '6b3f8994da0ff9f4bb02e74840ffc675',
-      http: 'http://127.0.0.1/#/getLoginSite',
+      http:'http://127.0.0.1/#/peopleSite',
       userinfo:"",
+      user1:'',
     };
   },
   created () {
-    this.readStorage()
+    this.Judgelogin()
     },
  methods: {
   //判断是否登陆
@@ -65,10 +60,10 @@ export default {
         }&redirect_uri=${encodeURIComponent(
           this.http
         )}&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect`
-        
       } else {
         // 当code不等于空时，调用后端接口获取用户信息
-        this.getaccessToken(this.code)
+        this.readStorage()
+       // this.getaccessToken(this.code)
       }
     },
     // 从url中获取code返回
@@ -86,61 +81,60 @@ export default {
       }
       return theRequest
     },
-    async getaccessToken(code) {
-      this.state=true
-      var url1 = `https://api.weixin.qq.com/sns/oauth2/access_token?appid=${this.wxAppId}&secret=${this.wxAppSecret}&code=${code}&grant_type=authorization_code`
-      let user1  =await currencyGet(url1)
-      this.getUserinfo(user1)
-      localStorage.setItem("accessToken",JSON.stringify(this.user1))
-    },
-   async getUserinfo(res){
-      var url2 = `https://api.weixin.qq.com/sns/userinfo?access_token=${res.access_token}&openid=${res.openid}&lang=zh_CN`
-      let user2=await currencyGet(url2)
-      this.userinfo= user2
-       //发出去
-      postUserinfo(user2).then(res=>{
-        console.log(res);
-        this.$store.commit('showStatus')
-      })
-      localStorage.setItem("loginId",JSON.stringify(this.userinfo));
-      this.$router.push('site')
-    },
-
-   readStorage(){
-    if (this.$store.state.loginStatus==0) {
-      this.Judgelogin();
-    }else{
-      this.loginId=readLocalStorage()
-     
+    //  getaccessToken(code) {
+    //   var _this = this;
+    //   var url1 = `https://api.weixin.qq.com/sns/oauth2/access_token?appid=${this.wxAppId}&secret=${this.wxAppSecret}&code=${code}&grant_type=authorization_code`
+    // axios.get(url1)
+		// 	.then(res=>{
+    //     console.log(res.data) 
+    //       _this.user1  =res.data
+    //   this.getUserinfo(this.user1)
+    //   })
+    //   // localStorage.setItem("accessToken",JSON.stringify(this.user1))
+    // },
+//     getUserinfo(res){
+//       var _this =this
+//       var url2 = `https://api.weixin.qq.com/sns/userinfo?access_token=${res.access_token}&openid=${res.openid}&lang=zh_CN`
+//  axios.get(url2)
+// 			.then(res=>{
+//         console.log(res.data) 
+//          _this.userinfo  =res.data
+//         //发出去
+//   console.log('发送');
+//       postUserinfo(this.userinfo)
+//       localStorage.setItem("loginId",JSON.stringify(this.userinfo));
+//       })
+//       this.$router.push('site')
+//        console.log('跳转');
+//     },
+readStorage(){
+    if (readLocalStorage()==null) {
+           postCode({code:this.code}).then(res=>{
+          this.loginId =res.result[0].userInfo
+          localStorage.setItem("loginId",JSON.stringify( this.loginId));
+    })
+this.$router.push('site')
+     }else{
+       this.loginId=readLocalStorage()
+     }
     }
-   },
 }
-};
+}
 </script>
 <style scoped>
 .loginPage {
   position: relative;
 }
-.login {
-  position: absolute;
-  left: 50%;
-  transform: translate(-50%, 0);
-  top: 520px;
-}
-.loginShow {
-  width: 200px;
-  font-size: 15px;
-  margin-bottom: 10px;
-}
-.loginBtn {
-  background-color: rgb(138, 207, 138);
-  text-align: center;
-  border: none;
-  border-radius: 5px;
-  padding: 20px 30px 20px 30px;
-}
 .personal {
-  margin-top: 48px;
-  margin-bottom: 20px;
+  margin-top: 45px;
+  text-align: left;
+  
+}
+.logotext{
+  height: 5rem;
+  line-height: 5rem;
+}
+.logo{
+margin-top:0.7rem;
 }
 </style>

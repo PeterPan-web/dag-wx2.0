@@ -1,49 +1,28 @@
 <template>
   <div class="loginPage">
     <headernav :title="title"></headernav>
-    <!--登录前个人页面-->
-     <div class="login"
-         v-if="!this.state">
-      <div class="loginShow">请完成微信授权以继续使用</div>
-      <div class="loginBtn"
-          @click="loginRouter()" >
-        <p>获取用户信息</p>
-      </div>
-    </div> 
-    
     <!--登录后个人页面-->
-    <div class="personal"
-         v-if="this.state">
-      <van-image round
-                 width="8rem"
-                 height="8rem"
+        <div class="personal"
+v-if="this.loginId"
+         >
+<van-cell-group>
+<van-cell title="头像" class="logotext">
+  <van-image round class="logo"
+                 width="3rem"
+                 height="3rem"
                  :src="this.loginId.headimgurl" />
-                 <div>
-         {{this.loginId.nickname}} 
-        
-                 </div>
-      <van-grid>
-        <van-grid-item icon="setting-o"
-                       text="修改资料" />
-         <van-grid-item icon="user-o"
-                       text="个人信息" /> 
-        <van-grid-item icon="star-o"
-                       text="收藏" />
-        <van-grid-item icon="info-o"
-                       text="关于" 
-                       
-                       />
-      </van-grid>
-    </div>
-    <div>
-      <center></center>
-    </div>
+</van-cell>
+  <van-cell title="用户名" :value="this.loginId.nickname" />
+  <van-cell title="手机号" value="" />
+</van-cell-group>
+</div>
   </div>
 </template>
 
 <script>
 import {readLocalStorage} from "../../utils";
 import  headernav  from "../../components/header.vue";
+import {  postCode } from '../../http/api/user'
 export default {
   name: "people",
   components:{
@@ -52,62 +31,93 @@ export default {
   data() {
     return {
       title:'',
-      openid:"",
       code:'',
-      state: false,
       loginId:'',
+      // wxAppId: 'wx3426368cce031df0',
+      // wxAppSecret: '9b9ba314751829beec9efd5592c643d5',
+      // http: 'http://zt.whztsj.com/dist/index.html#/peopleSite',
+      //测试
+      wxAppId: 'wx09d4138d7b8a1252',
+      wxAppSecret: '6b3f8994da0ff9f4bb02e74840ffc675',
+      http:'http://127.0.0.1/#/peopleSite',
+      userinfo:"",
+      user1:'',
     };
   },
   created () {
-    this.readStorage()
+    this.Judgelogin()
     },
  methods: {
-loginRouter(){
-  this.$router.push('getLogin')
-},
-//  getCode() {
-//       // 非静默授权，第一次有弹框
-//       var appid = "wx09d4138d7b8a1252";
-//       var http="http://127.0.0.1/#/getLogin";
-//       let  loginId= this.loginId;
-     
-//       this.code = this.getUrlCode().code; // 截取code
-      
-//       if (this.code == null || this.code === '') {
-//         // 如果没有code，则去请求
-//         window.location.href = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=${appid}&redirect_uri=${encodeURIComponent(
-//            http
-//         )}&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect`;
-//       } else {
-//         // 当code不等于空时，调用后端接口获取用户信息
+//判断是否登陆
+    Judgelogin() {
+      this.code = this.getUrlCode().code // 截取code
+      console.log(this.code);
+      if (this.code == null || this.code === '') {
+        // 如果没有code，则去请求
+        window.location.href = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=${
+          this.wxAppId
+        }&redirect_uri=${encodeURIComponent(
+          this.http
+        )}&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect`
         
-//         // 你自己的业务逻辑
-//       }
-//       if (loginId == null || loginId === ''||loginId == undefined) {
-//         // 如果没有openid，则去请求
-//         window.location.href = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=${appid}&redirect_uri=${encodeURIComponent(
-//            http
-//         )}&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect`;
-//       } else {
-//         this.state=true;
-//       }
+      } else {
+        // 当code不等于空时，调用后端接口获取用户信息
+        this.readStorage()
+        //this.getaccessToken(this.code)
+      }
+    },
+    // 从url中获取code返回
+    getUrlCode() {
+      // 截取url中的code方法
+      var url = location.search
+      this.winUrl = url
+      var theRequest = new Object()
+      if (url.indexOf('?') != -1) {
+        var str = url.substr(1)
+        var strs = str.split('&')
+        for (var i = 0; i < strs.length; i++) {
+          theRequest[strs[i].split('=')[0]] = strs[i].split('=')[1]
+        }
+      }
+      return theRequest
+    },
+//      getaccessToken(code) {
+//       var _this = this;
+//       var url1 = `https://api.weixin.qq.com/sns/oauth2/access_token?appid=${this.wxAppId}&secret=${this.wxAppSecret}&code=${code}&grant_type=authorization_code`
+//      axios.get(url1)
+// 			.then(res=>{
+//         console.log(res.data) 
+//           _this.user1  =res.data
+//       this.getUserinfo(this.user1)
+//       })
+//       localStorage.setItem("accessToken",JSON.stringify(this.user1))
 //     },
-   readStorage(){
-    console.log(this.$store.state.loginStatus);
-       if (this.$store.state.loginStatus==0) {
-      this.state=false
-      this.loginRouter()
+//     getUserinfo(res){
+//       var url2 = `https://api.weixin.qq.com/sns/userinfo?access_token=${res.access_token}&openid=${res.openid}&lang=zh_CN`
+// axios.get(url2)
+// 			.then(res=>{
+//         console.log(res.data) 
+//          _this.userinfo  =res.data
+//         //发出去
+//   console.log('发送');
+
+//       postUserinfo(this.userinfo)
+//       localStorage.setItem("loginId",JSON.stringify(this.userinfo));
+//       })
+//       this.$router.push('interaction')
+//     },
+
+readStorage(){
+    if (readLocalStorage()==null) {
+           postCode({code:this.code}).then(res=>{
+          this.loginId =res.result[0].userInfo
+          localStorage.setItem("loginId",JSON.stringify( this.loginId));
+    })
+        this.$router.push('people')
     }else{
       this.loginId=readLocalStorage()
-     this.state=true
     }
-      //this.getCode()
    },
-  //  delLogin(){
-  //   localStorage.removeItem("loginId");
-  //     this.$router.push('interaction');
-      
-  //  }
 }
 };
 </script>
@@ -115,26 +125,16 @@ loginRouter(){
 .loginPage {
   position: relative;
 }
-.login {
-  position: absolute;
-  left: 50%;
-  transform: translate(-50%, 0);
-  top: 520px;
-}
-.loginShow {
-  width: 200px;
-  font-size: 15px;
-  margin-bottom: 10px;
-}
-.loginBtn {
-  background-color: rgb(138, 207, 138);
-  text-align: center;
-  border: none;
-  border-radius: 5px;
-  padding: 20px 30px 20px 30px;
-}
 .personal {
-  margin-top: 48px;
-  margin-bottom: 20px;
+  margin-top: 45px;
+  text-align: left;
+  
+}
+.logotext{
+  height: 5rem;
+  line-height: 5rem;
+}
+.logo{
+margin-top:0.7rem;
 }
 </style>

@@ -134,6 +134,7 @@
 			},
 			tip(){
 				var _this = this;
+       
 				var openId = localStorage.getItem("openId");
 				_this.list.ps.openid = openId;
 				$.ajax({
@@ -162,6 +163,7 @@
 			},
 			collect(){
 				var _this = this;
+        
 				var openId = localStorage.getItem("openId");
 				_this.list.ps.openid = openId;
 				$.ajax({

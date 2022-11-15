@@ -9,6 +9,7 @@
 </template>
 
 <script>
+import {readLocalStorage} from "../utils/index"
 import { postSlow } from "../http/api/Universal";
 import swipercomponent from '../components/swiper.vue'
 import navcomponent from '../components/nav.vue'
@@ -36,6 +37,7 @@ export default {
   created(){
   	document.title="微服务";
      postSlow()
+    console.log(readLocalStorage());
   },
   methods:{
   },
