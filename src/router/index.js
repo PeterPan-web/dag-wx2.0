@@ -35,6 +35,15 @@ import PeopleSite from '@/views/people/PeopleSite.vue'
 import getLogin from '@/views/people/getLogin.vue'
 import getLoginSite from '@/views/people/getLoginSite.vue'
 import Help from '@/views/help/help.vue'
+import redlist from '@/views/redlist/redlist.vue'
+import newconsult from '@/views/newconsult/newconsult.vue'
+import InteractionCenter from '@/views/InteractionCenter/InteractionCenter.vue'
+import letHelp from '@/views/InteractionCenter/letHelp.vue'
+import haveHelp from '@/views/InteractionCenter/haveHelp.vue'
+import mycomment from '@/views/people/mycomment.vue'
+import myCollection from '@/views/people/myCollection.vue'
+import myContribution from '@/views/people/myContribution.vue'
+
 Vue.use(Router)
 
 export default new Router({
@@ -53,6 +62,30 @@ export default new Router({
       	index:0
       },
       component: Interaction
+    },
+    {
+      path: '/interactioncenter',
+      name: 'interactioncenter',
+       meta:{
+      	index:1
+      },
+      component: InteractionCenter
+    },
+    {
+      path: '/letHelp',
+      name: 'letHelp',
+       meta:{
+      	index:2
+      },
+      component: letHelp
+    },
+    {
+      path: '/haveHelp',
+      name: 'haveHelp',
+       meta:{
+      	index:2
+      },
+      component: haveHelp
     },
     {
       path: '/search',
@@ -282,6 +315,28 @@ export default new Router({
          index:1
        },
        component:People
+    }, {
+      path:'/mycomment',
+      name:"mycomment",
+       meta:{
+         index:2
+       },
+       component:mycomment
+    },
+    {
+      path:'/myCollection',
+      name:"myCollection",
+       meta:{
+         index:2
+       },
+       component:myCollection
+    },{
+      path:'/myContribution',
+      name:"myContribution",
+       meta:{
+         index:2
+       },
+       component:myContribution
     },
     {
       path:'/peopleSite',
@@ -298,6 +353,22 @@ export default new Router({
          index:1
        },
        component:Help
+    },
+    {
+      path:'/redlist',
+      name:"redlist",
+       meta:{
+         index:1
+       },
+       component:redlist
+    },
+    {
+      path:'/newconsult',
+      name:"newconsult",
+       meta:{
+         index:1
+       },
+       component:newconsult
     },
     {
       path:'/getLogin',
@@ -318,12 +389,12 @@ export default new Router({
     {
       path: '/',
       name: 'site',
-      //name: 'interaction',
+      // name: 'interaction',
       meta:{
       	index:0
       },
        component: Site
-      //component:Interaction
+      // component:Interaction
     }
   ]
 })

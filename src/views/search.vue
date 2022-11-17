@@ -74,7 +74,6 @@
         <span class="clear"
               @click="clearCode"></span>
       </div>
-      
       <div>
         <ul class="itemCard">
           <li v-for="(item1,index) in historyList"
@@ -451,19 +450,24 @@ ul {
 }
 .itemCard {
   width: 100%;
-  line-height: 24px;
-  text-align: left;
-  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 15px;
+}
+.itemMin{
+   font-size: 13px;
+  height: 100%;
+  margin: 8px;
 }
 .itemWord {
-  font-size: 13px;
+  overflow: hidden;
   display: inline-block;
   text-align: center;
   background: #ddd;
   border-radius: 3px;
-  margin: 0px 5px 5px 10px;
-  height: 20px;
-  width: 70px;
+  padding-top: 0.2em;
+  height: 1.5em;
+  width: 5em;
 }
 .paddingLeft-xs {
   padding: 0em 1em;

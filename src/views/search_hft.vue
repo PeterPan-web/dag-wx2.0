@@ -14,7 +14,7 @@
     		<div v-if="focus">
 		    	<mt-loadmore :bottom-method="loadBottom" :bottom-all-loaded="allLoaded" :auto-fill="false" ref="loadmore">
 					<ul style="width:90vw;margin:0 auto;overflow: auto;">
-					    <li v-for="item in list" @click="toDetail(item)" style="border-bottom:#ccc solid 1px;width:100%">
+					    <li v-for="(item,index) in list" :key="index" @click="toDetail(item)" style="border-bottom:#ccc solid 1px;width:100%">
 					    	<p class="searchTitle" >{{item.TITLE}}</p>
 					    	<p class="searchContent" >{{item.ARCHNO}}&nbsp;&nbsp;{{item.FILEYEAR}}&nbsp;&nbsp;{{item.LIMITED}}</p>
 					    </li>
@@ -27,7 +27,7 @@
 					<span class="clear" @click="clearCode"></span>
 				</div>
 				<ul style="margin-top:30px;text-align:left;">
-				    <li v-for="item1 in historyList" @click="toSearch(item1.TITLE)" style="display:inline-block">
+				    <li v-for="(item1,index) in historyList" :key="index" @click="toSearch(item1.TITLE)" style="display:inline-block">
 				    	<span style="font-size:13px;display: inline-block;padding:3px 7px;background:#ddd;border-radius: 3px;margin:0px 15px 15px 15px">{{item1.TITLE}}</span>
 				    </li>
 				</ul>

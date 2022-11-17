@@ -3,40 +3,40 @@
 		<div class="page-wrap">
 			<headnav :title="selected" :path="path" :up="up"></headnav>
 			<mt-tab-container class="page-tabbar-container" v-model="selected">
-				 <mt-tab-container-item id="我来帮忙">
+				 <!-- <mt-tab-container-item id="我来帮忙">
 					<searchcomponent :id="selectedId" :url="mainList.help.baseUrl" :title="selected"></searchcomponent>
-				</mt-tab-container-item>
-				<mt-tab-container-item id="我的帮忙">
+				</mt-tab-container-item> -->
+				<!-- <mt-tab-container-item id="我的帮忙">
 					<searchcomponent :id="selectedId1" :url="mainList.help.otherUrl" :title="selected"></searchcomponent>
-				</mt-tab-container-item>
-				<mt-tab-container-item id="我有档案">
+				</mt-tab-container-item> -->
+				<!-- <mt-tab-container-item id="我有档案">
 					<havecomponent></havecomponent>
-				</mt-tab-container-item>
-				<mt-tab-container-item id="我的档案">
+				</mt-tab-container-item> -->
+				<!-- <mt-tab-container-item id="我的档案">
 					<searchcomponent1 :id="selectedId2" :url="mainList.have.otherUrl" :title="selected"></searchcomponent1>
-				</mt-tab-container-item> 
+				</mt-tab-container-item>  -->
 				<mt-tab-container-item id="预约登记">
         	<register :id="selectedId3" :url="mainList.register.otherUrl" :title="selected"></register>
         </mt-tab-container-item>
 			</mt-tab-container>
 		</div>
 		<mt-tabbar v-model="selected" >
-			 <mt-tab-item id="我来帮忙">
+			 <!-- <mt-tab-item id="我来帮忙">
 				<img slot="icon" :src="imgList[0].url">
 				      我来帮忙
-			</mt-tab-item>
-			<mt-tab-item id="我的帮忙">
+			</mt-tab-item> -->
+			<!-- <mt-tab-item id="我的帮忙">
 				<img slot="icon" :src="imgList[1].url">
 				      我的帮忙
-			</mt-tab-item>
-			<mt-tab-item id="我有档案" >
+			</mt-tab-item> -->
+			<!-- <mt-tab-item id="我有档案" >
 				<img slot="icon" :src="imgList[2].url">
 				      我有档案
-			</mt-tab-item>
-			<mt-tab-item id="我的档案">
+			</mt-tab-item> -->
+			<!-- <mt-tab-item id="我的档案">
 				<img slot="icon" :src="imgList[3].url">
 				      我的档案
-			</mt-tab-item>
+			</mt-tab-item> -->
 			<mt-tab-item id="预约登记">
         <img slot="icon" :src="imgList[4].url">
               预约登记

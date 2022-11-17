@@ -18,7 +18,7 @@
 <script>
 	import Bus from '../components/bus.js'
 	export default{
-		name:"upload",
+		name:"uploadPic",
 		data(){
 			return{
 				sheetVisible:false,
