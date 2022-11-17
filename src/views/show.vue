@@ -23,7 +23,7 @@
     
 		<div style="height:calc(100vh -255px);">
 			<div style="height:49px;width:100%;overflow: hidden;">
-				<mt-navbar v-model="selected" style="height:55px;text-align:left;display:block;overflow-y:hidden;overflow-x: auto;overflow-x: none;white-space:nowrap">
+				<mt-navbar v-model="selected" style="height:55px;display:block;overflow-y:hidden;overflow-x: auto;overflow-x: none;white-space:nowrap">
 				  <mt-tab-item v-for="(item,index) in list" :id="item.OPTIONNAME" :key="index" style="text-align:center;display: inline-block;padding:17px 0px;width:25%">{{item.OPTIONNAME}}</mt-tab-item>
 				</mt-navbar>
 			</div>
@@ -39,14 +39,14 @@
 </template>
 
 <script>
-import headernav from '../components/header.vue'
+  import headernav from '../components/header.vue'
 	import Bus from '../components/bus.js'
 	import searchcomponent from '../components/consultNew.vue'
 	export default{
 		name:"show",
 		data(){
 			return{
-				title:"移动展厅",
+				title:"信息公开",
         show:true,
 				selected:"",
 				keyWord:"",
@@ -81,6 +81,7 @@ import headernav from '../components/header.vue'
 		methods:{
 			searchFile(){
 				var _this = this;
+        
 				Bus.$emit("search",_this.curPage,_this.keyWord);
 			},
 			pushText(){
@@ -97,7 +98,8 @@ import headernav from '../components/header.vue'
 					},
 					dataType:"json",
 					success:function(res){
-						_this.list = res.result[0].encodes;
+            res.result[0].encodes.splice(3,1)
+						_this.list =res.result[0].encodes
 						_this.imgList = res.result[0].pic;
 						if(_this.imgList.length>0){
 							_this.total = _this.imgList.length;

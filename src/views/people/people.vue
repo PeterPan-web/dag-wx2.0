@@ -33,13 +33,13 @@ export default {
       title:'',
       code:'',
       loginId:'',
-      // wxAppId: 'wx3426368cce031df0',
-      // wxAppSecret: '9b9ba314751829beec9efd5592c643d5',
+      // wxAppId: 'wxa9d5243ac3ae61f2',
+      // wxAppSecret: '3027ce3d1e52acacc9a270723af891e9',
       // http: 'http://zt.whztsj.com/dist/index.html#/peopleSite',
       //测试
-      wxAppId: 'wx09d4138d7b8a1252',
-      wxAppSecret: '6b3f8994da0ff9f4bb02e74840ffc675',
-      http:'http://127.0.0.1/#/peopleSite',
+       wxAppId: 'wx09d4138d7b8a1252',
+       wxAppSecret: '6b3f8994da0ff9f4bb02e74840ffc675',
+       http:'http://127.0.0.1/#/people',
       userinfo:"",
       user1:'',
     };
@@ -107,13 +107,17 @@ export default {
 //       this.$router.push('interaction')
 //     },
 
-readStorage(){
+async readStorage(){
+  console.log(readLocalStorage());
+  console.log(readLocalStorage()==null)
     if (readLocalStorage()==null) {
-           postCode({code:this.code}).then(res=>{
-          this.loginId =res.result[0].userInfo
-          localStorage.setItem("loginId",JSON.stringify( this.loginId));
-    })
-        this.$router.push('people')
+    let res=  await postCode({code:this.code})      
+    console.log(res)
+    this.loginId =res.result[0].userInfo
+    sessionStorage.setItem("loginId",JSON.stringify( this.loginId));
+    console.log(this.loginId);
+    setTimeout(this.$router.push('interaction'),1000)
+    console.log('一秒后跳转');
     }else{
       this.loginId=readLocalStorage()
     }

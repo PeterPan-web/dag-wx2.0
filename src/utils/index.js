@@ -1,5 +1,4 @@
 //查询本地code
-import store from '../store/index';
 import router from '../router'
 
 export function Judgelogin() {
@@ -24,7 +23,7 @@ export function JudgeloginInteraction() {
 //读取本地loginId
 export function readLocalStorage() {
    // console.log('读取本地loginId');
-    let loginId=JSON.parse(localStorage.getItem("loginId"));
+    let loginId=JSON.parse(sessionStorage.getItem("loginId"));
      return loginId
 }
 
@@ -36,7 +35,7 @@ if (readLocalStorage()==null) {
  // console.log('没有openid');
   return true
 }else{
-   let loginId=JSON.parse(localStorage.getItem("loginId"));
+   let loginId=JSON.parse(sessionStorage.getItem("loginId"));
        return loginId.openid
 }
  

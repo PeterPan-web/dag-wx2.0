@@ -20,16 +20,16 @@ export default {
   	}
   },
   mounted(){
-  	var _this = this;
-  	$.ajax({
-  		type:"post",
-  		data:{},
-  		url:GETID_URL,
-  		dataType:"json",
-  		success:function(res){
-  			localStorage.setItem("openId",res.result[0].openid);
-  		}
-  	});
+  	// var _this = this;
+  	// $.ajax({
+  	// 	type:"post",
+  	// 	data:{},
+  	// 	url:GETID_URL,
+  	// 	dataType:"json",
+  	// 	success:function(res){
+  	// 		localStorage.setItem("openId",res.result[0].openid);
+  	// 	}
+  	// });
 
     // function testPost(urlData,methodData,number){
     //   axios({

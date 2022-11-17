@@ -5,18 +5,6 @@
  var HOST_SERVER = "http://192.168.31.177:8080/hfdagl/";
  var HOST_HOME = "http://192.168.31.177:8080/hfdagl";
 
-// var HOST_SERVER = "http://localhost/dag-web/";
-// var HOST_HOME = "http://localhost/dag-web";
-//var HOST_SERVER = "dag-web/";
-//var HOST_HOME = "dag-web";
-/*var HOST_SERVER = "http://www.hfdag.cn/";
-var HOST_HOME = "http://www.hfdag.cn";*/
-/*var HOST_SERVER = "http://112.30.184.184:80/";
-var HOST_HOME = "http://112.30.184.184:80";*/
-/*var HOST_SERVER = "http://edu.bhl-china.cn/hfdagl/";
-var HOST_HOME = "http://edu.bhl-china.cn/hfdagl";*/
-/*var HOST_SERVER = "http://36.7.85.10:80/hfdagl/";
-var HOST_HOME = "http://36.7.85.10:80/hfdagl";*/
 //流量入口
 var POST_flow = HOST_SERVER + "hfdagl/wechat!count.action";
 //获取openId
@@ -143,6 +131,8 @@ var ADD_HFT_USERID_URL=HOST_SERVER+"queryApp!addHFTUserId.action";
 var HFT_SEARCH_URL= HOST_SERVER + "queryApp!getQuery_htf.action";
 //满意度调查
 var SURVEY_URL = HOST_SERVER + "surveycms!doSurveyApp.action";
+//我的评论查询
+var COMMENT_URL = HOST_SERVER + "userApp!myComments.action";
 
 /*
 var HOST_SERVER = "http://192.168.3.196:8080/hfdagl/";
