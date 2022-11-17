@@ -46,7 +46,7 @@
 		name:"show",
 		data(){
 			return{
-				title:"信息公开",
+				title:"移动展厅",
         show:true,
 				selected:"",
 				keyWord:"",

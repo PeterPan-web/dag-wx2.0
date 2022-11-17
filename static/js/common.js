@@ -1,9 +1,9 @@
-//var HOST_SERVER = "http://43.142.92.150:80/hfdagl/";
-//var HOST_HOME = "http://43.142.92.150:80/hfdagl";
+var HOST_SERVER = "http://43.142.92.150:80/hfdagl/";
+var HOST_HOME = "http://43.142.92.150:80/hfdagl";
 
 
- var HOST_SERVER = "http://192.168.31.177:8080/hfdagl/";
- var HOST_HOME = "http://192.168.31.177:8080/hfdagl";
+//  var HOST_SERVER = "http://192.168.31.177:8080/hfdagl/";
+//  var HOST_HOME = "http://192.168.31.177:8080/hfdagl";
 
 //流量入口
 var POST_flow = HOST_SERVER + "hfdagl/wechat!count.action";
@@ -133,7 +133,8 @@ var HFT_SEARCH_URL= HOST_SERVER + "queryApp!getQuery_htf.action";
 var SURVEY_URL = HOST_SERVER + "surveycms!doSurveyApp.action";
 //我的评论查询
 var COMMENT_URL = HOST_SERVER + "userApp!myComments.action";
-
+//我的收藏查询
+var COLLECTION_URL = HOST_SERVER + "userApp!myCollects.action";
 /*
 var HOST_SERVER = "http://192.168.3.196:8080/hfdagl/";
 var HOST_HOME = "http://192.168.3.196:8080/hfdagl";

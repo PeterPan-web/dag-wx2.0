@@ -29,7 +29,6 @@ export function readLocalStorage() {
 
   //读取本地openid返回openid
 export function readLocalStorageid() {
-
  // console.log('读取本地openid');
 if (readLocalStorage()==null) {
  // console.log('没有openid');

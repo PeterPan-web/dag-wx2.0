@@ -194,12 +194,14 @@ import {Judgelogin ,readLocalStorage, readLocalStorageid} from "../utils/index";
         Judgelogin();
 				var _this = this;
 				_this.list.ps.openid =readLocalStorageid();
+        console.log(_this.list.ps.openid);
 				$.ajax({
 					type:"post",
 					url:_this.list.collectionUrl,
 					data:_this.list.ps,
 					dataType:"json",
 					success:function(res){
+            console.log(res);
 						if(res.success){
 						  if(res.result[0].loginS==0){
                 _this.$toast("请先登陆");
