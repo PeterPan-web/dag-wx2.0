@@ -1,9 +1,19 @@
-var HOST_SERVER = "http://43.142.92.150:80/hfdagl/";
-var HOST_HOME = "http://43.142.92.150:80/hfdagl";
+
+// 弋江区档案馆正式
+// var HOST_SERVER = "http://43.142.92.150/hfdagl/";
+// var HOST_HOME = "http://43.142.92.150/hfdagl";
 
 
-//  var HOST_SERVER = "http://192.168.31.177:8080/hfdagl/";
-//  var HOST_HOME = "http://192.168.31.177:8080/hfdagl";
+////兰台记忆正式
+var HOST_SERVER = "http://43.142.92.150/zt_server/";
+var HOST_HOME = "http://43.142.92.150/zt_server";
+
+
+// // //测试
+// var HOST_SERVER = "http://192.168.31.177:8080/hfdagl/";
+// var HOST_HOME = "http://192.168.31.177:8080/hfdagl";
+
+
 
 //流量入口
 var POST_flow = HOST_SERVER + "hfdagl/wechat!count.action";
@@ -135,6 +145,8 @@ var SURVEY_URL = HOST_SERVER + "surveycms!doSurveyApp.action";
 var COMMENT_URL = HOST_SERVER + "userApp!myComments.action";
 //我的收藏查询
 var COLLECTION_URL = HOST_SERVER + "userApp!myCollects.action";
+//上传电话号码
+var EDITINFO_URL = HOST_SERVER + "wechat!modifyUserInfo.action";
 /*
 var HOST_SERVER = "http://192.168.3.196:8080/hfdagl/";
 var HOST_HOME = "http://192.168.3.196:8080/hfdagl";

@@ -185,8 +185,8 @@ var StepperManager = (function StepperManagerClosure() {
       stepperDiv = document.createElement('div');
       this.panel.appendChild(stepperControls);
       this.panel.appendChild(stepperDiv);
-      if (sessionStorage.getItem('pdfjsBreakPoints')) {
-        breakPoints = JSON.parse(sessionStorage.getItem('pdfjsBreakPoints'));
+      if (localStorage.getItem('pdfjsBreakPoints')) {
+        breakPoints = JSON.parse(localStorage.getItem('pdfjsBreakPoints'));
       }
 
       opMap = Object.create(null);
@@ -242,7 +242,7 @@ var StepperManager = (function StepperManagerClosure() {
     },
     saveBreakPoints: function saveBreakPoints(pageIndex, bps) {
       breakPoints[pageIndex] = bps;
-      sessionStorage.setItem('pdfjsBreakPoints', JSON.stringify(breakPoints));
+      localStorage.setItem('pdfjsBreakPoints', JSON.stringify(breakPoints));
     }
   };
 })();

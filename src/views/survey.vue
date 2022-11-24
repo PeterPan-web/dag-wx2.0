@@ -3,9 +3,9 @@
     <div class="page-wrap">
       <headnav :title="selected"
                :path="path"
-               :up="up"></headnav>
+               :up="up"   v-if="shownav" :style="shownav?'margin-bottom:45px;':''"></headnav>
     </div>
-    <div style="height:calc(100vh - 50px);overflow: auto;margin-top:50px;">
+    <div style="height:calc(100vh - 50px);overflow: auto;">
       <div>
         <label class="title">1.您的联系方式是？</label>
         <input type="text"
@@ -136,11 +136,13 @@ export default {
   data() {
     return {
       title: '评价',
+      shownav:true,
       Satisfaction: {
         openId: '',
         webStatus: "2",
         searchStatus:"2",
         searchLevel:"2",
+        
         suggestion: '',
         phone: '',
       },
@@ -150,7 +152,12 @@ export default {
       to: '/',
     }
   },
-  created() {},
+  created() {
+      if(this.$route.query.alone){
+    this.shownav=false
+  }
+ 
+  },
   components: {
     headnav,
   },

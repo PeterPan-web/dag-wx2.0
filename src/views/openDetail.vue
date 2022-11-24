@@ -32,7 +32,7 @@
 		data(){
 			return{
 				path:"open",
-				title:"公开信息详情",
+				title:"信息公开详情",
 				params:{},
 				titleT:"",
 				textContent:"",

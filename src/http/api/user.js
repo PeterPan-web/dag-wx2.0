@@ -7,6 +7,15 @@ export const postCode = (params) => {
     params
   });
 };
+//上传信息
+export const posteditinfo = (params) => {
+  return serviceAxios({
+    url:"/wechat!modifyUserInfo.action", 
+    method: "post",
+    params
+  });
+};
+
 
 //用户页面通用get
 export const currencyGet = (url) => {

@@ -1,7 +1,7 @@
 <template>
 	<div>
-		<headernav :title="title"></headernav>
-		<searchcomponent :ps="ps" style="margin-top:48px"></searchcomponent>
+		<headernav :title="title" v-if="shownav" :style="shownav?'margin-bottom:45px;':''"></headernav>
+		<searchcomponent :ps="ps"></searchcomponent>
 	</div>
 </template>
 
@@ -12,7 +12,8 @@
 		name:"open",
 		data(){
 			return{
-				title:"公开信息",
+				title:"信息公开",
+       shownav:true,
 				params:{},
 				ps:{
 					url:OPEN_URL,
@@ -24,7 +25,9 @@
 			searchcomponent
 		},
     created(){
-      
+        if(this.$route.query.alone){
+       this.shownav=false
+     }
     },
 		methods:{
 		}

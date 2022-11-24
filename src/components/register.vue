@@ -30,7 +30,6 @@
 </template>
 
 <script>
-import { readLocalStorageid } from "../utils/index";
 import Bus from "../components/bus";
 	export default{
 		name:"register",
@@ -118,7 +117,7 @@ import Bus from "../components/bus";
 
 			isStop(){
 			var _this = this;
-      var openId = readLocalStorageid()
+      var openId = JSON.parse(localStorage.getItem("openId"))
       if(_this.name==""){
         _this.$toast("姓名不能为空");
       	return;

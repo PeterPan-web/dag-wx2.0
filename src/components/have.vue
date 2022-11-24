@@ -9,7 +9,6 @@
 </template>
 
 <script>
-import { readLocalStorageid } from "../utils/index";
 	import { Indicator } from 'mint-ui';
 	import { Switch } from 'mint-ui';
 	import Bus from '../components/bus.js'
@@ -49,7 +48,7 @@ import { readLocalStorageid } from "../utils/index";
 			isStop(){
 				var _this = this;
 				this.popupVisible = false;
-        var openId = readLocalStorageid()
+        var openId = JSON.parse(localStorage.getItem("openId"))
         console.log(openId);
 				$.ajax({
 					type:"post",
@@ -71,7 +70,7 @@ import { readLocalStorageid } from "../utils/index";
 			},
 			submitFile(){
 				var _this = this;
-        var openId = readLocalStorageid()
+        var openId = JSON.parse(localStorage.getItem("openId"))
 				if(_this.value){
 					_this.status = 1;
 				}

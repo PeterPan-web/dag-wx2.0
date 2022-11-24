@@ -2,7 +2,7 @@
 import router from '../router'
 
 export function Judgelogin() {
-  if (readLocalStorage()==null) {
+  if (JSON.parse(localStorage.getItem("openId"))==null) {
     //需要跳转登陆
     router.push('peopleSite')
   }else{
@@ -11,7 +11,7 @@ export function Judgelogin() {
   }
 }
 export function JudgeloginInteraction() {
-  if (readLocalStorage()==null) {
+  if (JSON.parse(localStorage.getItem("openId"))==null) {
     //需要跳转登陆
     //console.log('还没登陆现在跳转');
     router.push('people')
@@ -23,20 +23,10 @@ export function JudgeloginInteraction() {
 //读取本地loginId
 export function readLocalStorage() {
    // console.log('读取本地loginId');
-    let loginId=JSON.parse(sessionStorage.getItem("loginId"));
+    let loginId=JSON.parse(localStorage.getItem("loginId"));
      return loginId
 }
 
-  //读取本地openid返回openid
-export function readLocalStorageid() {
- // console.log('读取本地openid');
-if (readLocalStorage()==null) {
- // console.log('没有openid');
-  return true
-}else{
-   let loginId=JSON.parse(sessionStorage.getItem("loginId"));
-       return loginId.openid
-}
- 
-}
+
+
 

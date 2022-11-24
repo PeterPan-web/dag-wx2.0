@@ -1,8 +1,8 @@
 <template>
   <div>
-    <headernav :title="title"></headernav>
+    <headernav :title="title"   v-if="shownav" :style="shownav?'margin-bottom:45px;':''"></headernav>
     <div class="search"
-         style="margin-top:50px;display: flex;align-items: center">
+         style="display: flex;align-items: center">
       <input type="search"
              class="searchText"
              placeholder="请输入关键字"
@@ -56,6 +56,7 @@ export default {
   name: 'backfeed',
   data() {
     return {
+            shownav:true,
       path: '/interaction',
       title: '留言咨询',
       keyWord: '',
@@ -70,6 +71,9 @@ export default {
     }
   },
   created(){
+          if(this.$route.query.alone){
+   this.shownav=false
+  }
   },
   activated() {
     var _this = this

@@ -19,7 +19,6 @@
 </template>
 
 <script>
-import { readLocalStorageid} from "../utils/index";
 	import Bus from './bus.js'
 	export default{
 		name:"more",
@@ -79,7 +78,7 @@ import { readLocalStorageid} from "../utils/index";
 				this.$refs.loadmore.onTopLoaded();
 			},
 			getFile(){
-        var openid = readLocalStorageid();
+        var openid = JSON.parse(localStorage.getItem("openId"));
 				var _this = this;
 				$.ajax({
 					type:"post",
@@ -103,7 +102,7 @@ import { readLocalStorageid} from "../utils/index";
 			},
 			getMore(){
 				var _this = this;
-				var openid = readLocalStorageid();
+				var openid = JSON.parse(localStorage.getItem("openId"));
 				$.ajax({
 					type:"post",
 					url:_this.getComment,

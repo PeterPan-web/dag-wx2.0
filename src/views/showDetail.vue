@@ -69,7 +69,10 @@
 			this.imgList.push(this.params.argument.PICTURE);
 			this.List.ps.id =this.params.argument.ID;
 			this.List.ps.title =this.params.argument.TITLE;
-			var _this = this;
+			var _this = this;       
+      if(this.params.argument.INFORMATIONTYPE=='红色记忆'){
+        this.title='红色记忆详情'
+      }
 			WeixinJSBridge.call('hideToolbar');
 			WeixinJSBridge.call('hideOptionMenu');
 		},

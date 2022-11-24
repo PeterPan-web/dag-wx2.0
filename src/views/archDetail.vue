@@ -9,7 +9,6 @@
 			<!-- <iconcomponent style="margin-top:10px"></iconcomponent> -->
 			<morecomponent :argument="List.ps" :url="url"></morecomponent>
 		</div>
-
 		 <mt-tabbar v-model="selected" fixed>
 	 		   <bottomcomponent :list="List"></bottomcomponent>
 	 	</mt-tabbar> 

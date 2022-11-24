@@ -46,7 +46,6 @@
 
  <script>
 import headernav from '../components/header.vue'
-import { readLocalStorageid } from '../utils/index'
 export default {
   components: {
     headernav,
@@ -105,7 +104,7 @@ export default {
     },
     getFile() {
       var _this = this
-      var openId = readLocalStorageid()
+      var openId = JSON.parse(localStorage.getItem("openId"))
       if (_this.type == 'comments') {
         $.ajax({
           type: 'post',
@@ -208,9 +207,10 @@ ul {
   font-size: 12px;
 }
 .bottombox {
-  display: flex;
   text-align: left;
-  overflow: hidden;white-space: nowrap;text-overflow:ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow:ellipsis;
 }
 .itemWord {
   text-align: left !important;

@@ -10,10 +10,10 @@ v-if="this.loginId"
   <van-image round class="logo"
                  width="3rem"
                  height="3rem"
-                 :src="this.loginId.headimgurl" />
+                 :src="this.loginId.picture" />
 </van-cell>
-  <van-cell title="用户名" :value="this.loginId.nickname" />
-  <van-cell title="手机号" value="" />
+  <van-cell title="用户名" :value="this.loginId.userName" />
+  <van-cell title="手机号" :value="this.loginId.telephone" />
 </van-cell-group>
 </div>
   </div>
@@ -32,14 +32,20 @@ export default {
     return {
       title:'',
       code:'',
+      openId:"",
       loginId:'',
-      wxAppId: 'wxa9d5243ac3ae61f2',
-      wxAppSecret: '3027ce3d1e52acacc9a270723af891e9',
-      http: 'http://zt.whztsj.com/dist/index.html#/people',
-      //测试
-      //  wxAppId: 'wx09d4138d7b8a1252',
-      //  wxAppSecret: '6b3f8994da0ff9f4bb02e74840ffc675',
-      //  http:'http://127.0.0.1/#/people',
+// //弋江区档案馆
+//       wxAppId: "wxa9d5243ac3ae61f2",
+//       wxAppSecret: "3027ce3d1e52acacc9a270723af891e9",
+//       http: "http://zt.whztsj.com/dist/index.html#/people",
+// //兰台记忆
+      wxAppId: "wx3426368cce031df0",
+      wxAppSecret: "9b9ba314751829beec9efd5592c643d5",
+      http: "http://zt.whztsj.com/ltjy/index.html#/people",
+//测试
+      // wxAppId: "wx09d4138d7b8a1252",
+      // wxAppSecret:"6b3f8994da0ff9f4bb02e74840ffc675",
+      // http:"http://127.0.0.1/#/people",
       userinfo:"",
       user1:'',
     };
@@ -51,7 +57,6 @@ export default {
 //判断是否登陆
     Judgelogin() {
       this.code = this.getUrlCode().code // 截取code
-      console.log(this.code);
       if (this.code == null || this.code === '') {
         // 如果没有code，则去请求
         window.location.href = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=${
@@ -59,7 +64,6 @@ export default {
         }&redirect_uri=${encodeURIComponent(
           this.http
         )}&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect`
-        
       } else {
         // 当code不等于空时，调用后端接口获取用户信息
         this.readStorage()
@@ -107,21 +111,23 @@ export default {
 //       this.$router.push('interaction')
 //     },
 
-async readStorage(){
-  console.log(readLocalStorage());
-  console.log(readLocalStorage()==null)
-    if (readLocalStorage()==null) {
-    let res=  await postCode({code:this.code})      
-    console.log(res)
-    this.loginId =res.result[0].userInfo
-    sessionStorage.setItem("loginId",JSON.stringify( this.loginId));
-    console.log(this.loginId);
-    setTimeout(this.$router.push('interaction'),1000)
-    console.log('一秒后跳转');
-    }else{
-      this.loginId=readLocalStorage()
-    }
-   },
+    async readStorage() {
+      if(JSON.parse(localStorage.getItem("openId"))==null){
+        let res = await postCode({ code: this.code })
+        this.loginId = res.result[0].userInfo
+        this.openId = res.result[0].userInfo.openId,
+        localStorage.setItem('openId', JSON.stringify(this.openId))
+        localStorage.setItem('loginId', JSON.stringify(this.loginId))
+        setTimeout(this.$router.push('interaction'), 1000)
+      }else{
+         this.openId= JSON.parse(localStorage.getItem("openId"))
+           postCode({ openid: this.openId }).then(
+            res=>{
+               this.loginId = res.result[0].userInfo
+            }
+          )
+      }
+    },
 }
 };
 </script>

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <headnav :title="title"></headnav>
+    <headnav :title="title"  v-if="shownav" :style="shownav?'margin-bottom:45px;':''"></headnav>
     <div class="mainCont">
       <div>
         <p class="ts">查档预约仅限工作日，给您带来的不便请谅解</p>
@@ -104,7 +104,7 @@ export default {
       popupVisible1: false,
       popupVisible2: false,
       showCalendar: false,
-
+      shownav:true,
       Day:"",
       time:"",
       showPicker: false,
@@ -136,7 +136,9 @@ export default {
   mounted() {
     // this.getSelect(3)
     // this.getSelect(5)
-
+      if(this.$route.query.alone){
+   this.shownav=false
+  }
     var query = this.$route.query
     Object.assign(this.item, query)
   },
@@ -273,7 +275,6 @@ if (this.item.createTime == '') {
 
 <style>
 .mainCont {
-  margin-top: 50px;
   margin-bottom: 50px;
   height: calc(100vh - 100px);
   overflow: auto;

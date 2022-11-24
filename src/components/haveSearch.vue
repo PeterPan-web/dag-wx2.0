@@ -22,7 +22,6 @@
 </template>
 
 <script>
-import { readLocalStorageid } from "../utils/index";
 	export default{
 		name:"centerSearch",
 		props:["id","url","title"],
@@ -113,7 +112,7 @@ import { readLocalStorageid } from "../utils/index";
 			},
 			getFile(){
 				var _this = this;
-        var openId = readLocalStorageid()
+        var openId = JSON.parse(localStorage.getItem("openId"))
 				$.ajax({
 					type:"post",
 					url:_this.url,

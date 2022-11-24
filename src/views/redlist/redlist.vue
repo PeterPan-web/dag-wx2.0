@@ -12,6 +12,7 @@
 export default {
   data(){
     return{
+      show:'',
       title:"红色记忆",
         listred:[],
         url:SHOW_URL,

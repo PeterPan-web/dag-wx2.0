@@ -32,8 +32,9 @@ import FileDetail from '@/views/fileDetail.vue'
 import accusationReason from '@/views/accusationReason.vue'
 import People from '@/views/people/people.vue'
 import PeopleSite from '@/views/people/PeopleSite.vue'
-import getLogin from '@/views/people/getLogin.vue'
-import getLoginSite from '@/views/people/getLoginSite.vue'
+import personalspace from '@/views/people/personalspace.vue'
+import EditInfo from '@/views/people/EditInfo.vue'
+
 import Help from '@/views/help/help.vue'
 import redlist from '@/views/redlist/redlist.vue'
 import newconsult from '@/views/newconsult/newconsult.vue'
@@ -346,6 +347,23 @@ export default new Router({
        },
        component:PeopleSite
     },
+
+    {
+      path:'/personalspace',
+      name:"personalspace",
+       meta:{
+         index:1
+       },
+       component:personalspace
+    },
+    {
+      path:'/EditInfo',
+      name:"EditInfo",
+       meta:{
+         index:2
+       },
+       component:EditInfo
+    },
     {
       path:'/help',
       name:"help",
@@ -371,30 +389,14 @@ export default new Router({
        component:newconsult
     },
     {
-      path:'/getLogin',
-      name:"getLogin",
-       meta:{
-         index:2
-       },
-       component:getLogin
-    },
-    {
-      path:'/getLoginSite',
-      name:"getLoginSite",
-       meta:{
-         index:2
-       },
-       component:getLoginSite
-    },
-    {
       path: '/',
-      // name: 'site',
-      name: 'interaction',
+       name: 'site',
+    //  name: 'interaction',
       meta:{
       	index:0
       },
-      //  component: Site
-      component:Interaction
+        component: Site
+      // component:Interaction
     }
   ]
 })
