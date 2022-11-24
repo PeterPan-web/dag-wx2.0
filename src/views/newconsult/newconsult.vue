@@ -14,7 +14,7 @@ data(){
   return{
           mark:"consult",
           url:NEWCONSULT_URL,
-          title:"最新资讯"
+          title:"信息公开"
   }
 },
   components:{

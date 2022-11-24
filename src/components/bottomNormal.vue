@@ -26,6 +26,7 @@ import { Judgelogin } from "../utils/index";
 		data(){
 			return{
 				popupVisible:false,
+        openid:'',
 				content:"",
 				interval:null,
 				bfscrolltop:document.body.scrollTop
@@ -61,9 +62,9 @@ import { Judgelogin } from "../utils/index";
 					_this.$toast("评论不能为空");
 					return;
 				}
-        let loginId=JSON.parse(localStorage.getItem("loginId"))
+        let openid= JSON.parse(localStorage.getItem("openId"))
 				_this.list.ps.commentInfo = _this.content;
-				_this.list.ps.openid = loginId.openid;
+				_this.list.ps.openid = openid;
         console.log(_this.list.ps);
 				$.ajax({
 					type:"post",
@@ -91,8 +92,8 @@ import { Judgelogin } from "../utils/index";
 			isStop(){
 				var _this = this;
 				this.popupVisible = false;
-let loginId=JSON.parse(localStorage.getItem("loginId"))
-				_this.list.ps.openid = loginId.openid;
+_this.openid=JSON.parse(localStorage.getItem("openId"))
+				_this.list.ps.openid = _this.openid;
 				$.ajax({
 					type:"post",
 					url:_this.list.forBidden,

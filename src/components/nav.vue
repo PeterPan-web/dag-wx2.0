@@ -10,8 +10,8 @@
       <div class="nav"
            @click="toNext(pathto)">
         <p>{{nav}}</p>
-        <img style="width:28px;height:28px;transform:rotateY(180deg);margin-top:1px"
-             src="static/img/xiao.png">
+        <div class="arrow-right">
+        </div>
       </div>
       <div>
         <mainbtncomponent :list="list"></mainbtncomponent>
@@ -37,11 +37,11 @@ export default {
           path: '/myCollection',
           url: 'static/img/btnimg/wdsc.png',
         },
-        // {
-        //   content: '我的投稿',
-        //   path: '/myContribution',
-        //   url: 'static/img/btnimg/wdtg.png',
-        // },
+        {
+          content: '我的投稿',
+          path: '/myContribution',
+          url: 'static/img/btnimg/wdtg.png',
+        },
       ],
     }
   },
@@ -73,5 +73,14 @@ export default {
   background: #ef6b42;
   color: #fff;
   padding: 0em 0.5em 0em 0.5em;
+}
+.arrow-right {
+    display: inline-block;
+    margin-top: 7px;
+    width: 0.85rem;
+    height: 0.85rem;
+    border-top: .01rem solid rgb(255, 255, 255);
+    border-right: .01rem solid rgb(255, 255, 255);
+    transform: rotate(45deg);
 }
 </style>

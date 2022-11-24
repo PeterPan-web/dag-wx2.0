@@ -5,6 +5,7 @@
     <navcomponent :nav="nav" :pathto="pathto" :login="login"></navcomponent>
      <!-- <listcomponent :mark="mark" :url="url" style="margin-bottom:15px"></listcomponent> 
      <nearcomponent :mark="mark" :url="nearUrl"></nearcomponent>  -->
+     <!-- <div @click="pushname">1111111111111</div> -->
   </div>
 </template>
 
@@ -24,8 +25,8 @@ export default {
       	{content:"档案检索",path:"/search",url:"static/img/btnimg/dajs.png"},
         {content:"红色记忆",path:"/redlist",url:"static/img/btnimg/hsjy.png"},
       	{content:"档案资讯",path:"/consult",url:"static/img/btnimg/dazx.png"},
-        {content:"最新资讯",path:"/newconsult",url:"static/img/btnimg/xxgk.png"},
-      	{content:"信息公开",path:"/show",url:"static/img/btnimg/xxgk.png"},
+        {content:"信息公开",path:"/open",url:"static/img/btnimg/xxgk.png"},
+      	{content:"移动展厅",path:"/show",url:"static/img/btnimg/yycd.png"},
         {content:"就近查档",path:"/nearSearch",url:"static/img/btnimg/jjcd.png"},
       ],
       mark:"consult",
@@ -52,6 +53,9 @@ export default {
         this.login=true
       }
     },
+    pushname(){
+     this.$router.push('personalspace')
+    }
 
     // changeName(){
     //     if(readLocalStorage()==null){

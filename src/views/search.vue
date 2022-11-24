@@ -1,9 +1,9 @@
 <template>
   <div>
     <headernav :title="title"
-               :show="show"></headernav>
+               :show="show"  v-if="shownav"  :style="shownav?'margin-bottom:45px;':''"></headernav>
     <div class="search"
-         style="height:50px;border:1px solid transparent;margin-top:45px;">
+         style="height:50px;border:1px solid transparent;">
       <!-- <div class="search" style="margin-top: 50px"> -->
       <div class="row"
            style="padding: 0em 0.5em;"
@@ -91,7 +91,7 @@
 </template>
 
 <script>
-import { readLocalStorageid ,readLocalStorage} from "../utils/index";
+import {readLocalStorage} from "../utils/index";
 import headernav from "../components/header.vue";
 export default {
   name: "index",
@@ -112,12 +112,16 @@ export default {
       isShow: false,
       params: {},
       curTable: "",
-      showlistWord: true
+      showlistWord: true,
+      shownav:true
     };
   },
   created() {
     this.searchFile();
     this.showlist();
+    if(this.$route.query.alone){
+      this.shownav=false
+    }
   },
   mounted() {
     // this.getTableList()
@@ -151,7 +155,7 @@ export default {
       }
     },
     // getTableList() {
-    //   var openId = readLocalStorageid();
+    //   var openId = JSON.parse(localStorage.getItem("openId"))
     //   var _this = this
     //   $.ajax({
     //     type: 'post',
@@ -222,7 +226,7 @@ export default {
     // },
     commonGet() {
       var _this = this;
-      // var openId = readLocalStorageid()
+      // var openId = JSON.parse(localStorage.getItem("openId"))
       //tableIds = _this.gettableIds()
 
       $.ajax({
@@ -271,7 +275,7 @@ export default {
     },
     getHistory() {
       var _this = this;
-      var openId = readLocalStorageid();
+      var openId = JSON.parse(localStorage.getItem("openId"));
       if (openId!==true) {
          $.ajax({
         url: HISTORY_URL,
@@ -290,7 +294,7 @@ export default {
     },
     clearCode() {
       var _this = this;
-      var openId = readLocalStorageid();
+      var openId = JSON.parse(localStorage.getItem("openId"))
       if (openId !== true) {
         $.ajax({
           type: "post",

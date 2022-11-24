@@ -170,6 +170,7 @@ ul {
   overflow: auto;
 }
 .cardBox {
+  
   display: flex;
   border-bottom: #ccc solid 1px;
   padding: 15px 15px 15px 0px;
@@ -180,11 +181,10 @@ ul {
   display: inline-block;
   width: 80px;
   height: 80px;
-
 }
 .Left img {
-  width: 100%;
-  height: 100%;
+  width: 5.5rem;
+  height: 5.5rem;
 }
 .rightShow {
   width: 300px;

@@ -1,6 +1,10 @@
 # test
 ```
 > A Vue.js project
+#这是一个老旧的项目修改的公众号项目，你前期是用jq以及ajax使用的，后期加入axios，项目修改参数较多，包括personalspace，people，peopleSite，
+static\js\common.js， src\http\config\index.js等地方接口，
+修改包括appid，appsecret，以及跳转页面即可
+
 ```
 
 ## Build Setup

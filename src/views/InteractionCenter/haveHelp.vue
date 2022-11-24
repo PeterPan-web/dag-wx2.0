@@ -20,28 +20,24 @@
 		<span class="submitFlieBtn" @click="isStop">确认提交</span>
 	</div>
  </div>
- 
-	
 </template>
 
 <script>
   import  uploadPic  from "../../components/uploadPic.vue";
   import headernav from "../../components/header.vue";
-  import { readLocalStorageid } from "../../utils/index";
 	import { Indicator } from 'mint-ui';
 	import Bus from '../../components/bus.js'
 	import uploadcomponent from '../../components/uploadPic.vue'
 
 export default{
     name:"haveHelp",
-
 		data(){
 			return{
         headtitle:"我有档案",
          fileList: [
         // Uploader 根据文件后缀来判断是否为图片文件
         // 如果图片 URL 中不包含类型信息，可以添加 isImage 标记来声明
-        { url: 'https://cloud-image', isImage: true },
+        { url: 'https://cloud-image',},
       ],
 				list:[],
 				title:"",
@@ -71,19 +67,22 @@ export default{
 		methods:{
       afterRead(file) {
       // 此时可以自行将文件上传至服务器
+      this.fileList=file.content
       console.log(file);
     },
 			isStop(){
 				var _this = this;
 				this.popupVisible = false;
-        var openId = readLocalStorageid()
+        var openId = JSON.parse(localStorage.getItem("openId"))
         console.log(openId);
 				$.ajax({
 					type:"post",
 					url:FORBIDDEN_URL,
 					data:{
-						openid:openId
+						openid:openId,
+            fileList:_this.fileList
 					},
+          
 					success:function(res){
 						if(res.success){
 							if(res.result[0].status ==1){
@@ -97,7 +96,7 @@ export default{
 			},
 			submitFile(){
 				var _this = this;
-        var openId = readLocalStorageid()
+        var openId = JSON.parse(localStorage.getItem("openId"))
 				if(_this.value){
 					_this.status = 1;
 				}

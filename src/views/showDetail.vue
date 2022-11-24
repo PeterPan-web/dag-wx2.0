@@ -4,7 +4,6 @@
 		<div style="height: calc(100vh - 82px);overflow: auto;margin-top: 40px;">
 			<titlecomponent :title="titleT"></titlecomponent>
 			<p style="padding:8px 0px;text-align: left;"><span style="color:#0B8DEF;display: inline-block;padding:0px 15px">{{argument.INFORMATIONTYPE}}</span><span>{{argument.PUBLISHDATE}}</span></p>
-
 			<imgcomponent :imgList="imgList" :com="com"></imgcomponent>
 			<textcomponent :text="textContent" style="text-align: left;"></textcomponent>
 			<iconcomponent></iconcomponent>
@@ -70,7 +69,10 @@
 			this.imgList.push(this.params.argument.PICTURE);
 			this.List.ps.id =this.params.argument.ID;
 			this.List.ps.title =this.params.argument.TITLE;
-			var _this = this;
+			var _this = this;       
+      if(this.params.argument.INFORMATIONTYPE=='红色记忆'){
+        this.title='红色记忆详情'
+      }
 			WeixinJSBridge.call('hideToolbar');
 			WeixinJSBridge.call('hideOptionMenu');
 		},

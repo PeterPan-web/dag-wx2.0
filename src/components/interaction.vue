@@ -1,7 +1,7 @@
 <template>
   <div>
     <swipercomponent></swipercomponent>
-    <mainbtncomponent :list="list"></mainbtncomponent>
+    <firstmainButton :list="list"></firstmainButton>
         <navcomponent :nav="nav" :pathto="pathto" :login="login"></navcomponent>
     <!-- <near :url="nearUrl"></near> -->
   </div>
@@ -12,7 +12,7 @@ import {readLocalStorage} from "../utils/index";
 import {postSlow} from "../http/api/Universal";
 import swipercomponent from "../components/swiper.vue";
 import navcomponent from "../components/nav.vue";
-import mainbtncomponent from "../components/mainButton.vue";
+import firstmainButton from "../components/firstmainButton.vue";
 import Near from "./near.vue";
 export default {
   name: "site",
@@ -95,7 +95,7 @@ export default {
     Near,
     swipercomponent,
     navcomponent,
-    mainbtncomponent
+    firstmainButton
   }
 };
 </script>

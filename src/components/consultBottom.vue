@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import {Judgelogin ,readLocalStorage, readLocalStorageid} from "../utils/index";
+import {Judgelogin } from "../utils/index";
 	import Bus from './bus.js'
 	export default{
 		name:"bottom",
@@ -85,7 +85,7 @@ import {Judgelogin ,readLocalStorage, readLocalStorageid} from "../utils/index";
 				});
 			},
 			showActions(){
-        if (readLocalStorage()==null) {
+        if (JSON.parse(localStorage.getItem("openId"))==null) {
           Judgelogin();
         }else{
          this.isStop(); 
@@ -108,7 +108,7 @@ import {Judgelogin ,readLocalStorage, readLocalStorageid} from "../utils/index";
 				var _this = this;
 				this.popupVisible = false;
 				_this.list.ps.criticismInfo =_this.content;
-				_this.list.ps.openid =readLocalStorageid();
+				_this.list.ps.openid =JSON.parse(localStorage.getItem("openId"));
 				$.ajax({
 					type:"post",
 					url:_this.list.commentUrl,
@@ -139,7 +139,7 @@ import {Judgelogin ,readLocalStorage, readLocalStorageid} from "../utils/index";
 			isStop(){
 				var _this = this;
 				this.popupVisible = false;
-				_this.list.ps.openid = readLocalStorageid();
+				_this.list.ps.openid = JSON.parse(localStorage.getItem("openId"));
 				$.ajax({
 					type:"post",
 					url:_this.list.forBidden,
@@ -160,7 +160,7 @@ import {Judgelogin ,readLocalStorage, readLocalStorageid} from "../utils/index";
 			tip(){
         Judgelogin();
 				var _this = this;
-				_this.list.ps.openid =readLocalStorageid();
+				_this.list.ps.openid =JSON.parse(localStorage.getItem("openId"));
 				$.ajax({
 					type:"post",
 					url:_this.list.praiseUrl,
@@ -193,13 +193,15 @@ import {Judgelogin ,readLocalStorage, readLocalStorageid} from "../utils/index";
 			collect(){
         Judgelogin();
 				var _this = this;
-				_this.list.ps.openid =readLocalStorageid();
+				_this.list.ps.openid =JSON.parse(localStorage.getItem("openId"));
+        console.log(_this.list.ps.openid);
 				$.ajax({
 					type:"post",
 					url:_this.list.collectionUrl,
 					data:_this.list.ps,
 					dataType:"json",
 					success:function(res){
+            console.log(res);
 						if(res.success){
 						  if(res.result[0].loginS==0){
                 _this.$toast("请先登陆");
