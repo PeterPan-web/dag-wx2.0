@@ -171,7 +171,6 @@
 	li{
 		height:90px;
 		margin:15px 15px;
-  border-bottom: 1px solid rgb(218, 215, 215);
 
 	}
 	.search{

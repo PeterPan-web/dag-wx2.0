@@ -34,7 +34,7 @@
         <input style="width: 100%; padding-left: 5%"
                type="search"
                class="searchText"
-               placeholder="请输入关键字"
+               placeholder="请输入内容进行搜索"
                @keyup.enter="searchFile"
                v-model="keyWord"
                @focusin="pushText" />
@@ -193,7 +193,9 @@ export default {
             code: code
           },
           dataType: "json",
-          success: function(res) {}
+          success: function(res) {
+            console.log(res);
+          }
         });
       }
     },
@@ -258,6 +260,7 @@ export default {
       //this.params.top = document.getElementById("listContent").scrollTop;
       localStorage.setItem("argument", JSON.stringify(item));
       localStorage.setItem("mark", 0);
+
       this.$router.push({
         path: "/archDetail",
         query: { argument: item, mark: 0 }

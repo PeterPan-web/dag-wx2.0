@@ -44,7 +44,7 @@ import haveHelp from '@/views/InteractionCenter/haveHelp.vue'
 import mycomment from '@/views/people/mycomment.vue'
 import myCollection from '@/views/people/myCollection.vue'
 import myContribution from '@/views/people/myContribution.vue'
-
+import submitpage from '@/views/people/submitpage.vue'
 Vue.use(Router)
 
 export default new Router({
@@ -338,6 +338,13 @@ export default new Router({
          index:2
        },
        component:myContribution
+    },{
+      path:'/submitpage',
+      name:"submitpage",
+       meta:{
+         index:3
+       },
+       component:submitpage
     },
     {
       path:'/peopleSite',
@@ -390,13 +397,13 @@ export default new Router({
     },
     {
       path: '/',
-       name: 'site',
-    //  name: 'interaction',
+      //  name: 'site',
+     name: 'interaction',
       meta:{
       	index:0
       },
-        component: Site
-      // component:Interaction
+        // component: Site
+      component:Interaction
     }
   ]
 })

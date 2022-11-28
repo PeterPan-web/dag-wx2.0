@@ -4,6 +4,7 @@
     <firstmainButton :list="list"></firstmainButton>
         <navcomponent :nav="nav" :pathto="pathto" :login="login"></navcomponent>
     <!-- <near :url="nearUrl"></near> -->
+         <!-- <div @click="pushname">1111111111111</div> -->
   </div>
 </template>
 
@@ -21,9 +22,14 @@ export default {
       list: [
         {
           content: "预约查档",
-          path: "/archDetail_sq",
+          path: "/center",
           url: "static/img/btnimg/yycd.png"
         },
+        // {
+        //   content: "预约查档",
+        //    path: "/archDetail_sq",
+        //   url: "static/img/btnimg/yycd.png"
+        // },
         {
           content: "留言咨询",
           path: "/backfeed",
@@ -56,6 +62,9 @@ export default {
     document.title = "微互动";
   },
   methods: {
+        pushname(){
+     this.$router.push('personalspace')
+    },
     // 判断是否登陆
     iflogin(){
       if (readLocalStorage()==null) {

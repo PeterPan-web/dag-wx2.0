@@ -22,7 +22,7 @@
 
         <h4 class="title"><span>利用档案信息</span>(带*均为必填项)</h4>
         <van-cell-group>
-          <van-field v-model="item.Purpose"
+          <van-field v-model="item.purpose"
                      rows="1"
                      autosize
                      label="*查档目的"
@@ -62,7 +62,7 @@
 <van-action-sheet v-model="showPicker" :actions="actions" @select="onSelect" />
 </div>
 
-        <van-field readonly
+        <!-- <van-field readonly
                    clickable
                    name="calendar"
                    :value="item.cratetime"
@@ -70,7 +70,7 @@
                    placeholder="点击选择预约日期"
                    @click="showCalendar = true" />
         <van-calendar v-model="showCalendar"
-                      @confirm="onConfirm" />
+                      @confirm="onConfirm" /> -->
         <!-- 点击登陆 -->
       </div>
       <div style="display: flex;margin: 10px 5%;width: 90%">
@@ -122,7 +122,7 @@ export default {
         address: '',
 
         modeClass: '',
-        Purpose: '',
+        purpose: '',
         remark: '',
         createDay: '',
         createTime:'',
@@ -144,7 +144,7 @@ export default {
   },
   methods: {
       onConfirm(date) {
-      this.item.createDay = `${date.getMonth() + 1}/${date.getDate()}`;
+      this.item.createDay = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
       this.showCalendar = false;
     },
      onConfirmTime(time) {
@@ -192,7 +192,11 @@ export default {
      * 确认登记
      */
     qrDj() {
-      let _this = this
+      let _this = this,
+c=_this.item.createDay.concat(' ',_this.item.createTime)
+     _this.item.createTime='',
+      _this.item.createTime=c
+// console.log( _this.item.createTime);
       if (this.item.applicant == '') {
         Toast('申请人不能为空~')
         return false
@@ -209,7 +213,7 @@ export default {
       //   Toast('联系地址不能为空~')
       //   return false
       // }
-       if(this.item.Purpose == ''){
+       if(this.item.purpose == ''){
          Toast('查档目的不能为空~');
          return false;
        }
@@ -217,7 +221,7 @@ export default {
         Toast('请选择预约日期~')
         return false
       }
-if (this.item.createTime == '') {
+     if (this.item.createTime == '') {
         Toast('请选择预约时间~')
         return false
       }
@@ -225,6 +229,7 @@ if (this.item.createTime == '') {
         text: '处理中，请稍等...',
         spinnerType: 'fading-circle',
       })
+      console.log(_this.item);
       $.ajax({
         type: 'post',
         url:  HOST_HOME + '/djlyApp!doDjlyApp.action',

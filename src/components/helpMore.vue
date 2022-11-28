@@ -2,9 +2,9 @@
 	<div>
 		<mt-loadmore :bottom-method="loadBottom"  :bottom-all-loaded="allLoaded" ref="loadmore" :auto-fill="false">
 			<ul>
-			    <li v-for="item in fileList" style="padding:6px 0px;border-bottom:1px solid #ccc">
+			    <li v-for="(item,index) in fileList" :key="index" style="padding:6px 0px;border-bottom:1px solid #ccc">
 			    	<span class="loadLeft">
-			    		<img v-if ="item.PICTURE ==null":src="comPath" style="border-radius: 15px;"/>
+			    		<img v-if ="item.PICTURE ==null" :src="comPath" style="border-radius: 15px;"/>
 			    		<img v-else :src="item.PICTURE" style="border-radius: 15px;"/>
 			    	</span>
 			    	<span class="messageLoad">
@@ -81,6 +81,7 @@
 					},
 					dataType:"json",
 					success:function(res){
+            console.log(res);
 						_this.total = res.result[0].count;
 						for(var i=0;i<res.result[0].comment.length;i++){
 							_this.fileList.push(res.result[0].comment[i]);

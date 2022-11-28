@@ -1,7 +1,7 @@
 <template>
 	<div class="page-tabbar">
 		<div class="page-wrap">
-			<headnav :title="selected" :path="path" :up="up"></headnav>
+			<headnav :title="selected" :path="path" :up="up"   v-if="shownav" :style="shownav?'margin-bottom:45px;':''"></headnav>
 			<!-- <mt-tab-container class="page-tabbar-container" v-model="selected">
 				<mt-tab-container-item id="预约登记">
         	<searchcomponent2 :id="selectedId3" :url="mainList.register.otherUrl" :title="selected"></searchcomponent2>
@@ -10,7 +10,7 @@
 		<!-- <mt-tabbar v-model="selected" >
 		</mt-tabbar> -->
 		</div>
-		<div style="height:calc(100vh - 50px);overflow: auto;margin-top:50px;">
+		<div style="height:calc(100vh - 50px);overflow: auto;">
 			<van-form validate-first ref="primaryData" @submit="submitData">
 			<div class="tip">
 				<span>*</span>基础信息（均为必填项）
@@ -53,7 +53,9 @@
                         message: '不能为空'
                     }
                 ]"  />
-				<van-field required readonly clickable name="picker" :value="purpose" label="利用目的" placeholder="点击选择利用目的" @click="showPicker = true" :rules="[
+      <selector @pickeritem="pickeritem" :chosetype="1" ></selector>
+      <selector @pickeritem="pickerplace" :chosetype="2"></selector>
+				<!-- <van-field required readonly clickable name="picker" :value="purpose" label="利用目的" placeholder="点击选择利用目的" @click="showPicker = true" :rules="[
                     {
                         required: true,
                         trigger:'onBlur',
@@ -62,8 +64,8 @@
                 ]"/>
 				<van-popup v-model="showPicker" position="bottom">
   					<van-picker value-key="NAME" show-toolbar :columns="columns1" @confirm="confirmPurpose" @cancel="showPicker = false"/>
-				</van-popup>
-				<van-field required readonly clickable name="picker" :value="pickUp" label="选择取件地点" placeholder="点击选择取件地点" @click="showPicker1 = true" :rules="[
+				</van-popup> -->
+				<!-- <van-field required readonly clickable name="picker" :value="pickUp" label="选择取件地点" placeholder="点击选择取件地点" @click="showPicker1 = true" :rules="[
                     {
                         required: true,
                         trigger:'onBlur',
@@ -72,7 +74,7 @@
                 ]"/>
 				<van-popup v-model="showPicker1" position="bottom">
   					<van-picker value-key="NAME" show-toolbar :columns="columns2" @confirm="confirmPickup" @cancel="showPicker1 = false"/>
-				</van-popup>
+				</van-popup> -->
 			</van-cell-group>
 
 			<div class="tip">
@@ -102,27 +104,27 @@
   					<van-field required v-model="onlyChildName" label="孩子姓名" placeholder="请输入" />
 					<van-field v-model="onlyChildCule" label="其他线索" placeholder="其他线索（如曾用名、别名等）" />
 				</van-collapse-item>
-  				<van-collapse-item title="知青档案" name="younger">
+  				<!-- <van-collapse-item title="知青档案" name="younger">
 					  <van-field required v-model="youthName" label="知青姓名" placeholder="请输入" />
   					<van-field required  v-model="youthPlace" label="插队地点" placeholder="请输入" />
   					<van-field v-model="youthSchool" label="原就读学校" placeholder="请输入" />
 					<van-field v-model="youthCule" label="其他线索" placeholder="其他线索（如曾用名、别名等）" />
-				</van-collapse-item>
-  				<van-collapse-item title="知青子女入沪" name="youngerchild">
+				</van-collapse-item> -->
+  				<!-- <van-collapse-item title="知青子女入沪" name="youngerchild">
 					<van-field required v-model="youngerchildName" label="知青姓名" placeholder="请输入" />
   					<van-field v-model="youngerchildSpouse" label="知青配偶姓名" placeholder="请输入" />
   					<van-field required v-model="youngerchild" label="孩子姓名" placeholder="请输入" />
 					<van-field v-model="youngerchildNameCule" label="其他线索" placeholder="其他线索（如曾用名、别名等）" />
-				</van-collapse-item>
-  				<van-collapse-item title="社员建房" name="buildhouse">
+				</van-collapse-item> -->
+  				<!-- <van-collapse-item title="社员建房" name="buildhouse">
 					<van-field required v-model="memberName" label="户主姓名" placeholder="请输入" />
   					<van-field v-model="othersName" label="其他成员姓名" placeholder="请输入" />
   					<van-field required v-model="houseYear" label="造房年份" placeholder="请输入年份" />
-					<!-- <van-popup v-model="showPicker3" position="bottom">
+					之前省略 <van-popup v-model="showPicker3" position="bottom">
   						<van-datetime-picker :min-date="minDate" :max-date="maxDate" v-model="currentDate2" :formatter="formatter" type="date"  @confirm="confirmHouseYear" @cancel="showPicker3 = false"/>
-					</van-popup> -->
+					</van-popup> 之前省略
 					<van-field v-model="memberCule" label="其他线索" placeholder="其他线索（如曾用名、别名等）" />
-				</van-collapse-item>
+				</van-collapse-item> -->
   				<van-collapse-item title="军人入退伍" name="soldier">
 					<van-field required v-model="soldierName" label="军人姓名" placeholder="请输入" />
   					<van-field required readonly clickable name="datetimePicker" :value="soldierDate" label="入/退伍日期" placeholder="点击选择日期" @click="showPicker4 = true" />
@@ -156,19 +158,19 @@
 					</van-popup>
 					<van-field v-model="schoolRoll_Cule" label="其他线索" placeholder="其他线索（如曾用名、别名等）" />
 				</van-collapse-item>
-  				<van-collapse-item title="劳动能力鉴定" name="0105">
+  				<!-- <van-collapse-item title="劳动能力鉴定" name="0105">
 					<van-field required v-model="labour_name" label="姓名" placeholder="请输入" />
   					<van-field required v-model="labour_company" label="单位名称" placeholder="请输入" />
   					<van-field v-model="labour_number" label="结论书编号" placeholder="请输入" />
 					<van-field v-model="labour_cule" label="其他线索" placeholder="其他线索（如曾用名、别名等）" />
-				</van-collapse-item>
-  				<van-collapse-item title="征地安置" name="labourer">
+				</van-collapse-item> -->
+  				<!-- <van-collapse-item title="征地安置" name="labourer">
 					<van-field required v-model="land_name" label="被征地安置人员姓名" placeholder="请输入" />
   					<van-field required v-model="land_place" label="被征土地所属镇、村、队" placeholder="请输入" />
   					<van-field v-model="land_company" label="接收单位" placeholder="请输入" />
 					<van-field v-model="land_cule" label="其他线索" placeholder="其他线索（如曾用名、别名等）" />
-				</van-collapse-item>
-  				<van-collapse-item title="三峡移民档案" name="0111">
+				</van-collapse-item> -->
+  			<!-- 	<van-collapse-item title="三峡移民档案" name="0111">
 					<van-field required v-model="immigrant_name" label="户主姓名" placeholder="请输入" />
   					<van-field v-model="immigrant_family" label="家庭成员" placeholder="请输入" />
   					<van-field readonly clickable name="datetimePicker" :value="immigrant_date" label="出生日期" placeholder="点击选择日期" @click="showPicker7 = true" />
@@ -177,8 +179,8 @@
 					</van-popup>
 					<van-field required v-model="moveOut" label="迁出地点" placeholder="请输入" />
 					<van-field required v-model="moveIn" label="迁入地点" placeholder="请输入" />
-					<van-field v-model="immigrant_cule" label="其他线索" placeholder="其他线索（如曾用名、别名等）" />
-				</van-collapse-item>
+					<van-field v-model="immigrant_cule" label="其他线索" placeholder="其他线索（如曾用名、别名等）" /> 
+				</van-collapse-item> -->
 			</van-collapse>
 			<div class="optionBtn">
 				<mt-button type="primary" size="small" native-type="submit">提交</mt-button>
@@ -191,14 +193,17 @@
 </template>
 
 <script>
-	import headnav from '../components/header.vue'
+	import headnav from '../components/header.vue';
+  import selector from "../components/selector.vue";
 	import { Cell, CellGroup,Dialog,Radio } from 'vant';
 	export default{
 		name:"center",
 		data(){
 			return{
+        ceshi:'',
 				selected:"预约查档",
 				path:"/interaction",
+                    shownav:true,
 				up:false,
 				applicant:'',
 				idNumber:'',
@@ -283,12 +288,16 @@
 			}
 		},
 		created(){
+                if(this.$route.query.alone){
+   this.shownav=false
+  }
 			//获取利用目的的值
-			this.getPurpose();
+			//this.getPurpose();
 			//获取取件地址的值
-			this.getPickup();
+			// this.getPickup();
 		},
 		components:{
+      selector,
 			headnav,
 			[Cell.name]:Cell,
 			[CellGroup.name]:CellGroup,
@@ -296,9 +305,7 @@
 			[Dialog.Component.name]:Dialog.Component,
 		},
 		methods:{
-			changeCollapse(){
-
-			},
+      
 			//身份证号的校验
 			validator(val){
 				return /^[1-9]\d{5}(18|19|20|(3\d))\d{2}((0[1-9])|(1[0-2]))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/.test(val)||/^[1-9]\d{5}((0[1-9])|(1[0-2]))(([0-2][1-9])|10|20|30|31)\d{3}$/.test(val)
@@ -320,51 +327,58 @@
       return value;
     },
 			//获取利用目的以及选择取件地址的值
-			getPurpose(){
-				var _this = this;
-				$.ajax({
-					url:'/'+HOST_HOME+'/book!getDicDatas.action?dicName=利用目的',
-					type:'get',
-					success:function(res){
-						if(res.success == true) {
-							_this.columns1 = res.result;
-						}
-					},
-					error:function() {
-						Dialog.alert({message: '请求失败',}).then(() => {});
-					}
-				})
-			},
+			// getPurpose(){
+			// 	var _this = this;
+			// 	$.ajax({
+			// 		url:HOST_HOME+'/book!getDicDatas.action?dicName=利用目的',
+			// 		type:'get',
+			// 		success:function(res){
+			// 			if(res.success == true) {
+			// 				_this.columns1 = res.result;
+			// 			}
+			// 		},
+			// 		error:function() {
+			// 			Dialog.alert({message: '请求失败',}).then(() => {});
+			// 		}
+			// 	})
+			// },
 			//点击利用目的
-			confirmPurpose(value){
-				this.purpose=value.NAME;
+			// confirmPurpose(value){
+			// 	this.purpose=value.NAME;
+			// 	this.purposeCode = value.CODE;
+      // 	this.showPicker = false;
+			// }
+			// ,
+      pickeritem(value){
+        this.purpose=value.name;
 				this.purposeCode = value.CODE;
-      			this.showPicker = false;
-			}
-			,
-			//获取利用目的以及选择取件地址的值
-			getPickup(){
-				var _this = this;
-				$.ajax({
-					url:'/'+HOST_HOME+'/book!getDicDatas.action?dicName=取件地点',
-					type:'get',
-					success:function(res){
-						console.log()
-						if(res.success == true) {
-							_this.columns2 = res.result;
-						}
-					},
-					error:function() {
-						Dialog.alert({message: '请求失败',}).then(() => {});
-					}
-				})
-			},
-			//点击取件地址
-			confirmPickup(value){
-				this.pickUp=value.NAME;
+      },
+      pickerplace(value){
+        this.pickUp=value.name;
 				this.pickUpCode = value.CODE;
-      			this.showPicker1 = false;
-			},
+      },
+			// //获取利用目的以及选择取件地址的值
+			// getPickup(){
+			// 	var _this = this;
+			// 	$.ajax({
+			// 		url:HOST_HOME+'/book!getDicDatas.action?dicName=取件地点',
+			// 		type:'get',
+			// 		success:function(res){
+			// 			if(res.success == true) {
+			// 				_this.columns2 = res.result;
+			// 			}
+			// 		},
+			// 		error:function() {
+			// 			Dialog.alert({message: '请求失败',}).then(() => {});
+			// 		}
+			// 	})
+			// },
+			// //点击取件地址
+			// confirmPickup(value){
+			// 	this.pickUp=value.NAME;
+			// 	this.pickUpCode = value.CODE;
+      // 			this.showPicker1 = false;
+			// },
 
 			//婚姻档案选择时间
 			marriageConfirm(value){
@@ -391,11 +405,11 @@
 				this.birth=value.getFullYear() + "-" + (Number(value.getMonth()) + 1) + "-" + value.getDate();
       			this.showPicker6 = false;
 			},
-			//三峡移民档案出生日期
-			confirmImmigrantDate(value){
-				this.immigrant_date=value.getFullYear() + "-" + (Number(value.getMonth()) + 1) + "-" + value.getDate();
-      			this.showPicker7 = false;
-			},
+			// //三峡移民档案出生日期
+			// confirmImmigrantDate(value){
+			// 	this.immigrant_date=value.getFullYear() + "-" + (Number(value.getMonth()) + 1) + "-" + value.getDate();
+      // 			this.showPicker7 = false;
+			// },
 			//提交数据
 			submitData (){
 				var _this = this;
@@ -565,7 +579,7 @@
 					})
   					.then(() => {
 						$.ajax({
-							url:'/'+HOST_HOME+'/book!doBookApp.action?name='+_this.applicant+'&documentNumber='+_this.idNumber+'&phone='+_this.phone+'&findPurpos='+_this.purposeCode+'&pickupPoint='+_this.pickUpCode+'&dbCode='+_this.activeName+'&dbchin='+dbchin+'&manName='+manName+'&womanName='+womanName+'&birthDate='+birthDate+'&maritalStatus='+maritalStatus+'&otherClues='+otherClues+'&otherName='+otherName+'&childName='+childName+'&queueWay='+queueWay+'&school='+school+'&hYear='+hYear+'&unit='+unit+'&conclusionNo='+conclusionNo+'&outSite='+outSite+'&inSite='+inSite+'&address='+_this.residence,
+							url:HOST_HOME+'/book!doBookApp.action?name='+_this.applicant+'&documentNumber='+_this.idNumber+'&phone='+_this.phone+'&findPurpos='+_this.purposeCode+'&pickupPoint='+_this.pickUpCode+'&dbCode='+_this.activeName+'&dbchin='+dbchin+'&manName='+manName+'&womanName='+womanName+'&birthDate='+birthDate+'&maritalStatus='+maritalStatus+'&otherClues='+otherClues+'&otherName='+otherName+'&childName='+childName+'&queueWay='+queueWay+'&school='+school+'&hYear='+hYear+'&unit='+unit+'&conclusionNo='+conclusionNo+'&outSite='+outSite+'&inSite='+inSite+'&address='+_this.residence,
 							type:'post',
 							success:function(res){
 								if(res.success == true){
@@ -647,7 +661,7 @@
 				this.moveOut='',
 				this.moveIn='',
 				this.immigrant_cule=''
-			}
+			},
 		}
 	}
 </script>

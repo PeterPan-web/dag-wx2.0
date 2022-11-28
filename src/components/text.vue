@@ -23,26 +23,14 @@
 </script>
 
 <style>
-	video{
-		position: static!important;
-		z-index:-1!important;
-	}
 	.text{
 		font-size:12px;
 		margin:5px 10px;
 		line-height: 20px;
-		text-align: center;
+		text-align: left;
 		letter-spacing:2px;
 		word-break: break-word;
-	}
-	.text img{
-		width:100%;
-		height:auto;
-		margin:auto;
-	}
-	.text video{
-		width:100%;
-		height:auto;
-		margin:auto;
+    padding-bottom: 2rem;
+
 	}
 </style>

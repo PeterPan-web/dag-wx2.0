@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<div class="search">
-    		<input  type="search" class="searchText" placeholder="请输入题名进行搜索" @keyup.enter ="searchFile" v-model="keyWord" @focus="pushText"/>
+    		<input  type="search" class="searchText" placeholder="请输入内容进行搜索" @keyup.enter ="searchFile" v-model="keyWord" @focus="pushText"/>
     		<div class="btn">
     			<mt-button size="small" slot="right" @click="searchFile">搜索</mt-button>
     		</div>
@@ -11,11 +11,11 @@
 	    	<mt-loadmore :bottom-method="loadBottom" :top-method="loadTop" :bottom-all-loaded="allLoaded" :auto-fill="false" ref="loadmore">
 				<ul style="width:100vw;margin:0 auto;overflow: auto;">
 				    <li v-for="(item,index) in list" :key="index" @click="toDetail(item)" class="cardBox">
-				    	<span class="Left">
-				    		<img v-if ="item.PICTURE ==null" style="display: false;"/>
-				    		<img v-else :src="com+item.PICTURE"/>
-				    	</span>
-				    	<span class="rightShow">
+              <div class="Left">
+				    		<img v-if ="!item.PICTURE ==null"/>
+				    		<img v-if ="item.PICTURE !==null" :src="com+item.PICTURE"/>
+              </div>
+				    	<span class="rightShow" >
 				    		<p  class="rightTitle" >{{item.TITLE}}</p>
 				    		<p class="rightDate">日期 :{{item.PUBLISHDATE}}</p>
 				    		<!-- <p style="height:34px;overflow: hidden;line-height: 18px;">{{item.CONTENT}}</p> -->
@@ -178,7 +178,6 @@ ul {
 .Left {
   position: flex;
   flex-direction: row;
-  display: inline-block;
   width: 80px;
   height: 80px;
 }

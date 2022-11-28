@@ -1,18 +1,41 @@
 <template>
 	<div>
 		<headernav :title="title" :up="up"></headernav>
-		<div style="height: calc(100vh - 50px);overflow: auto;margin-top:50px;">
-      <mt-field label="*姓名" placeholder="请输入姓名" v-model="username"></mt-field>
+		<div style="height: calc(100vh - 50px);overflow: auto;margin-top:45px;">
+    <van-cell-group>
+          <van-field v-model="username"
+                     label="*姓名"
+                     placeholder="请输入姓名" />
+          <van-field v-model="phone"
+                     label="*联系电话"
+                     placeholder="请输入联系电话" />
+                      <van-field v-model="email"
+                     label="*电子邮箱"
+                     placeholder="请输入电子邮箱" />
+          <van-field v-model="address"
+                     label="*联系地址"
+                     placeholder="请输入联系地址" />
+<van-field v-model="content"
+id="content"
+                     label="*咨询内容"
+                      type="textarea" rows="5"
+                     placeholder="说说你的看法..." 
+                      style="border-bottom:1px solid #ccc;height:140px"/>
+      </van-cell-group>
+      <!-- <mt-field label="*姓名" placeholder="请输入姓名" v-model="username"></mt-field>
       <mt-field label="*联系电话" placeholder="请输入联系电话" v-model="phone"></mt-field>
       <mt-field label="电子邮箱" placeholder="请输入电子邮箱" v-model="email"></mt-field>
       <mt-field label="*联系地址" placeholder="请输入联系地址" v-model="address"></mt-field>
-			<mt-field label="*咨询内容" id="content" placeholder="说说你的看法..." type="textarea" rows="5" v-model="content" style="border-bottom:1px solid #ccc;height:140px"></mt-field>
+			<mt-field label="*咨询内容" id="content" placeholder="说说你的看法..." type="textarea" rows="5" v-model="content" style="border-bottom:1px solid #ccc;height:140px"></mt-field> -->
 <!--			<uploadcomponent style="text-align: left;"></uploadcomponent>-->
       <div style="text-align: left">
 <!--        <van-uploader result-type="dataUrl" v-model="list" multiple :max-count="6" />-->
       </div>
 			<mt-switch v-model="value" style="margin-left:20px;margin-top:20px">{{isOpen}}</mt-switch>
-			<span class="submitFlieBtn" @click="isStop">提交</span>
+			<!-- <span class="submitFlieBtn" @click="isStop">提交</span> -->
+      <div class="writesubmitBtn"  @click="isStop">
+                  提交
+      </div>
 		</div>
 
 	</div>
@@ -190,7 +213,7 @@
 </script>
 
 <style>
-	.submitFlieBtn{
+.writesubmitBtn{
 		display: inline-block;
 		padding:7px 50px;
 		background:#169bd5;
@@ -199,7 +222,7 @@
 		border-radius: 5px;
 		margin-top:40px;
 		margin-bottom:30px;
-	}
+}
   .mint-cell-title{
     text-align: left;
   }

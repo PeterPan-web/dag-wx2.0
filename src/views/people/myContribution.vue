@@ -22,6 +22,7 @@
 <script>
 import contribute from './contribute.vue'
 import contributehelp from './contributehelp.vue'
+
 import headernav from '../../components/header.vue'
 export default {
   name: 'myContribution',

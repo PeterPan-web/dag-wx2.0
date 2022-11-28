@@ -6,7 +6,7 @@
     <div style="text-align:left;margin-left:8px">
       <p>档案介绍</p>
     </div>
-		<mt-field placeholder="档案介绍" type="textarea" rows="5" v-model="content" style="border-bottom:1px solid #ccc;height:140px"></mt-field>
+		<mt-field placeholder="档案内容" type="textarea" rows="5" v-model="content" style="border-bottom:1px solid #ccc;height:140px"></mt-field>
     <div>
     <mt-switch class="openbtn" v-model="value">{{isOpen}}</mt-switch>  
     </div>

@@ -1,8 +1,8 @@
 <template>
 <div>
-    <headernav :title="title"></headernav>
+    <headernav :title="title"  v-if="shownav" :style="shownav?'margin-bottom:45px;':''"></headernav>
     <div class="centerimg" >
-        <img src="../../static/img/dbanner1.png">
+        <img src="../../static/img/interactioncenter.jpg">
     </div>
     <div class="centerp">
 <p>在您的身边，或许还保留有记录着珍贵历史的信函、
@@ -33,6 +33,7 @@ export default {
   data() {
     return {
       title: "互动中心",
+            shownav:true,
       list: [
         {
           content: "我来帮忙",
@@ -42,6 +43,7 @@ export default {
         // {
         //   content: "我来帮忙",
         //   path: "/help",
+        //   // path: "/center",
         //   url: "static/img/btnimg/wlbm.png"
         // },
         {
@@ -52,7 +54,11 @@ export default {
       ]
     };
   },
-
+  created(){
+          if(this.$route.query.alone){
+   this.shownav=false
+  }
+  }
 };
 </script >
 
