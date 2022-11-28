@@ -1,8 +1,8 @@
 <template>
 	<div id="container">
 	  <ul>
-	    <li v-for="item in imgList" style="margin-top:15px;margin-bottom:15px;">
-	      <img v-lazy.container="com+item.PICTURE" style="width:80vw;height:40vh">
+	    <li v-for="(item,index) in imgList" :key="index" style="margin-top:15px;margin-bottom:15px;">
+	      <img v-lazy.container="com+item.PICTURE">
 	    </li>
 	  </ul>
 	</div>
@@ -38,10 +38,13 @@
 </script>
 
 <style>
+.container{
+  
+}
 	img[lazy="loaded"] {
-	  width:80vw;
-	  height:20vh;
-	  margin: auto;
-	  margin-bottom:15px;
+	  width:15rem;
+	  height:10rem;
+	  margin: 0 auto;
+	  margin-bottom:8px;
 	}
 </style>

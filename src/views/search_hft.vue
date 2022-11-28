@@ -3,7 +3,7 @@
 		<headernav :title="title" :show="show"></headernav>
 		<div class="search" style="margin-top:50px;">
     		<div class="searchLeft">
-    			<input  style="width:97%;padding-left:3%" type="search" class="searchText" placeholder="请输入关键字" @keyup.enter ="searchFile" v-model="keyWord" @focusin="pushText"/>
+    			<input  style="width:97%;padding-left:3%" type="search" class="searchText" placeholder="" @keyup.enter ="searchFile" v-model="keyWord" @focusin="pushText"/>
     		</div>
 
     		<div class="btn">

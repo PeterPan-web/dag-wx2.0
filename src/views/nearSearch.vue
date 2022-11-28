@@ -2,7 +2,7 @@
 	<div>
 		<headernav :title="title" v-if="shownav" :style="shownav?'margin-bottom:45px;':''"></headernav>
 		<div class="search" style="display: flex;align-items: center">
-    		<input  type="search" class="searchText" placeholder="请输入题名进行搜索" @keyup.enter ="searchFile" v-model="keyWord" @focus="pushText"/>
+    		<input  type="search" class="searchText" placeholder="请输入内容进行搜索" @keyup.enter ="searchFile" v-model="keyWord" @focus="pushText"/>
     		<div class="btn">
     			<mt-button style="line-height: 33px" size="small" slot="right" @click="searchFile">搜索</mt-button>
     		</div>

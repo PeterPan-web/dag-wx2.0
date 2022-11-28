@@ -1,7 +1,7 @@
 <template>
   <div style="width: 100%;
   height: 100%;">
-    <mt-navbar v-model="selected1">
+    <mt-navbar v-model="selected1" >
   <mt-tab-item id="1">全部</mt-tab-item>
   <mt-tab-item id="2">审核中</mt-tab-item>
   <mt-tab-item id="3">审核成功</mt-tab-item>
@@ -10,16 +10,16 @@
 <!-- tab-container -->
 <mt-tab-container v-model="selected1">
   <mt-tab-container-item id="1">
-       <listcell style="margin-top:1rem"   :mylist="this.listAll"></listcell>
+       <listcell style="margin-top:1rem"  :mylist="this.listAll"></listcell>
   </mt-tab-container-item>
   <mt-tab-container-item id="2">
-           <listcell style="margin-top:1rem"   :mylist="this.listin"></listcell>
+           <listcell style="margin-top:1rem"  :mylist="this.listin"></listcell>
   </mt-tab-container-item>
   <mt-tab-container-item id="3">
-          <listcell style="margin-top:1rem"   :mylist="this.listsuc"></listcell>
+          <listcell style="margin-top:1rem"  :mylist="this.listsuc"></listcell>
   </mt-tab-container-item>
     <mt-tab-container-item id="4">
-          <listcell style="margin-top:1rem"   :mylist="this.listdef"></listcell>
+          <listcell style="margin-top:1rem"  :mylist="this.listdef"></listcell>
   </mt-tab-container-item>
 </mt-tab-container>
   </div>
@@ -59,11 +59,9 @@ this.openid= JSON.parse(localStorage.getItem("openId"))
     // 成功
      this.getlistsuc()
     this.getlistdef()
-//帮助投稿
-// this.getlisthelp()
     },
     methods:{
-          getlistAll(){
+    getlistAll(){
      let _this=this
       $.ajax({
 				type:"post",
@@ -77,8 +75,11 @@ this.openid= JSON.parse(localStorage.getItem("openId"))
 				beforeSend:function(){
 				},
 				success:function(res){
-          console.log(res);
-           _this.listAll=res.result.archives
+          if (res.result.archives) {
+            _this.listAll=res.result.archives
+          }else{
+         _this.listAll=res.result[0].list
+          }
 				},error:function(){
 				}
 			});
@@ -98,7 +99,11 @@ this.openid= JSON.parse(localStorage.getItem("openId"))
 				beforeSend:function(){
 				},
 				success:function(res){
-           _this.listin=res.result.archives
+      if (res.result.archives) {
+            _this.listin=res.result.archives
+          }else{
+            _this.listin=res.result[0].list
+            }
 				},error:function(){
 				}
 			});
@@ -118,7 +123,11 @@ this.openid= JSON.parse(localStorage.getItem("openId"))
 				beforeSend:function(){
 				},
 				success:function(res){
-           _this.listsuc=res.result.archives
+          if (res.result.archives) {
+            _this.listsuc=res.result.archives
+          }else{
+           _this.listsuc=res.result[0].list
+           }
 				},error:function(){
 				}
 			});
@@ -138,31 +147,14 @@ this.openid= JSON.parse(localStorage.getItem("openId"))
 				beforeSend:function(){
 				},
 				success:function(res){
-           _this.listdef=res.result.archives
+                    if (res.result.archives) {
+            _this.listdef=res.result.archives
+          }else{
+           _this.listdef=res.result[0].list}
 				},error:function(){
 				}
 			});
     },
-    getlisthelp(){
-     let _this=this
-      $.ajax({
-				type:"post",
-				url:_this.propsurl,
-				data:{
-				openid:_this.openid,
-        currentPage:_this.currentPage,
-				pageSize:_this.pageSize,
-         verify:"0",
-				},
-				dataType:"json",
-				beforeSend:function(){
-				},
-				success:function(res){
-           console.log(res.result.archives);
-				},error:function(){
-				}
-			});
-    } ,  
     }
   }
 </script >

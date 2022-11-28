@@ -11,7 +11,7 @@
           <p style="color:#B5B5B5">{{item.MAINWORD?item.MAINWORD:item.HELPINFO}}</p>
         </div>
       </div>
-      <div class="showcode" :class="changecolor(item)" >
+      <div class="showcode" :class="changecolor(item)" @click="toDetail(item)">
         <p>{{showcode(item)}}</p>
       </div>
     </div>
@@ -21,10 +21,10 @@
 
 <script>
 export default {
-  name: 'listcell',
+  name: 'listcellhelp',
   data(){
     return{
-title:'我的投稿'
+title:'帮忙投稿'
     }
   },
   props: {
@@ -62,8 +62,9 @@ title:'我的投稿'
     },
     toDetail(item) {
       var _this = this
+      console.log(item);
       this.$router.push({
-        path: '/submitpage',
+        path: '/helpDetail',
         query: {title: _this.title, argument: item },
       })
     },

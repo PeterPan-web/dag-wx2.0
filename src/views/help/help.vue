@@ -1,7 +1,7 @@
 <template>
 	<div class="page-tabbar">
 		<div class="page-wrap">
-			<headnav :title="selected" :path="path" :up="up"></headnav>
+			<headnav :title="selected" :path="path" :up="up" ></headnav>
 			<mt-tab-container class="page-tabbar-container" v-model="selected">
 				 <mt-tab-container-item id="我来帮忙">
 					<searchcomponent :id="selectedId" :url="mainList.help.baseUrl" :title="selected"></searchcomponent>
@@ -180,11 +180,11 @@ import { JudgeloginInteraction } from "../../utils/index";
 
 <style>
 	.page-tabbar-container{
-		margin:40px 0px 0px 0px;
+		/* margin:40px 0px 0px 0px; */
 	}
 	.mint-tab-container{
-		height: calc(100vh - 40px);
-		overflow: hidden;
-		background-color: white;
+		/* height: calc(100vh - 40px); */
+		/* overflow: hidden; */
+		/* background-color: white; */
 	}
 </style>

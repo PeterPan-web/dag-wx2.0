@@ -12,7 +12,7 @@
 <style>
 .title{
 	margin:10px 0px;
-	text-align: center;
+	text-align: center!important;
 	letter-spacing:3px;
 	word-break: break-word;
   

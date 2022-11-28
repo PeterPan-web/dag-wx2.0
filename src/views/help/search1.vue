@@ -20,7 +20,7 @@
           style="width: 100%; padding-left: 3%"
           type="search"
           class="searchText"
-          placeholder="请输入关键字"
+          placeholder="请输入内容进行搜索"
           @keyup.enter="searchFile"
           v-model="keyWord"
           @focusin="pushText"

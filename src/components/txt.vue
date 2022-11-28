@@ -28,7 +28,7 @@
 </script>
 
 <style>
-	#txt p{
+	#txt>p{
 		font-size:12px;
 		margin:5px 20px;
 		line-height: 20px;

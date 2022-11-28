@@ -5,7 +5,7 @@
          style="display: flex;align-items: center">
       <input type="search"
              class="searchText"
-             placeholder="请输入关键字"
+             placeholder="请输入内容进行搜索"
              v-model="keyWord"
              @keyup.enter="searchFile" />
       <div class="btn">
@@ -61,6 +61,7 @@ export default {
       title: '留言咨询',
       keyWord: '',
       t: '',
+      seeurl:BROWSE_URL,
       url: FEED_URL,
       fileList: [],
       total: 0,
@@ -92,6 +93,24 @@ export default {
       $('.searchText').blur()
       this.getFile()
     },
+    postsee(data) {
+      var _this = this
+      var openId = JSON.parse(localStorage.getItem('openId'))  
+      $.ajax({
+        type: 'post',
+        url: _this.seeurl,
+        data: {
+          id: data,
+           openid:openId,
+        },
+        dataType: 'json',
+        success: function (res) {
+        },
+      })
+    },
+
+
+
     getFile() {
       var _this = this
       var openId = localStorage.getItem('openId')
@@ -134,6 +153,7 @@ export default {
     toDetail(item) {
       this.params.top = document.getElementById('listContent').scrollTop
       this.$router.push({ path: '/feedDetail', query: { argument: item } })
+      this.postsee(item.ID)
     },
     toWrite() {
       this.$router.push({ path: '/write' })

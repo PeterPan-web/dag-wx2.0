@@ -9,9 +9,9 @@
 			<!-- <iconcomponent style="margin-top:10px"></iconcomponent> -->
 			<morecomponent :argument="List.ps" :url="url"></morecomponent>
 		</div>
-		 <mt-tabbar v-model="selected" fixed>
+		 <!-- <mt-tabbar v-model="selected" fixed>
 	 		   <bottomcomponent :list="List"></bottomcomponent>
-	 	</mt-tabbar> 
+	 	</mt-tabbar>  -->
 	</div>
 </template>
 
@@ -61,6 +61,7 @@
 		},
 		created(){
 			this.argument = JSON.parse(localStorage.getItem("argument"));
+      console.log(this.argument);
 			this.mark = localStorage.getItem("mark");
 			/*this.getParams();
 			this.argument = this.params.argument;
@@ -82,6 +83,7 @@
 		methods:{
 			getParams(){
 				this.params = this.$route.query;
+        console.log(this.params);
 			}
 		}
 	}

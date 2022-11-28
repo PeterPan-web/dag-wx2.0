@@ -2,9 +2,9 @@
 	<div class="set">
 		<headernav :title="title"></headernav>
 		<div class="main" id="btSet">
-			<titlecomponent :title="title1"></titlecomponent>
-			<textcomponent :text="text"></textcomponent>
-			<imgcomponent :id="id" :url="url"></imgcomponent>
+			<titlecomponent :title="title1" ></titlecomponent>
+      <imgcomponent :id="id" :url="url" style="margin-bottom:7rem;"></imgcomponent>
+			<textcomponent :text="text" ></textcomponent>
 			<loadcomponent :argument="argument" :url="url"></loadcomponent>
 		</div>
 		<mt-tabbar  v-model="selected">      
@@ -46,6 +46,7 @@
 		},
 		created(){
 			this.getParams();
+      console.log(	this.params);
 			this.argument = this.params.argument;
 			this.id = this.argument.ID;
 			this.help.ps.id = this.argument.ID;
@@ -56,10 +57,6 @@
 			WeixinJSBridge.call('hideOptionMenu');
 		},
 		mounted(){
-			var _this = this;
-			window.onresize=function(){
-				
-			}
 		},
 		methods:{
 			getParams(){
@@ -83,5 +80,6 @@
 		height:calc(100vh - 100px);
 		overflow: auto;
 		margin-top: 50px;
+    
 	}
 </style>
