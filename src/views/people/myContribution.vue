@@ -3,7 +3,7 @@
     <headernav :title="title"
                style="margin-bottom:45px"></headernav>
 <mt-navbar v-model="selected1">
-  <mt-tab-item id="1">档案投稿</mt-tab-item>
+  <mt-tab-item id="1" >档案投稿</mt-tab-item>
   <mt-tab-item id="2">帮忙投稿</mt-tab-item>
 </mt-navbar>
 
@@ -51,5 +51,11 @@ export default {
 <style scoped>
 .myContribution{
   background: rgba(0,0,0,0.00);}
-
+.mint-navbar{
+  margin-bottom: -10px;
+}
+.mint-navbar .mint-tab-item.is-selected{
+  color: #EA6F46;
+border-bottom:none;
+}
 </style>

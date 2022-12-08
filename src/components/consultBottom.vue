@@ -57,6 +57,7 @@ import {Judgelogin } from "../utils/index";
 			}
 		},
 		created(){
+      
 			this.getCollect();
 			this.getPraise();
 		},
@@ -80,12 +81,12 @@ import {Judgelogin } from "../utils/index";
 			toAccu(){
 				var _this = this;
 				_this.$router.push({
-					path: "/accusationReason",
-					query: { id:_this.list.ps.id },
+					path: "/addReason",
+					query: { id:_this.list.ps.id ,TABLENAME:_this.list.ps.TABLENAME},
 				});
 			},
 			showActions(){
-        if (JSON.parse(localStorage.getItem("openId"))==null) {
+        if (JSON.parse(localStorage.getItem("ltjyopenId"))==null) {
           Judgelogin();
         }else{
          this.isStop(); 
@@ -108,7 +109,7 @@ import {Judgelogin } from "../utils/index";
 				var _this = this;
 				this.popupVisible = false;
 				_this.list.ps.criticismInfo =_this.content;
-				_this.list.ps.openid =JSON.parse(localStorage.getItem("openId"));
+				_this.list.ps.openid =JSON.parse(localStorage.getItem("ltjyopenId"));
 				$.ajax({
 					type:"post",
 					url:_this.list.commentUrl,
@@ -139,7 +140,7 @@ import {Judgelogin } from "../utils/index";
 			isStop(){
 				var _this = this;
 				this.popupVisible = false;
-				_this.list.ps.openid = JSON.parse(localStorage.getItem("openId"));
+				_this.list.ps.openid = JSON.parse(localStorage.getItem("ltjyopenId"));
 				$.ajax({
 					type:"post",
 					url:_this.list.forBidden,
@@ -160,7 +161,7 @@ import {Judgelogin } from "../utils/index";
 			tip(){
         Judgelogin();
 				var _this = this;
-				_this.list.ps.openid =JSON.parse(localStorage.getItem("openId"));
+				_this.list.ps.openid =JSON.parse(localStorage.getItem("ltjyopenId"));
 				$.ajax({
 					type:"post",
 					url:_this.list.praiseUrl,
@@ -193,8 +194,7 @@ import {Judgelogin } from "../utils/index";
 			collect(){
         Judgelogin();
 				var _this = this;
-				_this.list.ps.openid =JSON.parse(localStorage.getItem("openId"));
-        console.log(_this.list.ps.openid);
+				_this.list.ps.openid =JSON.parse(localStorage.getItem("ltjyopenId"));
 				$.ajax({
 					type:"post",
 					url:_this.list.collectionUrl,

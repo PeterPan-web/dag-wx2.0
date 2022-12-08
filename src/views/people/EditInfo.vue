@@ -15,11 +15,23 @@
                   :value="this.loginId.userName" />
         <van-cell title="性别"
                   :value="this.loginId.gender" />
+         <van-field v-model="userRealName"
+                   label="真实姓名"
+                   placeholder="请输入真实姓名"
+                   />
+                  <van-field v-model="cardNo"
+                   label="身份证号码"
+                   placeholder="请输入身份证号码"
+                   />
         <van-field v-model="telephone"
-                   required
                    label="手机号"
                    placeholder="请输入手机号"
                    />
+        <van-field v-model="address"
+                   label="住址"
+                   placeholder="请输入地址"
+                   />
+        
       </van-cell-group>
       <div class="editbtn" @click="editpushinfo">
         <p>保存信息</p>
@@ -43,7 +55,10 @@ export default {
       title: '修改信息',
       openid:'',
       loginId: '',
-      telephone:""
+      telephone:"",
+      address:'',
+      cardNo:'',
+      userRealName:''
     }
   },
   created() {
@@ -52,15 +67,26 @@ export default {
   methods: {
     readStorage() {
       this.loginId = readLocalStorage(),
-      this.openid = JSON.parse(localStorage.getItem("openId"));
+      this.openid = JSON.parse(localStorage.getItem("ltjyopenId"));
       this.telephone = this.loginId.telephone;
+      this.address = this.loginId.address;
+      this.cardNo = this.loginId.cardNo;
+      this.userRealName = this.loginId.userRealName;
     },
     editpushinfo(){
       if (!(/^1[34578]\d{9}$/.test(this.telephone))) {
         Toast('请填写正确电话号码!!')
         return false
       }
-      posteditinfo({telephone:this.telephone,openid:this.openid}).then(res=>console.log(res))
+      if((/(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/).test(this.cardNo) === false){
+        Toast('请填写正确的身份证号码!!')
+        return false
+      }
+      if(!(/^[\u4e00-\u9fa5]{2,4}$/).test(this.userRealName)){
+        Toast('请填写正确的姓名!!')
+        return false
+      }
+      posteditinfo({telephone:this.telephone,address:this.address,userRealName:this.userRealName,cardNo:this.cardNo,openid:this.openid}).then(res=>console.log(res))
       Toast('保存成功')
       this.$router.push('personalspace')
     }
@@ -88,7 +114,7 @@ export default {
   border-radius: 13px ;
   text-align: center;
   margin: 0 auto;
-  background-color: rgb(255, 255, 255);
+  background-color: #26a2ff;
   margin-top: 30px;
 }
 </style>

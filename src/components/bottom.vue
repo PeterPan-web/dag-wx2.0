@@ -30,6 +30,7 @@
 		props:["list"],
 		data(){
 			return{
+        openId:"",
 				popupVisible:false,
 				content:"",
 				total:0,
@@ -46,6 +47,7 @@
 			}
 		},
 		created(){
+      	this.openId = localStorage.getItem("ltjyopenId");
     			this.getCollect();
     			this.getPraise();
     		},
@@ -85,8 +87,7 @@
 			submit(){
 				var _this = this;
 				this.popupVisible = false;
-				var openId = localStorage.getItem("openId");
-				_this.list.ps.openid = openId;
+				_this.list.ps.openid = _this.openId;
 				_this.list.ps.criticismInfo =_this.content;
 				$.ajax({
 					type:"post",
@@ -113,8 +114,7 @@
 			isStop(){
 				var _this = this;
 				this.popupVisible = false;
-				var openId = localStorage.getItem("openId");
-				_this.list.ps.openid = openId;
+				_this.list.ps.openid = _this.openId;
 				$.ajax({
 					type:"post",
 					url:_this.list.forBidden,
@@ -134,9 +134,7 @@
 			},
 			tip(){
 				var _this = this;
-       
-				var openId = localStorage.getItem("openId");
-				_this.list.ps.openid = openId;
+				_this.list.ps.openid = _this.openId;
 				$.ajax({
 					type:"post",
 					url:_this.list.praiseUrl,
@@ -163,9 +161,7 @@
 			},
 			collect(){
 				var _this = this;
-        
-				var openId = localStorage.getItem("openId");
-				_this.list.ps.openid = openId;
+				_this.list.ps.openid = _this.openId;
 				$.ajax({
 					type:"post",
 					url:_this.list.collectionUrl,

@@ -214,6 +214,7 @@ export default {
         },
         dataType: "json",
         success: function (res) {
+          console.log(res);
           _this.reasonContent = res.result[0].fileinfo[0].CONTENT;
           if(_this.reasonContent.length > 50){
             _this.reasonContent = _this.reasonContent.substring(0,5)+"...";
@@ -226,7 +227,7 @@ export default {
     },
     commitComplain() {
       var _this = this;
-      var openId = localStorage.getItem("openId");
+      var openId = localStorage.getItem("ltjyopenId");
       console.log(_this.successImgStr);
       $.ajax({
         type: "post",
@@ -394,7 +395,7 @@ export default {
     },
     uploadPic(imgStr) {
       var _this = this;
-      console.log(imgStr);
+      // console.log(imgStr);
       if (_this.successImgList.length < 4) {
         $.ajax({
           type: "post",
@@ -434,6 +435,7 @@ export default {
       this.files = $("#upload_file").get(0).files;
       var reader = new FileReader(),
         file;
+      console.log(el);
       for (let i = 0; i < this.files.length; i++) {
         this.datas.append("file", this.files[i]);
       }
@@ -482,6 +484,7 @@ export default {
       if (file.type.indexOf("image") == -1) {
         file.src = "wenjian.png";
         if (this.imgList.length < 4) {
+          console.log(file);
           this.imgList.push({
             file,
           });

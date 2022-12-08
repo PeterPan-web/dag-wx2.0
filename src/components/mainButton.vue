@@ -1,7 +1,7 @@
 <template>
 	<div class="mainBtn">
 		<div class="contentView" v-for="(item , index) in list" :key="index" @click="toNext(item.path)">
-			<img :src="item.url" alt="" style="width:5.5rem;height:5.5rem"/>
+			<img :src="item.url" alt="" style="width:3rem;height:3rem"/>
 			<p style="font-size:13px;padding: 2px 0px;">{{item.content}}</p>
 		</div>
 	</div>
@@ -22,14 +22,15 @@
 <style>
 	.mainBtn{
     display: flex;
-    flex-wrap: wrap;
-   justify-content: space-evenly;
-    margin-bottom: 20px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
+  height: 12rem;
+  margin-bottom: 15px;
 	}	
   .contentView{
-    flex:1;
-    margin: 5px;
-		width:calc(100vw/4);
+    flex-shrink:0;
+		width:33%;
 		display: inline-block;
 		padding:8px 0px;
 	}

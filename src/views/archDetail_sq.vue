@@ -90,7 +90,7 @@
 
 <script>
 import headnav from '../components/header.vue'
-
+import {readLocalStorage} from "../utils/index";
 import Bus from '../components/bus'
 import { Dialog } from 'vant'
 import { Indicator, Toast } from 'mint-ui'
@@ -100,6 +100,7 @@ export default {
     return {
       title: '档案利用预约申请',
       cratetime: new Date(),
+        ltjyloginId:"",
       showPickerDate: false,
       popupVisible1: false,
       popupVisible2: false,
@@ -141,8 +142,16 @@ export default {
   }
     var query = this.$route.query
     Object.assign(this.item, query)
+    this.readStorage()
   },
   methods: {
+       readStorage() {
+      this.ltjyloginId = readLocalStorage();
+      if (this.ltjyloginId!=='') {
+       this.item.applicant = this.ltjyloginId.userRealName;
+      this.item.phone = this.ltjyloginId.telephone;
+      }
+    },
       onConfirm(date) {
       this.item.createDay = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
       this.showCalendar = false;

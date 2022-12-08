@@ -1,12 +1,15 @@
 <template>
 	<div>
 		<headernav :title="title"></headernav>
-		<div class="main" style="margin-top:40px;height:calc(100vh - 82px)">
+		<div class="main" >
 			<titlecomponent :title="titleT"></titlecomponent>
-			<p style="padding:8px 0px;text-align: left;"><span style="color:#0B8DEF;display: inline-block;padding:0px 15px">{{argument.INFORMATIONTYPE}}</span><span>{{argument.PUBLISHDATE}}</span></p>
+			<p class="detailp"><span class="detailspan">{{argument.INFORMATIONTYPE}}</span><span>{{argument.PUBLISHDATE}}</span></p>
 
 			<imgcomponent :imgList="imgList" :com="com"></imgcomponent>
-			<textcomponent  :text="textContent" style="text-align: left;"></textcomponent>
+      <div class="textdiv">
+      <textcomponent  :text="textContent"></textcomponent>  
+      </div>
+			
 			<iconcomponent></iconcomponent>
 			<morecomponent :argument='this.argument' :url="url" :getComment="List.getComment"></morecomponent>
 		</div>
@@ -86,9 +89,19 @@
 	}
 </script>
 
-<style>
+<style scoped>
 	.main{
-
 		overflow: auto;
+    margin-top:40px;height:calc(100vh - 82px)
 	}
+  .textdiv{
+margin-top:10rem
+  }
+  .detailp {
+  padding: 8px 0px;
+  text-align: left;
+}
+.detailspan{
+color:#0B8DEF;display: inline-block;padding:0px 15px
+}
 </style>

@@ -48,8 +48,7 @@
 			isStop(){
 				var _this = this;
 				this.popupVisible = false;
-        var openId = JSON.parse(localStorage.getItem("openId"))
-        console.log(openId);
+        var openId = JSON.parse(localStorage.getItem("ltjyopenId"))
 				$.ajax({
 					type:"post",
 					url:FORBIDDEN_URL,
@@ -70,7 +69,7 @@
 			},
 			submitFile(){
 				var _this = this;
-        var openId = JSON.parse(localStorage.getItem("openId"))
+        var openId = JSON.parse(localStorage.getItem("ltjyopenId"))
 				if(_this.value){
 					_this.status = 1;
 				}

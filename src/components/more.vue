@@ -78,7 +78,7 @@
 				this.$refs.loadmore.onTopLoaded();
 			},
 			getFile(){
-        var openid = JSON.parse(localStorage.getItem("openId"));
+        var openid = JSON.parse(localStorage.getItem("ltjyopenId"));
 				var _this = this;
 				$.ajax({
 					type:"post",
@@ -86,7 +86,8 @@
 					data:{
 						openid:openid,
 						id:_this.id,
-						informationType:_this.optionName
+						informationType:_this.optionName,
+            // type:"1"
 					},
 					dataType:"json",
 					success:function(res){
@@ -102,7 +103,7 @@
 			},
 			getMore(){
 				var _this = this;
-				var openid = JSON.parse(localStorage.getItem("openId"));
+				var openid = JSON.parse(localStorage.getItem("ltjyopenId"));
 				$.ajax({
 					type:"post",
 					url:_this.getComment,
@@ -130,6 +131,7 @@
 		width:30px;
 		height:30px;
 		vertical-align: top;
+    
 	}
 	.loadLeft img{
 		width:100%;

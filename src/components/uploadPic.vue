@@ -5,9 +5,7 @@
 				<span class="close" @click="del(index)" v-if ="item.isShow">x</span>
 				<img :src="item.url" alt="" @click ="actionPicture(index,item.isShow)" width ="80px" height="80px"/>
 			</div>
-
 		</div>
-
 		<mt-actionsheet
 		  :actions="actions"
 		  v-model="sheetVisible">
@@ -29,7 +27,6 @@
 				status:0,
 				count:6,
 				actions:[
-
 				]
 			}
 		},

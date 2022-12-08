@@ -105,7 +105,7 @@ export default {
       historyList: [],
       allLoaded: false,
       currentPage: 1,
-      pageSize: 15,
+      pageSize: 1000,
       total: 0,
       focus: false,
       show: true,
@@ -122,9 +122,6 @@ export default {
     if(this.$route.query.alone){
       this.shownav=false
     }
-  },
-  mounted() {
-    // this.getTableList()
   },
   activated() {
     WeixinJSBridge.call("hideToolbar");
@@ -155,7 +152,7 @@ export default {
       }
     },
     // getTableList() {
-    //   var openId = JSON.parse(localStorage.getItem("openId"))
+    //   var openId = JSON.parse(localStorage.getItem("ltjyopenId"))
     //   var _this = this
     //   $.ajax({
     //     type: 'post',
@@ -228,7 +225,7 @@ export default {
     // },
     commonGet() {
       var _this = this;
-      // var openId = JSON.parse(localStorage.getItem("openId"))
+      // var openId = JSON.parse(localStorage.getItem("ltjyopenId"))
       //tableIds = _this.gettableIds()
 
       $.ajax({
@@ -244,6 +241,7 @@ export default {
         dataType: "json",
         success: function(res) {
           if (res.success) {
+            console.log(res);
             // if (res.result[0].loginS == 0) {
             //   _this.$toast("请关注公众号");
             //   return;
@@ -278,7 +276,7 @@ export default {
     },
     getHistory() {
       var _this = this;
-      var openId = JSON.parse(localStorage.getItem("openId"));
+      var openId = JSON.parse(localStorage.getItem("ltjyopenId"));
       if (openId!==true) {
          $.ajax({
         url: HISTORY_URL,
@@ -297,7 +295,7 @@ export default {
     },
     clearCode() {
       var _this = this;
-      var openId = JSON.parse(localStorage.getItem("openId"))
+      var openId = JSON.parse(localStorage.getItem("ltjyopenId"))
       if (openId !== true) {
         $.ajax({
           type: "post",

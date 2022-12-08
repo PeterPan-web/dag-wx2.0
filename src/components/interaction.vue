@@ -2,14 +2,16 @@
   <div>
     <swipercomponent></swipercomponent>
     <firstmainButton :list="list"></firstmainButton>
-        <navcomponent :nav="nav" :pathto="pathto" :login="login"></navcomponent>
+        <navcomponent :nav="nav" :pathto="pathto"></navcomponent>
     <!-- <near :url="nearUrl"></near> -->
-         <!-- <div @click="pushname">1111111111111</div> -->
+         <!-- <div @click="pushname">1111111111111</div>  -->
+    <div class="clearnull" v-if="clearlogin" @click="clearloacal">
+      <p>清除缓存</p>
+    </div>
   </div>
 </template>
 
 <script>
-import {readLocalStorage} from "../utils/index";
 import {postSlow} from "../http/api/Universal";
 import swipercomponent from "../components/swiper.vue";
 import navcomponent from "../components/nav.vue";
@@ -52,53 +54,49 @@ export default {
       url: FEED_URL,
       nearUrl: NEAR_URL,
       pathto:"/people",
-      login:false,
+      clearlogin:false
     };
   },
   created() {
      postSlow()
-     this.iflogin()
-    this.getFile();
+    // this.getFile();
     document.title = "微互动";
+    if (JSON.parse(localStorage.getItem("ltjyloginId"))==null) {
+      this.clearlogin=false
+    }else{
+      this.clearlogin=true
+    }
   },
   methods: {
+     clearloacal(){
+    localStorage.removeItem('ltjyloginId');
+    location.reload();
+},
         pushname(){
      this.$router.push('personalspace')
     },
-    // 判断是否登陆
-    iflogin(){
-      if (readLocalStorage()==null) {
-          this.login=false
-      }else{
-        this.login=true
-      }
-         
-    },
 
-    loadTop() {
-      this.allLoaded = false;
-      this.$refs.loadmore.onTopLoaded();
-      this.getFile();
-    },
-    getFile() {
-      var _this = this;
-      $.ajax({
-        type: "post",
-        url: _this.url,
-        data: {
-          key: null,
-          currentPage: 1,
-          pageSize: 5
-        },
-        dataType: "json",
-        success: function(res) {
-          _this.fileList = res.result[0].backfeed;
-        }
-      });
-    },
-    toDetail(item) {
-      this.$router.push({ path: "/feedDetail", query: { argument: item } });
-    }
+    // loadTop() {
+    //   this.allLoaded = false;
+    //   this.$refs.loadmore.onTopLoaded();
+    //   this.getFile();
+    // },
+    // getFile() {
+    //   var _this = this;
+    //   $.ajax({
+    //     type: "post",
+    //     url: _this.url,
+    //     data: {
+    //       key: null,
+    //       currentPage: 1,
+    //       pageSize: 5
+    //     },
+    //     dataType: "json",
+    //     success: function(res) {
+    //       _this.fileList = res.result[0].backfeed;
+    //     }
+    //   });
+    // },
   },
   components: {
     Near,
@@ -110,19 +108,12 @@ export default {
 </script>
 
 <style scoped>
-h1,
-h2 {
-  font-weight: normal;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
+.clearnull{
+  font-size: 10px;
+  width: 140px;
+  margin: 12% auto;
+  background-color: #ffffff;
+  border: 1px solid #ffffff;
+  border-radius: 15px;
 }
 </style>

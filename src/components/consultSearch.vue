@@ -123,7 +123,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .search {
   margin-top: 50px;
   height: 50px;

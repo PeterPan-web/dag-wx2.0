@@ -73,7 +73,6 @@
 				this.params = this.$router.history.current.query;
 			},
 			pushText(){
-
 			},
 			toDetail(item){
 				this.params.top = document.getElementById("listContent").scrollTop;
@@ -117,7 +116,7 @@
 						currentPage:_this.currentPage,
 						pageSize:_this.pageSize,
 						informationType:_this.name,
-						type:"1"
+						// type:"1"
 					},
 					dataType:"json",
 					success:function(res){

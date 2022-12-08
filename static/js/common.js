@@ -4,12 +4,12 @@
 // var HOST_HOME = "http://43.142.92.150/hfdagl";
 
 
-////兰台记忆正式
+// //兰台记忆正式
 // var HOST_SERVER = "http://43.142.92.150/zt_server/";
 // var HOST_HOME = "http://43.142.92.150/zt_server";
 
 
-// //测试
+// // //测试
 var HOST_SERVER = "http://192.168.31.177:8080/hfdagl/";
 var HOST_HOME = "http://192.168.31.177:8080/hfdagl";
 
@@ -118,6 +118,9 @@ var HELP_PUSH_URL = HOST_SERVER +"helpApp!addComment.action";
 var MYHELP_URL = HOST_SERVER +"helpApp!MyHelp.action";
 //我有档案
 var MYHAVE_URL = HOST_SERVER +"helpApp!myHave.action";
+//上传档案图片
+var HAVEPIC_URL = HOST_SERVER +"helpApp!upload.action";
+
 //我的档案
 var HAVE_URL = HOST_SERVER +"helpApp!myArchivesApp.action";
 //我的档案详情
@@ -147,6 +150,22 @@ var COMMENT_URL = HOST_SERVER + "userApp!myComments.action";
 var COLLECTION_URL = HOST_SERVER + "userApp!myCollects.action";
 //上传电话号码
 var EDITINFO_URL = HOST_SERVER + "wechat!modifyUserInfo.action";
+//获取红色记忆分类
+var GETREDTITLE_URL = HOST_SERVER + "redmemoryApp!appRedMemory.action";
+//获取红色记忆
+var GETREDLIST_URL = HOST_SERVER +"redmemoryApp!info.action";
+//获取红色记忆详情
+var GET_DETAIL_REDLIST_URL = HOST_SERVER + "redmemoryApp!detail.action";
+//获取红色记忆收藏
+var REDLIST_collect_URL = HOST_SERVER + "redmemoryApp!addCollect.action";
+//获取红色记忆点赞
+var REDLIST_priaise_URL = HOST_SERVER + "redmemoryApp!addPraise.action";
+//获取红色记忆评论
+var REDLIST_getcri_URL = HOST_SERVER + "redmemoryApp!getCriticism.action";
+//获取红色记忆禁言
+var REDLIST_isforbid_URL = HOST_SERVER + "redmemoryApp!isForbidden.action";
+//在红色记忆添加评论
+var REDLIST_addcri_URL = HOST_SERVER + "redmemoryApp!addCriticism.action";
 /*
 var HOST_SERVER = "http://192.168.3.196:8080/hfdagl/";
 var HOST_HOME = "http://192.168.3.196:8080/hfdagl";
