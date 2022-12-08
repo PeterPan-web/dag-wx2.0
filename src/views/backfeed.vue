@@ -95,7 +95,7 @@ export default {
     },
     postsee(data) {
       var _this = this
-      var openId = JSON.parse(localStorage.getItem('openId'))  
+      var openId = JSON.parse(localStorage.getItem('ltjyopenId'))  
       $.ajax({
         type: 'post',
         url: _this.seeurl,
@@ -113,7 +113,7 @@ export default {
 
     getFile() {
       var _this = this
-      var openId = localStorage.getItem('openId')
+      var openId = localStorage.getItem('ltjyopenId')
       $.ajax({
         type: 'post',
         url: _this.url,

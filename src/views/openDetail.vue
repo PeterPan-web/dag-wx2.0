@@ -6,9 +6,9 @@
 			<p style="padding:8px 0px;text-align: center;color:#CCC"><span>发布时间：{{argument.PUBLISHDATE}}</span></p>
 			<textcomponent :text="textContent"></textcomponent>
       <!-- 图片的显示与否 -->
-			<imgcomponent></imgcomponent>
+			<imgcomponent :imgList="imgList" :com="com"></imgcomponent>
       <!-- 点赞和浏览 -->
-			 <iconcomponent></iconcomponent>
+			 <iconcomponent ></iconcomponent>
        <!-- 下方评论 -->
 			<morecomponent :argument="argument" :url="url" :getComment="List.getComment"></morecomponent> 
 		</div>

@@ -86,7 +86,7 @@
   					<van-field required v-model="marriage_femaleName" label="女方姓名" placeholder="请输入" />
 					<van-field readonly clickable name="datetimePicker" :value="marriage_time" label="时间选择" placeholder="点击选择时间" @click="showPicker2 = true" />
 					<van-popup v-model="showPicker2" position="bottom">
-  						<van-datetime-picker :min-date="minDate" :max-date="maxDate"  v-model="currentDate1" :formatter="formatter" type="date" @confirm="marriageConfirm" @cancel="showPicker2 = false"/>
+  						<van-datetime-picker :min-date="minDate"  item-height='43' :max-date="maxDate"  v-model="currentDate1" :formatter="formatter" type="date" @confirm="marriageConfirm" @cancel="showPicker2 = false"/>
 					</van-popup>
 					<van-field name="radio" label="婚姻状况">
   						<template #input>
@@ -129,7 +129,7 @@
 					<van-field required v-model="soldierName" label="军人姓名" placeholder="请输入" />
   					<van-field required readonly clickable name="datetimePicker" :value="soldierDate" label="入/退伍日期" placeholder="点击选择日期" @click="showPicker4 = true" />
 					<van-popup v-model="showPicker4" position="bottom">
-  						<van-datetime-picker :min-date="minDate" :max-date="maxDate" v-model="currentDate3" type="date" @confirm="confirmSoldierDate" @cancel="showPicker4 = false"/>
+  						<van-datetime-picker :min-date="minDate" item-height='43' :max-date="maxDate" v-model="currentDate3" type="date" @confirm="confirmSoldierDate" @cancel="showPicker4 = false"/>
 					</van-popup>
   					<van-field required v-model="troops" label="部队" placeholder="请输入" />
 					<van-field v-model="soldierCule" label="其他线索" placeholder="其他线索（如曾用名、别名等）" />
@@ -145,7 +145,7 @@
   					<van-field required v-model="injury_company" label="单位名称" placeholder="请输入" />
   					<van-field readonly clickable name="datetimePicker" :value="injury_date" label="鉴定日期" placeholder="点击选择日期" @click="showPicker5 = true" />
 					<van-popup v-model="showPicker5" position="bottom">
-  						<van-datetime-picker :min-date="minDate" :max-date="maxDate" v-model="currentDate4" type="date" @confirm="confirmInjuryDate" @cancel="showPicker5 = false"/>
+  						<van-datetime-picker :min-date="minDate" item-height='43' :max-date="maxDate" v-model="currentDate4" type="date" @confirm="confirmInjuryDate" @cancel="showPicker5 = false"/>
 					</van-popup>
 					<van-field v-model="injury_cule" label="其他线索" placeholder="其他线索（如曾用名、别名等）" />
 				</van-collapse-item>
@@ -154,7 +154,7 @@
   					<van-field required v-model="schoolName" label="学校名称" placeholder="请输入" />
   					<van-field readonly clickable name="datetimePicker" :value="birth" label="出生日期" placeholder="点击选择日期" @click="showPicker6 = true" />
 					<van-popup v-model="showPicker6" position="bottom">
-  						<van-datetime-picker :min-date="minDate" :max-date="maxDate" v-model="currentDate5" type="date" @confirm="confirmBirth" @cancel="showPicker6 = false"/>
+  						<van-datetime-picker :min-date="minDate" item-height='43' :max-date="maxDate" v-model="currentDate5" type="date" @confirm="confirmBirth" @cancel="showPicker6 = false"/>
 					</van-popup>
 					<van-field v-model="schoolRoll_Cule" label="其他线索" placeholder="其他线索（如曾用名、别名等）" />
 				</van-collapse-item>
@@ -193,6 +193,7 @@
 </template>
 
 <script>
+import {readLocalStorage} from "../utils/index";
 	import headnav from '../components/header.vue';
   import selector from "../components/selector.vue";
 	import { Cell, CellGroup,Dialog,Radio } from 'vant';
@@ -285,12 +286,16 @@
 				currentDate4: new Date(),
 				currentDate5: new Date(),
 				currentDate6: new Date(),
+        ltjyloginId:"",
 			}
 		},
 		created(){
-                if(this.$route.query.alone){
+      this.readStorage()
+
+  if(this.$route.query.alone){
    this.shownav=false
   }
+
 			//获取利用目的的值
 			//this.getPurpose();
 			//获取取件地址的值
@@ -305,7 +310,17 @@
 			[Dialog.Component.name]:Dialog.Component,
 		},
 		methods:{
-      
+    readStorage() {
+      this.ltjyloginId = readLocalStorage();
+      if (this.ltjyloginId!=='') {
+       this.applicant = this.ltjyloginId.userRealName;
+      this.idNumber = this.ltjyloginId.cardNo;
+      this.phone = this.ltjyloginId.telephone;
+      this.residence = this.ltjyloginId.address; 
+      }
+    },
+
+
 			//身份证号的校验
 			validator(val){
 				return /^[1-9]\d{5}(18|19|20|(3\d))\d{2}((0[1-9])|(1[0-2]))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/.test(val)||/^[1-9]\d{5}((0[1-9])|(1[0-2]))(([0-2][1-9])|10|20|30|31)\d{3}$/.test(val)

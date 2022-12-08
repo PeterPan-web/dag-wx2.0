@@ -49,9 +49,9 @@ export default {
       // wxAppSecret: "3027ce3d1e52acacc9a270723af891e9",
       // http: "http://zt.whztsj.com/dist/index.html#/personalspace",
 // // //兰台记忆
-//       wxAppId: "wx3426368cce031df0",
-//       wxAppSecret: "9b9ba314751829beec9efd5592c643d5",
-//       http: "http://zt.whztsj.com/ltjy/index.html#/personalspace",
+      // wxAppId: "wx3426368cce031df0",
+      // wxAppSecret: "9b9ba314751829beec9efd5592c643d5",
+      // http: "http://zt.whztsj.com/ltjy/index.html#/personalspace",
 //测试
       wxAppId: "wx09d4138d7b8a1252",
       wxAppSecret:"6b3f8994da0ff9f4bb02e74840ffc675",
@@ -83,7 +83,7 @@ export default {
   },
   methods: {
    clearloacal(){
-    localStorage.removeItem('openId')
+    localStorage.removeItem('ltjyopenId')
 },
     editinfo(){
 this.$router.push('EditInfo')
@@ -123,15 +123,15 @@ this.$router.push('EditInfo')
       return theRequest
     },
     async readStorage() {
-      if(JSON.parse(localStorage.getItem("openId"))==null){
+      if(JSON.parse(localStorage.getItem("ltjyopenId"))==null){
         let res = await postCode({ code: this.code })
         this.loginId = res.result[0].userInfo
         this.openId = res.result[0].userInfo.openId,
-        localStorage.setItem('openId', JSON.stringify(this.openId))
-        localStorage.setItem('loginId', JSON.stringify(this.loginId))
+        localStorage.setItem('ltjyopenId', JSON.stringify(this.openId))
+        localStorage.setItem('ltjyloginId', JSON.stringify(this.loginId))
         setTimeout(this.$router.push('personalspace'), 1000)
       }else{
-         this.openId= JSON.parse(localStorage.getItem("openId"))
+         this.openId= JSON.parse(localStorage.getItem("ltjyopenId"))
            postCode({ openid: this.openId }).then(
             res=>{
                this.loginId = res.result[0].userInfo
@@ -148,8 +148,9 @@ this.$router.push('EditInfo')
 }
 
 .topbox {
-  width: 100%;
-  height: 130px;
+  margin: 0 auto;
+  width: 99%;
+  height: 130px;  
   background: #ef6b41;
   border-radius: 0px;
   display: flex;
@@ -159,24 +160,26 @@ margin-top: 10%;
 margin-left: 6%;
 }
 .topword {
+  flex: 1;
   margin-top: 9%;
   margin-left: 7%;
-  width: 150px;
-  height: 30px;
+  height: 70px;
   border-radius: 0px;
   font-size: 14px;
   font-family: Microsoft YaHei, Microsoft YaHei-Normal;
   font-weight: normal;
   text-align: LEFT;
   color: #ffffff;
-  
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
 }
 .topword p{
   margin-top: 10px;
 }
 .arrow-right {
+  margin-right: 1.5rem;
     margin-top: 15%;
-    margin-left: 22%;
     display: inline-block;
     width: 1.15rem;
     height: 1.15rem;

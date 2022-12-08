@@ -13,17 +13,37 @@
                  :src="this.loginId.picture" />
 </van-cell>
   <van-cell title="用户名" :value="this.loginId.userName" />
-  <van-cell title="手机号" :value="this.loginId.telephone" />
-  <!-- <van-cell title="退出登录" style="text-align:center"  @click="signout"/> -->
+   <van-cell title="性别"
+                  :value="this.loginId.gender" />
+         <van-field v-model="this.loginId.userRealName"
+                   label="真实姓名"
+                   placeholder="请输入真实姓名"
+                   />
+                  <van-field v-model="this.loginId.cardNo"
+                   label="身份证号码"
+                   placeholder="请输入身份证号码"
+                   />
+        <van-field v-model="this.loginId.telephone"
+                   label="手机号"
+                   placeholder="请输入手机号"
+                   />
+        <van-field v-model="this.loginId.address"
+                   label="住址"
+                   placeholder="请输入地址"
+                   />
 </van-cell-group>
+<div class="editbtn" @click="editpushinfo">
+        <p>保存信息</p>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import {readLocalStorage} from "../../utils/index";
 import  headernav  from "../../components/header.vue";
-import { postCode } from '../../http/api/user.js'
+import { postCode } from '../../http/api/user.js';
+import { Toast } from 'mint-ui'
+import {posteditinfo} from '../../http/api/user'
 export default {
   name: "peopleSite",
   components:{
@@ -34,7 +54,11 @@ export default {
       title:'',
       code:'',
       openId:"",
-      loginId:'',
+            loginId:'',
+      // telephone:"",
+      // address:'',
+      // cardNo:'',
+      // userRealName:'',
 // //弋江区档案馆
       // wxAppId: "wxa9d5243ac3ae61f2",
       // wxAppSecret: "3027ce3d1e52acacc9a270723af891e9",
@@ -47,8 +71,8 @@ export default {
       wxAppId: "wx09d4138d7b8a1252",
       wxAppSecret:"6b3f8994da0ff9f4bb02e74840ffc675",
       http:"http://127.0.0.1/#/peopleSite",
-      userinfo:"",
-      user1:'',
+      // userinfo:"",
+      // user1:'',
     };
   },
   created () {
@@ -112,25 +136,46 @@ export default {
 //       this.$router.push('site')
 //        console.log('跳转');
 //     }, 
-   async readStorage() {
-      if(JSON.parse(localStorage.getItem("openId"))==null){
-        let res = await postCode({ code: this.code })
-        this.loginId = res.result[0].userInfo
+    readStorage() {
+      this.openId= JSON.parse(localStorage.getItem("ltjyopenId"))
+      if(this.openId==null){
+        postCode({ code: this.code }).then(res=>{
+         this.loginId = res.result[0].userInfo
         this.openId = res.result[0].userInfo.openId,
-        localStorage.setItem('openId', JSON.stringify(this.openId))
-        localStorage.setItem('loginId', JSON.stringify(this.loginId))
-        setTimeout(this.$router.push('site'), 1000)
+        localStorage.setItem('ltjyopenId', JSON.stringify(this.openId))
+        localStorage.setItem('ltjyloginId', JSON.stringify(this.loginId)) 
+        this.$router.push('site')
+        }
+        )
       }else{
-       this.openId= JSON.parse(localStorage.getItem("openId"))
            postCode({ openid: this.openId }).then(
             res=>{
-               this.loginId = res.result[0].userInfo
+            this.loginId = res.result[0].userInfo;
+              if(JSON.parse(localStorage.getItem("ltjyloginId"))==null){
+                localStorage.setItem('ltjyloginId', JSON.stringify(this.loginId))
+                this.$router.push('site')
+              }
             }
           )
-          
-           
       }
-    },
+    },    
+    editpushinfo(){
+      if (!(/^1[34578]\d{9}$/.test(this.telephone))) {
+        Toast('请填写正确电话号码!!')
+        return false
+      }
+      if((/(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/).test(this.cardNo) === false){
+        Toast('请填写正确的身份证号码!!')
+        return false
+      }
+      if(!(/^[\u4e00-\u9fa5]{2,4}$/).test(this.userRealName)){
+        Toast('请填写正确的姓名!!')
+        return false
+      }
+      posteditinfo({telephone:this.loginIdtelephone,address:this.loginIdaddress,userRealName:this.loginId.userRealName,cardNo:this.loginId.cardNo,openid:this.loginId.openid})
+      Toast('保存成功')
+      this.$router.push('site')
+    }
 }
 }
 </script>
@@ -149,5 +194,14 @@ export default {
 }
 .logo{
 margin-top:0.7rem;
+}
+.editbtn {
+  width: 70px;
+  padding: 13px;
+  border-radius: 13px ;
+  text-align: center;
+  margin: 0 auto;
+  background-color: #26a2ff;
+  margin-top: 30px;
 }
 </style>

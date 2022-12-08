@@ -71,6 +71,7 @@ export default {
   props: ['id', 'url', 'title'],
   data() {
     return {
+      openId:'',
       keyWord: '',
       allLoaded: false,
       list: [],
@@ -89,7 +90,9 @@ export default {
       },
     }
   },
-  created() {},
+  created() {
+    this.openId = JSON.parse(localStorage.getItem('ltjyopenId'))
+  },
   activated() {
     var _this = this
     if (typeof this.params.top == 'undefined') {
@@ -160,13 +163,12 @@ export default {
     },
     getFile() {
       var _this = this
-      var openId = JSON.parse(localStorage.getItem('openId'))
       $.ajax({
         type: 'post',
         url: _this.url,
         data: {
           key: _this.keyWord,
-          openid: openId,
+          openid:  _this.openId,
           currentPage: _this.currentPage,
           pageSize: _this.pageSize,
         },

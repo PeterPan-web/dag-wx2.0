@@ -30,6 +30,7 @@ import HaveDetail from '@/views/haveDetail.vue'
 import FeedDetail from '@/views/feedDetail.vue'
 import FileDetail from '@/views/fileDetail.vue'
 import accusationReason from '@/views/accusationReason.vue'
+import addReason from '@/views/addReason.vue'
 import People from '@/views/people/people.vue'
 import PeopleSite from '@/views/people/PeopleSite.vue'
 import personalspace from '@/views/people/personalspace.vue'
@@ -197,7 +198,14 @@ export default new Router({
        index:2
      },
      component: accusationReason
-   },
+   },{
+    path: '/addReason',
+    name:"addReason",
+     meta:{
+      index:2
+    },
+    component: addReason
+  },
      {
       path: '/nearSearch',
       name:"nearSearch",
@@ -397,13 +405,13 @@ export default new Router({
     },
     {
       path: '/',
-      //  name: 'site',
-     name: 'interaction',
+       name: 'site',
+    //  name: 'interaction',
       meta:{
       	index:0
       },
-        // component: Site
-      component:Interaction
+        component: Site
+      // component:Interaction
     }
   ]
 })

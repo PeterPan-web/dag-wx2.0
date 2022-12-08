@@ -42,6 +42,7 @@ id="content"
 </template>
 
 <script>
+import {readLocalStorage} from "../utils/index";
 	import Bus from '../components/bus.js'
   import {Switch, Toast} from 'mint-ui';
 	import { Indicator } from 'mint-ui';
@@ -64,7 +65,8 @@ id="content"
 				value:false,
 				isOpen:"公开",
 				status:0,
-        email:''
+        email:'',
+        ltjyloginId:''
 			}
 		},
 		mounted(){
@@ -80,7 +82,7 @@ id="content"
 				}
 				_this.$router.back(-1);
 			};
-
+      this.readStorage()
 		},
 		watch:{
 			value(newValue,oldValue){
@@ -91,10 +93,18 @@ id="content"
 			}
 		},
 		methods:{
+      readStorage() {
+      this.ltjyloginId = readLocalStorage();
+      if (this.ltjyloginId!=='') {
+       this.username = this.ltjyloginId.userRealName;
+      this.phone = this.ltjyloginId.telephone; 
+      }
+    },
+
 			isStop(){
 				var _this = this;
 				this.popupVisible = false;
-				var openId = localStorage.getItem("openId");
+				var openId = localStorage.getItem("ltjyopenId");
 				$.ajax({
 					type:"post",
 					url:FORBIDDEN_URL,
@@ -115,7 +125,7 @@ id="content"
 			submitFile(){
         console.log(this.list)
 				var _this = this;
-				var openId = localStorage.getItem("openId");
+				var openId = localStorage.getItem("ltjyopenId");
         if(_this.username ==""){
           _this.$toast("申请人不能为空~");
           return;

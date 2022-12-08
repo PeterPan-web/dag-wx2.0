@@ -16,30 +16,26 @@
 </template>
 
 <script>
-import { Judgelogin } from "../utils/index";
+import { JudgeloginInteraction } from "../utils/index";
 	export default{
 		name:"bottom",
 		props:["list"],
     mounted(){
-     Judgelogin()
+     this.openId= JSON.parse(localStorage.getItem("ltjyopenId"))
+      
     },
 		data(){
 			return{
 				popupVisible:false,
-        openid:'',
+        openId:'',
 				content:"",
 				interval:null,
 				bfscrolltop:document.body.scrollTop
 			}
 		},
 		methods:{
-      getcode(){
-
-      }
-
-
-,
-			showActions(){
+			showActions(){ 
+           JudgeloginInteraction()
 				this.isStop();
 			},
 			hidePop(){
@@ -51,6 +47,7 @@ import { Judgelogin } from "../utils/index";
 		        },20);
 			},
 			clear(){
+
 				var _this = this;
 				clearInterval(_this.interval);
         		document.body.scrollTop = this.bfscrolltop;
@@ -62,9 +59,8 @@ import { Judgelogin } from "../utils/index";
 					_this.$toast("评论不能为空");
 					return;
 				}
-        let openid= JSON.parse(localStorage.getItem("openId"))
 				_this.list.ps.commentInfo = _this.content;
-				_this.list.ps.openid = openid;
+				_this.list.ps.openid = _this.openId;
         console.log(_this.list.ps);
 				$.ajax({
 					type:"post",
@@ -92,8 +88,7 @@ import { Judgelogin } from "../utils/index";
 			isStop(){
 				var _this = this;
 				this.popupVisible = false;
-_this.openid=JSON.parse(localStorage.getItem("openId"))
-				_this.list.ps.openid = _this.openid;
+				_this.list.ps.openid = _this.openId;
 				$.ajax({
 					type:"post",
 					url:_this.list.forBidden,

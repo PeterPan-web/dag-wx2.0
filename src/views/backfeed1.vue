@@ -58,7 +58,7 @@ export default{
     },
     getFile(){
       var _this = this;
-      var openId = localStorage.getItem("openId");
+      var openId = localStorage.getItem("ltjyopenId");
       $.ajax({
         url:'/'+HOST_HOME+'/backfeedApp!listByCard.action?phone='+_this.phone+'&page='+_this.currentPage+'&rows='+_this.pageSize,
         // data:{

@@ -77,13 +77,13 @@ title:'帮忙投稿'
    background: #EDEDED;
 }
 .listcell {
-  margin-top: 1rem;
+  margin-top: 0.5rem;
   margin: 0 auto;
   width: 25rem;
   height: 4rem;
   display: flex;
   background: #FFFFFF;
-  margin-bottom: 17px;
+  margin-bottom: 10px;
   border-radius: 4px;
   text-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.15);
 }

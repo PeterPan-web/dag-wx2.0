@@ -1,13 +1,15 @@
 <template>
 	<div class="set">
 		<headernav :title="title"></headernav>
-		<div class="main" id="btSet">
+		<div id="btSet">
 			<titlecomponent :title="title1" ></titlecomponent>
-      <imgcomponent :id="id" :url="url" style="margin-bottom:7rem;"></imgcomponent>
-			<textcomponent :text="text" ></textcomponent>
+      <imgcomponent :id="id" :url="url"></imgcomponent>
+      <div class="helpDetail">
+      <textcomponent :text="text"></textcomponent>  
+      </div>
 			<loadcomponent :argument="argument" :url="url"></loadcomponent>
 		</div>
-		<mt-tabbar  v-model="selected">      
+		<mt-tabbar  v-model="selected">
 	 		  <bottomcomponent :list="help"></bottomcomponent>
 	 	</mt-tabbar> 
 	</div>
@@ -75,11 +77,14 @@
 	}
 </script>
 
-<style>
+<style scoped>
 	#btSet{
 		height:calc(100vh - 100px);
 		overflow: auto;
 		margin-top: 50px;
-    
 	}
+  .helpDetail{
+    margin-top: 5rem;
+    width: 100vw;
+  }
 </style>

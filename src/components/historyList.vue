@@ -54,7 +54,7 @@
 			},
 			getFile(){
 				var _this = this;
-				var openId= localStorage.getItem("openId");
+				var openId= localStorage.getItem("ltjyopenId");
 				$.ajax({
 					type:"post",
 					url:_this.url,

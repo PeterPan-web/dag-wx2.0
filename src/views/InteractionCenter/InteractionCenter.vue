@@ -18,17 +18,17 @@
 </p>
     </div>
 <div class="centerbtn">
- <mainbtncomponent :list="list"></mainbtncomponent>
+ <Buttoncenter :list="list"></Buttoncenter>
 </div>
 </div>
 </template>
 <script>
 import headernav from "../../components/header.vue";
-import mainbtncomponent from "../../components/mainButton.vue";
+import Buttoncenter from "../../components/mainButtoncenter.vue";
 export default {
   components: {
     headernav,
-    mainbtncomponent
+    Buttoncenter
   },
   data() {
     return {

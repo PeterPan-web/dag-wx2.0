@@ -22,7 +22,7 @@
 	}
 </script>
 
-<style>
+<style scoped>
 	.text{
 		font-size:12px;
 		margin:5px 10px;
@@ -31,6 +31,5 @@
 		letter-spacing:2px;
 		word-break: break-word;
     padding-bottom: 2rem;
-
 	}
 </style>

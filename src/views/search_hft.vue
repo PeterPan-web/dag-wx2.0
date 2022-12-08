@@ -130,7 +130,7 @@
 			},
 			commonGet(){
 				var _this = this;
-				var openId = localStorage.getItem("openId");
+				var openId = localStorage.getItem("ltjyopenId");
 				$.ajax({
 					type:"post",
 					url:HFT_SEARCH_URL,
@@ -169,7 +169,7 @@
 			},
 			getHistory(){
 				var _this = this;
-				var openId = localStorage.getItem("openId");
+				var openId = localStorage.getItem("ltjyopenId");
 				$.ajax({
 	          		url: HISTORY_URL,
 			        type: 'post',
@@ -185,7 +185,7 @@
 			},
 			clearCode(){
 				var _this = this;
-				var openId = localStorage.getItem("openId");
+				var openId = localStorage.getItem("ltjyopenId");
 				$.ajax({
 					type:"post",
 	          		url:CLEAR_URL,

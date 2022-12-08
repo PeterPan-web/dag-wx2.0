@@ -19,7 +19,7 @@
 	import loadcomponent from '../components/helpMore.vue'
 	import bottomcomponent from '../components/bottomNormal.vue'
 	export default{
-		name:"helpDetail",
+		name:"haveDetail",
 		data(){
 			return{
 				list:[],
@@ -66,7 +66,7 @@
 			},
 			getFile(){
 				var _this = this;
-				var openId = localStorage.getItem("openId");
+				var openId = localStorage.getItem("ltjyopenId");
 				$.ajax({
 					type:"post",
 					url:HAVE_DETAIL_URL,

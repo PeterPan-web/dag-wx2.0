@@ -8,4 +8,4 @@ baseURL: "http://192.168.31.177:8080/hfdagl",//测试端口
  
   useTokenAuthorization: false, // 是否开启 token 认证
 };
-export default serverConfig;
+export default serverConfig; 

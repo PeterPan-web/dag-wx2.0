@@ -129,6 +129,7 @@
 </template>
 
 <script>
+import {readLocalStorage} from "../utils/index";
 import { Toast } from 'mint-ui'
 import headnav from '../components/header.vue'
 export default {
@@ -137,6 +138,7 @@ export default {
     return {
       title: '评价',
       shownav:true,
+        ltjyloginId:"",
       Satisfaction: {
         openId: '',
         webStatus: "2",
@@ -156,12 +158,18 @@ export default {
       if(this.$route.query.alone){
     this.shownav=false
   }
- 
+    this.readStorage()
   },
   components: {
     headnav,
   },
   methods: {
+        readStorage() {
+      this.ltjyloginId = readLocalStorage();
+      if (this.ltjyloginId!=='') {
+      this.Satisfaction.phone = this.ltjyloginId.telephone;
+      }
+    },
     submit() {
       var _this = this;
       var phone = this.Satisfaction.phone
@@ -205,7 +213,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .surveyContent .mint-cell-wrapper {
   text-align: left;
   padding: 0px;

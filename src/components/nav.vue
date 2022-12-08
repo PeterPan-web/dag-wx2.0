@@ -21,11 +21,13 @@
 </template>
 
 <script>
+import {readLocalStorage} from "../utils/index"
 import mainbtncomponent from '../components/mainButton.vue'
 export default {
   name: 'navContent',
   data() {
     return {
+      login:false,
       list: [
         {
           content: '我的评论',
@@ -45,8 +47,20 @@ export default {
       ],
     }
   },
-  props: ['nav', 'pathto', 'login'],
+  props: ['nav', 'pathto'],
+  created(){
+    console.log(readLocalStorage());
+    this.iflogin()
+  },
   methods: {
+        // 判断是否登陆
+    iflogin(){
+      if (readLocalStorage()==null) {
+          this.login=false
+      }else{
+        this.login=true
+      }
+    },
     toNext(path) {
       this.$router.push({ path: path })
     },

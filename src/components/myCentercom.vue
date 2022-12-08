@@ -1,5 +1,5 @@
 <template>
-  <div class="mycomment">
+  <div class="mylist">
     <headernav :title="title"
                style="margin-bottom:48px"></headernav>
     <div style="overflow: auto;">
@@ -8,22 +8,23 @@
                    :auto-fill="false"
                    ref="loadmore"
                    :top-method="loadTop">
-        <ul>
+        <div>
           <!-- <li class="itemcard"
               v-for="(item,index) in list"
               :key="index"
               @click="toDetail(item)
               "> -->
-          <li class="itemcard"
-              v-for="(item,index) in list"
-              :key="index">
-            <div class="itemTime">
+          <div class="myitemcard"
+               v-for="(item,index) in list"
+               :key="index">
+            <div class="myitemTime">
               <p>{{item.CRITICISMDATE?item.CRITICISMDATE:item.CREATEDATE}}</p>
             </div>
-            <div class="itemWord" v-if="item.CRITICISMINFO">
+            <div class="myitemWord"
+                 v-if="item.CRITICISMINFO">
               <p>{{item.CRITICISMINFO}}</p>
             </div>
-            <div class="bottombox">
+            <div class="mybottombox">
               <!-- <div>
               <span class="listLeftCenter">
                 <img v-if="item.PICTURE ==null"
@@ -32,13 +33,12 @@
                      :src="com+item.PICTURE" />
               </span>  
               </div> -->
-
-              <div class="messageListCenter">
+              <div class="mymessageListCenter">
                 <p>{{item.TITLE}}</p>
               </div>
             </div>
-          </li>
-        </ul>
+          </div>
+        </div>
       </mt-loadmore>
     </div>
   </div>
@@ -104,7 +104,7 @@ export default {
     },
     getFile() {
       var _this = this
-      var openId = JSON.parse(localStorage.getItem("openId"))
+      var openId = JSON.parse(localStorage.getItem('ltjyopenId'))
       if (_this.type == 'comments') {
         $.ajax({
           type: 'post',
@@ -154,66 +154,48 @@ export default {
 }
 </script>
 
-<style >
-.centerContent {
-  height: 33px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  font-size: 13px;
-  margin-bottom: 4px;
-  letter-spacing: 3px;
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-}
-.searchContent {
-  font-size: 12px;
-}
-ul {
-  list-style: none;
-}
-.listLeftCenter {
+<style  scoped>
+.mylistLeftCenter {
   display: inline-block;
   width: 50px;
   height: 50px;
   vertical-align: top;
 }
-.listLeftCenter img {
+.mylistLeftCenter img {
   width: 100%;
   height: 100%;
   margin-top: 10px;
 }
-.messageListCenter {
-  font-size: 15px;
-  font-weight: 400;
-  white-space: nowrap;
-  margin-top: 10px;
-  height: 55px;
-  line-height: 55px;
-  width: 100%;
-  background-color: rgb(235, 235, 232);
-}
-.itemcard {
+
+.myitemcard {
   background-color: white;
-  height: 100px;
   margin: 5px 0px;
   border-bottom: #ccc solid 1px;
   overflow: hidden;
   padding: 10px;
 }
-.itemTime {
+.myitemTime {
   text-align: left;
   font-size: 12px;
 }
-.bottombox {
+.mybottombox {
   text-align: left;
   overflow: hidden;
   white-space: nowrap;
-  text-overflow:ellipsis;
+  text-overflow: ellipsis;
 }
-.itemWord {
-  text-align: left !important;
-  background-color: rgb(255, 255, 255) !important;
+.myitemWord {
+  text-align: left ;
+  background-color: rgb(255, 255, 255) ;
+}
+.mymessageListCenter {
+  font-size: 12px;
+  font-weight: 400;
+  white-space: nowrap;
+
+  height: 55px;
+  line-height: 55px;
+  width: 100%;
+  background-color: rgb(235, 235, 232);
 }
 </style>

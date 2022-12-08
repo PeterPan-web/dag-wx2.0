@@ -1,16 +1,21 @@
 <template>
   <div class="site"> 
     <swipercomponent :list="imgList"></swipercomponent>
-    <mainbtncomponent :list="list"></mainbtncomponent>
-    <navcomponent :nav="nav" :pathto="pathto" :login="login"></navcomponent>
+    <div style=" width: calc(100vw)">
+    <mainbtncomponent :list="list"></mainbtncomponent>  
+    </div>
+    <navcomponent :nav="nav" :pathto="pathto" ></navcomponent>
      <!-- <listcomponent :mark="mark" :url="url" style="margin-bottom:15px"></listcomponent> 
      <nearcomponent :mark="mark" :url="nearUrl"></nearcomponent>  -->
      <!-- <div @click="pushname">1111111111111</div> -->
+     <div class="clearnull" v-if="clearlogin" @click="clearloacal">
+      <p>清除缓存</p>
+    </div>
   </div>
 </template>
 
 <script>
-import {readLocalStorage} from "../utils/index"
+
 import { postSlow } from "../http/api/Universal";
 import swipercomponent from '../components/swiper.vue'
 import navcomponent from '../components/nav.vue'
@@ -35,35 +40,26 @@ export default {
 			nearUrl:NEAR_URL,
       imgList:[],
       pathto:"/peopleSite",
-      login:false,
+      clearlogin:false,
     }
   },
   created(){
   	document.title="微服务";
-    postSlow()
-    console.log(readLocalStorage());
-    this.iflogin()
+    postSlow();
+    if (JSON.parse(localStorage.getItem("ltjyloginId"))==null) {
+      this.clearlogin=false
+    }else{
+      this.clearlogin=true
+    }
   },
   methods:{
-    // 判断是否登陆
-    iflogin(){
-      if (readLocalStorage()==null) {
-          this.login=false
-      }else{
-        this.login=true
-      }
-    },
     pushname(){
      this.$router.push('personalspace')
-    }
-
-    // changeName(){
-    //     if(readLocalStorage()==null){
-    //         this.nav="登陆"
-    //     }else{
-    //        this.nav="个人中心"
-    //     }
-    // }
+    },
+    clearloacal(){
+    localStorage.removeItem('ltjyloginId');
+    location.reload();
+},
   },
   components:{
   	swipercomponent,
@@ -77,21 +73,12 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h1, h2 {
-  font-weight: normal;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
-.site{
-width: 100%;
+.clearnull{
+  font-size: 10px;
+  width: 140px;
+  margin: 12% auto;
+  background-color: #ffffff;
+  border: 1px solid #ffffff;
+  border-radius: 15px;
 }
 </style>
