@@ -26,6 +26,7 @@ import ShowDetail from '@/views/showDetail.vue'
 import ConsultDetail from '@/views/consultDetail.vue'
 import OpenDetail from '@/views/openDetail.vue'
 import HelpDetail from '@/views/helpDetail.vue'
+import LethelpDetail from '@/views/lethelpDetail.vue'
 import HaveDetail from '@/views/haveDetail.vue'
 import FeedDetail from '@/views/feedDetail.vue'
 import FileDetail from '@/views/fileDetail.vue'
@@ -261,7 +262,15 @@ export default new Router({
       	index:2
       },
       component: HelpDetail
+    },{
+      path: '/lethelpDetail',
+      name:"lethelpDetail",
+       meta:{
+      	index:2
+      },
+      component: LethelpDetail
     },
+    
     {
       path: '/haveDetail',
       name:"haveDetail",

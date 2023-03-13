@@ -68,7 +68,9 @@
       </mt-loadmore>
     </div>
     
-    <div v-else v-show="!showlistWord">
+    <!-- <div v-else v-show="!showlistWord"> -->
+    <div v-else>
+
       <div style="height: 24px; line-height: 24px;margin-top:0px;">
         <span class="his">历史记录</span>
         <span class="clear"
@@ -84,9 +86,9 @@
         </ul>
       </div>
     </div>
-    <div class="onshowlist" v-show="showlistWord">
+    <!-- <div class="onshowlist" v-show="showlistWord">
         <p style="text-align:center">未登录状态无法查看你的历史记录</p>
-      </div>
+      </div> -->
   </div>
 </template>
 
@@ -118,7 +120,7 @@ export default {
   },
   created() {
     this.searchFile();
-    this.showlist();
+    // this.showlist();
     if(this.$route.query.alone){
       this.shownav=false
     }
@@ -135,14 +137,14 @@ export default {
   },
 
   methods: {
-    showlist() {
-      if (readLocalStorage()==null) {
-        this.showlistWord = true, 
-        this.getHistory();
-      } else {
-        this.showlistWord = false;
-      }
-    },
+    // showlist() {
+    //   if (readLocalStorage()==null) {
+    //     this.showlistWord = true, 
+    //     this.getHistory();
+    //   } else {
+    //     this.showlistWord = false;
+    //   }
+    // },
 
     close(index) {
       var _this = this;
@@ -152,7 +154,7 @@ export default {
       }
     },
     // getTableList() {
-    //   var openId = JSON.parse(localStorage.getItem("ltjyopenId"))
+    //   var openId = JSON.parse(localStorage.getItem("yjqopenId"))
     //   var _this = this
     //   $.ajax({
     //     type: 'post',
@@ -225,7 +227,7 @@ export default {
     // },
     commonGet() {
       var _this = this;
-      // var openId = JSON.parse(localStorage.getItem("ltjyopenId"))
+      // var openId = JSON.parse(localStorage.getItem("yjqopenId"))
       //tableIds = _this.gettableIds()
 
       $.ajax({
@@ -276,7 +278,7 @@ export default {
     },
     getHistory() {
       var _this = this;
-      var openId = JSON.parse(localStorage.getItem("ltjyopenId"));
+      var openId = JSON.parse(localStorage.getItem("yjqopenId"));
       if (openId!==true) {
          $.ajax({
         url: HISTORY_URL,
@@ -295,7 +297,7 @@ export default {
     },
     clearCode() {
       var _this = this;
-      var openId = JSON.parse(localStorage.getItem("ltjyopenId"))
+      var openId = JSON.parse(localStorage.getItem("yjqopenId"))
       if (openId !== true) {
         $.ajax({
           type: "post",

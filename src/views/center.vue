@@ -286,7 +286,7 @@ import {readLocalStorage} from "../utils/index";
 				currentDate4: new Date(),
 				currentDate5: new Date(),
 				currentDate6: new Date(),
-        ltjyloginId:"",
+        yjqloginId:"",
 			}
 		},
 		created(){
@@ -311,12 +311,12 @@ import {readLocalStorage} from "../utils/index";
 		},
 		methods:{
     readStorage() {
-      this.ltjyloginId = readLocalStorage();
-      if (this.ltjyloginId!=='') {
-       this.applicant = this.ltjyloginId.userRealName;
-      this.idNumber = this.ltjyloginId.cardNo;
-      this.phone = this.ltjyloginId.telephone;
-      this.residence = this.ltjyloginId.address; 
+      this.yjqloginId = readLocalStorage();
+      if (this.yjqloginId!=='') {
+       this.applicant = this.yjqloginId.userRealName;
+      this.idNumber = this.yjqloginId.cardNo;
+      this.phone = this.yjqloginId.telephone;
+      this.residence = this.yjqloginId.address; 
       }
     },
 

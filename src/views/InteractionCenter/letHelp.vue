@@ -26,5 +26,4 @@ import headernav from "../../components/header.vue";
 	}
 </script>
 
-<style>
-</style>
+

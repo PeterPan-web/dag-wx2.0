@@ -14,24 +14,6 @@
                    @click="searchFile">搜索</mt-button>
       </div>
     </div>
-    <!-- <div :id="id" style="height:calc(100vh - 160px);overflow: auto;">
-	    	<mt-loadmore :bottom-method="loadBottom" :bottom-all-loaded="allLoaded" :auto-fill="false" ref="loadmore" :top-method="loadTop">
-				<ul style="width:100vw;margin:0 auto;overflow: auto;">
-				    <li v-for="(item,index) in list" :key="index" @click="toDetail(item)" style="height:81px;margin:5px 0px;border-bottom: #ccc solid 1px;overflow: hidden;">
-				    	<span class="listLeftCenter" style="margin-left:15px;">
-				    		<img v-if ="item.PICTURE ==null" :src="item.PICTURE"/>
-				    		<img v-else :src="com+item.PICTURE"/>
-				    	</span>
-			    		<span class="messageListCenter" style="height:78px;">
-			    		<p class="centerTitle" style="text-align: center;">{{item.TITLE}}</p>
-			    		<p style="text-align: center;">日期 ：{{item.PUBLISHDATE}}</p>
-			    		<p class="centerContent" style="height: 33px;overflow: hidden;text-overflow: ellipsis;">{{item.HELPINFO}}</p>
-			    	</span>
-				    </li>
-				</ul>
-			  </mt-loadmore>
-		   </div> -->
-
     <div :id="id">
       <mt-loadmore :bottom-method="loadBottom"
                    :bottom-all-loaded="allLoaded"
@@ -91,7 +73,8 @@ export default {
     }
   },
   created() {
-    this.openId = JSON.parse(localStorage.getItem('ltjyopenId'))
+    this.openId = JSON.parse(localStorage.getItem('yjqopenId'))
+    
   },
   activated() {
     var _this = this
@@ -131,10 +114,17 @@ export default {
     toDetail(item) {
       var _this = this
       this.params.top = document.getElementById(_this.id).scrollTop
+      if(this.title=='我来帮忙'){
       this.$router.push({
+        path: '/lethelpDetail',
+        query: { title: _this.title, argument: item },
+      }) 
+    }else{
+    this.$router.push({
         path: '/helpDetail',
         query: { title: _this.title, argument: item },
-      })
+      }) 
+    }
     },
     searchFile() {
       this.currentPage = 1
@@ -268,11 +258,6 @@ export default {
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
 }
-
-
-
-
-
 .helpsearchContent {
   font-size: 12px;
 }

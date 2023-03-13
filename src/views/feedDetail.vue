@@ -59,7 +59,7 @@
 			},
 			getFile(){
 				var _this = this;
-				var openId = localStorage.getItem("ltjyopenId");
+				var openId = localStorage.getItem("yjqopenId");
 				$.ajax({
 					type:"post",
 					url:SUGGESTION_DETAIL_URL,
@@ -75,7 +75,7 @@
 			},
 			addBrowse(){
           var _this = this;
-          var openId = localStorage.getItem("ltjyopenId");
+          var openId = localStorage.getItem("yjqopenId");
           $.ajax({
             type:"post",
             url:BROWSE_URL,

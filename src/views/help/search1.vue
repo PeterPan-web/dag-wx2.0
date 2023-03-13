@@ -164,7 +164,7 @@ export default {
 		}
 	},
     getTableList() {
-	  var openId = localStorage.getItem("ltjyopenId");
+	  var openId = localStorage.getItem("yjqopenId");
 	  var _this = this;
       $.ajax({
         type: "post",
@@ -234,7 +234,7 @@ export default {
 	},
     commonGet() {
       var _this = this;
-	  var openId = localStorage.getItem("ltjyopenId"),
+	  var openId = localStorage.getItem("yjqopenId"),
 	  tableIds = _this.gettableIds();
 	  
       $.ajax({
@@ -283,7 +283,7 @@ export default {
     },
     getHistory() {
       var _this = this;
-      var openId = localStorage.getItem("ltjyopenId");
+      var openId = localStorage.getItem("yjqopenId");
       $.ajax({
         url: HISTORY_URL,
         type: "post",
@@ -298,7 +298,7 @@ export default {
     },
     clearCode() {
       var _this = this;
-      var openId = localStorage.getItem("ltjyopenId");
+      var openId = localStorage.getItem("yjqopenId");
       $.ajax({
         type: "post",
         url: CLEAR_URL,

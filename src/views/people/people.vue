@@ -14,20 +14,20 @@
 </van-cell>
   <van-cell title="用户名" :value="this.loginId.userName" />
    <van-cell title="性别"
-                  :value="this.loginId.gender" />
-         <van-field v-model="this.loginId.userRealName"
+                  :value="this.gender" />
+         <van-field v-model="userRealName"
                    label="真实姓名"
                    placeholder="请输入真实姓名"
                    />
-                  <van-field v-model="this.loginId.cardNo"
+                  <van-field v-model="cardNo"
                    label="身份证号码"
                    placeholder="请输入身份证号码"
                    />
-        <van-field v-model="this.loginId.telephone"
+        <van-field v-model="telephone"
                    label="手机号"
                    placeholder="请输入手机号"
                    />
-        <van-field v-model="this.loginId.address"
+        <van-field v-model="address"
                    label="住址"
                    placeholder="请输入地址"
                    />
@@ -55,6 +55,11 @@ export default {
       code:'',
       openId:"",
       loginId:'',
+            gender:'',
+      telephone:"",
+      address:'',
+      cardNo:'',
+      userRealName:'',
 // //弋江区档案馆
       // wxAppId: "wxa9d5243ac3ae61f2",
       // wxAppSecret: "3027ce3d1e52acacc9a270723af891e9",
@@ -133,14 +138,15 @@ export default {
 //     },
 
     readStorage() {
-this.openId= JSON.parse(localStorage.getItem("ltjyopenId"))
+this.openId= JSON.parse(localStorage.getItem("yjqopenId"))
        if(this.openId==null){
          postCode({ code: this.code }).then(
           res=>{
         this.loginId = res.result[0].userInfo
         this.openId = res.result[0].userInfo.openId,
-        localStorage.setItem('ltjyopenId', JSON.stringify(this.openId))
-        localStorage.setItem('ltjyloginId', JSON.stringify(this.loginId))
+                 this.pushinfo(this.loginId);
+        localStorage.setItem('yjqopenId', JSON.stringify(this.openId))
+        localStorage.setItem('yjqloginId', JSON.stringify(this.loginId))
         this.$router.push('interaction')
           }
          )
@@ -148,13 +154,22 @@ this.openId= JSON.parse(localStorage.getItem("ltjyopenId"))
            postCode({ openid: this.openId }).then(
             res=>{
             this.loginId = res.result[0].userInfo;
-              if(JSON.parse(localStorage.getItem("ltjyloginId"))==null){
-                localStorage.setItem('ltjyloginId', JSON.stringify(this.loginId))
-                this.$router.push('interaction')
-              }
+                     this.pushinfo(this.loginId);
+                localStorage.setItem('yjqloginId', JSON.stringify(this.loginId))
+              // if(JSON.parse(localStorage.getItem("yjqloginId"))==null){
+              //   localStorage.setItem('yjqloginId', JSON.stringify(this.loginId))
+              //   this.$router.push('interaction')
+              // }
             }
           )
       }
+    },
+        pushinfo(data){
+      this.gender=data.gender;
+      this.telephone=data.telephone;
+      this.address=data.address;
+      this.cardNo=data.cardNo;
+      this.userRealName=data.userRealName;
     },
     editpushinfo(){
       if (!(/^1[34578]\d{9}$/.test(this.telephone))) {
@@ -169,7 +184,7 @@ this.openId= JSON.parse(localStorage.getItem("ltjyopenId"))
         Toast('请填写正确的姓名!!')
         return false
       }
-      posteditinfo({telephone:this.loginId.telephone,address:this.loginId.address,userRealName:this.loginId.userRealName,cardNo:this.loginId.cardNo,openid:this.openid})
+      posteditinfo({telephone:this.telephone,address:this.address,userRealName:this.userRealName,cardNo:this.cardNo,openid:this.openId})
       Toast('保存成功')
       this.$router.push('interaction')
     }

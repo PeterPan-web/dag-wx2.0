@@ -227,7 +227,7 @@ export default {
     },
     commitComplain() {
       var _this = this;
-      var openId = localStorage.getItem("ltjyopenId");
+      var openId = localStorage.getItem("yjqopenId");
       console.log(_this.successImgStr);
       $.ajax({
         type: "post",

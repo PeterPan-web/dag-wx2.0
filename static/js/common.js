@@ -1,5 +1,5 @@
 
-// // 弋江区档案馆正式
+// 弋江区档案馆正式
 // var HOST_SERVER = "http://43.142.92.150/hfdagl/";
 // var HOST_HOME = "http://43.142.92.150/hfdagl";
 
@@ -9,7 +9,7 @@
 // var HOST_HOME = "http://43.142.92.150/zt_server";
 
 
-// // //测试
+// // // //测试
 var HOST_SERVER = "http://192.168.31.177:8080/hfdagl/";
 var HOST_HOME = "http://192.168.31.177:8080/hfdagl";
 

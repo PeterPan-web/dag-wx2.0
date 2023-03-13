@@ -14,7 +14,7 @@
         <van-cell title="用户名"
                   :value="this.loginId.userName" />
         <van-cell title="性别"
-                  :value="this.loginId.gender" />
+                  :value="gender" />
          <van-field v-model="userRealName"
                    label="真实姓名"
                    placeholder="请输入真实姓名"
@@ -43,7 +43,7 @@
 import { readLocalStorage } from '../../utils/index'
 import headernav from '../../components/header.vue'
 import { Toast } from 'mint-ui'
-import {posteditinfo} from '../../http/api/user'
+import {posteditinfo,postCode} from '../../http/api/user'
 export default {
   name: 'EditInfo',
   components: {
@@ -55,6 +55,7 @@ export default {
       title: '修改信息',
       openid:'',
       loginId: '',
+      gender:'',
       telephone:"",
       address:'',
       cardNo:'',
@@ -66,18 +67,21 @@ export default {
   },
   methods: {
     readStorage() {
-      this.loginId = readLocalStorage(),
-      this.openid = JSON.parse(localStorage.getItem("ltjyopenId"));
-      this.telephone = this.loginId.telephone;
-      this.address = this.loginId.address;
-      this.cardNo = this.loginId.cardNo;
-      this.userRealName = this.loginId.userRealName;
+    this.openid = JSON.parse(localStorage.getItem("yjqopenId"));
+    postCode({ openid: this.openid }).then(
+            res=>{
+            this.loginId = res.result[0].userInfo;
+            this.pushinfo(this.loginId)
+            localStorage.setItem('yjqloginId', JSON.stringify(this.loginId))
+            }
+          )
     },
     editpushinfo(){
       if (!(/^1[34578]\d{9}$/.test(this.telephone))) {
         Toast('请填写正确电话号码!!')
         return false
       }
+      this.loginId.telephone=this.telephone;
       if((/(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/).test(this.cardNo) === false){
         Toast('请填写正确的身份证号码!!')
         return false
@@ -86,10 +90,18 @@ export default {
         Toast('请填写正确的姓名!!')
         return false
       }
-      posteditinfo({telephone:this.telephone,address:this.address,userRealName:this.userRealName,cardNo:this.cardNo,openid:this.openid}).then(res=>console.log(res))
+      posteditinfo({telephone:this.telephone,address:this.address,userRealName:this.userRealName,cardNo:this.cardNo,openid:this.openid});
+      localStorage.setItem('yjqloginId', JSON.stringify(this.loginId))
       Toast('保存成功')
       this.$router.push('personalspace')
-    }
+    },
+      pushinfo(data){
+      this.gender=data.gender;
+      this.telephone=data.telephone;
+      this.address=data.address;
+      this.cardNo=data.cardNo;
+      this.userRealName=data.userRealName;
+    },
   },
 }
 </script>

@@ -67,7 +67,7 @@ export default {
     },
   },
   created() {
-    this.openid = JSON.parse(localStorage.getItem('ltjyopenId'))
+    this.openid = JSON.parse(localStorage.getItem('yjqopenId'))
     this.getlistAll()
     // 待审核
     this.getlistin()

@@ -138,7 +138,7 @@ export default {
     return {
       title: '评价',
       shownav:true,
-        ltjyloginId:"",
+        yjqloginId:"",
       Satisfaction: {
         openId: '',
         webStatus: "2",
@@ -165,9 +165,9 @@ export default {
   },
   methods: {
         readStorage() {
-      this.ltjyloginId = readLocalStorage();
-      if (this.ltjyloginId!=='') {
-      this.Satisfaction.phone = this.ltjyloginId.telephone;
+      this.yjqloginId = readLocalStorage();
+      if (this.yjqloginId!=='') {
+      this.Satisfaction.phone = this.yjqloginId.telephone;
       }
     },
     submit() {

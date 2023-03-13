@@ -86,7 +86,7 @@ import {Judgelogin } from "../utils/index";
 				});
 			},
 			showActions(){
-        if (JSON.parse(localStorage.getItem("ltjyopenId"))==null) {
+        if (JSON.parse(localStorage.getItem("yjqopenId"))==null) {
           Judgelogin();
         }else{
          this.isStop(); 
@@ -109,7 +109,7 @@ import {Judgelogin } from "../utils/index";
 				var _this = this;
 				this.popupVisible = false;
 				_this.list.ps.criticismInfo =_this.content;
-				_this.list.ps.openid =JSON.parse(localStorage.getItem("ltjyopenId"));
+				_this.list.ps.openid =JSON.parse(localStorage.getItem("yjqopenId"));
 				$.ajax({
 					type:"post",
 					url:_this.list.commentUrl,
@@ -140,7 +140,7 @@ import {Judgelogin } from "../utils/index";
 			isStop(){
 				var _this = this;
 				this.popupVisible = false;
-				_this.list.ps.openid = JSON.parse(localStorage.getItem("ltjyopenId"));
+				_this.list.ps.openid = JSON.parse(localStorage.getItem("yjqopenId"));
 				$.ajax({
 					type:"post",
 					url:_this.list.forBidden,
@@ -161,7 +161,7 @@ import {Judgelogin } from "../utils/index";
 			tip(){
         Judgelogin();
 				var _this = this;
-				_this.list.ps.openid =JSON.parse(localStorage.getItem("ltjyopenId"));
+				_this.list.ps.openid =JSON.parse(localStorage.getItem("yjqopenId"));
 				$.ajax({
 					type:"post",
 					url:_this.list.praiseUrl,
@@ -194,7 +194,7 @@ import {Judgelogin } from "../utils/index";
 			collect(){
         Judgelogin();
 				var _this = this;
-				_this.list.ps.openid =JSON.parse(localStorage.getItem("ltjyopenId"));
+				_this.list.ps.openid =JSON.parse(localStorage.getItem("yjqopenId"));
 				$.ajax({
 					type:"post",
 					url:_this.list.collectionUrl,

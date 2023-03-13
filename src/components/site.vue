@@ -8,9 +8,9 @@
      <!-- <listcomponent :mark="mark" :url="url" style="margin-bottom:15px"></listcomponent> 
      <nearcomponent :mark="mark" :url="nearUrl"></nearcomponent>  -->
      <!-- <div @click="pushname">1111111111111</div> -->
-     <div class="clearnull" v-if="clearlogin" @click="clearloacal">
+     <!-- <div class="clearnull" v-if="clearlogin" @click="clearloacal">
       <p>清除缓存</p>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -40,26 +40,27 @@ export default {
 			nearUrl:NEAR_URL,
       imgList:[],
       pathto:"/peopleSite",
-      clearlogin:false,
+      // clearlogin:false,
     }
   },
   created(){
   	document.title="微服务";
     postSlow();
-    if (JSON.parse(localStorage.getItem("ltjyloginId"))==null) {
-      this.clearlogin=false
-    }else{
-      this.clearlogin=true
-    }
+     if (JSON.parse(localStorage.getItem("yjqloginId"))==null) {
+      this.$router.push('peopleSite')
+      //  this.clearlogin=false
+     }else{
+      //  this.clearlogin=true
+     }
   },
   methods:{
     pushname(){
      this.$router.push('personalspace')
     },
-    clearloacal(){
-    localStorage.removeItem('ltjyloginId');
-    location.reload();
-},
+//     clearloacal(){
+//     localStorage.removeItem('yjqloginId');
+//     location.reload();
+// },
   },
   components:{
   	swipercomponent,

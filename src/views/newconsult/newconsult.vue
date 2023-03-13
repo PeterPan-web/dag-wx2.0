@@ -24,6 +24,3 @@ data(){
 }
 </script>
 
-<style>
-
-</style>

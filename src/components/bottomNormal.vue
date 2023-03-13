@@ -21,7 +21,7 @@ import { JudgeloginInteraction } from "../utils/index";
 		name:"bottom",
 		props:["list"],
     mounted(){
-     this.openId= JSON.parse(localStorage.getItem("ltjyopenId"))
+     this.openId= JSON.parse(localStorage.getItem("yjqopenId"))
       
     },
 		data(){

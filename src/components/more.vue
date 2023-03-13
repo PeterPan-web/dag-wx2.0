@@ -78,7 +78,7 @@
 				this.$refs.loadmore.onTopLoaded();
 			},
 			getFile(){
-        var openid = JSON.parse(localStorage.getItem("ltjyopenId"));
+        var openid = JSON.parse(localStorage.getItem("yjqopenId"));
 				var _this = this;
 				$.ajax({
 					type:"post",
@@ -103,7 +103,7 @@
 			},
 			getMore(){
 				var _this = this;
-				var openid = JSON.parse(localStorage.getItem("ltjyopenId"));
+				var openid = JSON.parse(localStorage.getItem("yjqopenId"));
 				$.ajax({
 					type:"post",
 					url:_this.getComment,

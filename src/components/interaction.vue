@@ -5,9 +5,9 @@
         <navcomponent :nav="nav" :pathto="pathto"></navcomponent>
     <!-- <near :url="nearUrl"></near> -->
          <!-- <div @click="pushname">1111111111111</div>  -->
-    <div class="clearnull" v-if="clearlogin" @click="clearloacal">
+    <!-- <div class="clearnull" v-if="clearlogin" @click="clearloacal">
       <p>清除缓存</p>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -61,17 +61,18 @@ export default {
      postSlow()
     // this.getFile();
     document.title = "微互动";
-    if (JSON.parse(localStorage.getItem("ltjyloginId"))==null) {
-      this.clearlogin=false
+    if (JSON.parse(localStorage.getItem("yjqloginId"))==null) {
+      this.$router.push('people')
+      // this.clearlogin=false
     }else{
-      this.clearlogin=true
+      // this.clearlogin=true
     }
   },
   methods: {
-     clearloacal(){
-    localStorage.removeItem('ltjyloginId');
-    location.reload();
-},
+//      clearloacal(){
+//     localStorage.removeItem('yjqloginId');
+//     location.reload();
+// },
         pushname(){
      this.$router.push('personalspace')
     },

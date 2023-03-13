@@ -47,7 +47,7 @@
 			}
 		},
 		created(){
-      	this.openId = localStorage.getItem("ltjyopenId");
+      	this.openId = localStorage.getItem("yjqopenId");
     			this.getCollect();
     			this.getPraise();
     		},

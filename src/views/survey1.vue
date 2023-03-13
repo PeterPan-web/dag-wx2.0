@@ -124,7 +124,7 @@
     methods: {
       submit() {
         var _this = this;
-        var openId = localStorage.getItem("ltjyopenId");
+        var openId = localStorage.getItem("yjqopenId");
         $.ajax({
           type: "post",
           url: SURVEY_URL,

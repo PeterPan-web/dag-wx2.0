@@ -1,17 +1,14 @@
 <template>
 	<div id="helpFilecontainer">
-	  <ul>
-	    <li v-for="(item,index) in imgList" :key="index" >
+	    <div v-for="(item,index) in imgList" :key="index" >
 	      <img  v-lazy.container="com+item.PICTURE">
-	    </li>
-	  </ul>
+	    </div>
 	</div>
 </template>
 
 <script>
-	import Bus from '../components/bus.js'
 	export default{
-		name:"imgFile",
+		name:"letimgFile",
 		props:["url","id"],
 		data(){
 			return{
@@ -36,11 +33,9 @@
 	}
 </script>
 
-<style>
+<style scoped>
 .helpFilecontainer{
-  display: block;
-   margin-top:15px;
-margin-bottom:15px; 
+padding-bottom: 5rem;
 }
 img[lazy="loaded"] {
 	  width:15rem;

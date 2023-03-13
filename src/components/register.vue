@@ -117,7 +117,7 @@ import Bus from "../components/bus";
 
 			isStop(){
 			var _this = this;
-      var openId = JSON.parse(localStorage.getItem("ltjyopenId"))
+      var openId = JSON.parse(localStorage.getItem("yjqopenId"))
       if(_this.name==""){
         _this.$toast("姓名不能为空");
       	return;

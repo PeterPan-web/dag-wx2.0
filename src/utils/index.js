@@ -2,7 +2,7 @@
 import router from '../router'
 
 export function Judgelogin() {
-  if (JSON.parse(localStorage.getItem("ltjyopenId"))==null) {
+  if (JSON.parse(localStorage.getItem("yjqopenId"))==null) {
     //需要跳转登陆
     router.push('peopleSite')
   }else{
@@ -11,7 +11,7 @@ export function Judgelogin() {
   }
 }
 export function JudgeloginInteraction() {
-  if (JSON.parse(localStorage.getItem("ltjyopenId"))==null) {
+  if (JSON.parse(localStorage.getItem("yjqopenId"))==null) {
     //需要跳转登陆
     //console.log('还没登陆现在跳转');
     router.push('people')
@@ -23,19 +23,19 @@ export function JudgeloginInteraction() {
 //读取本地loginId
 export function readLocalStorage() {
    // console.log('读取本地loginId');
-    let loginId=JSON.parse(localStorage.getItem("ltjyloginId"));
+    let loginId=JSON.parse(localStorage.getItem("yjqloginId"));
      return loginId
 }
 //读取本地loginId
 export function readLocalloginId() {
   // console.log('读取本地loginId');
-   let loginId=JSON.parse(localStorage.getItem("ltjyloginId"));
+   let loginId=JSON.parse(localStorage.getItem("yjqloginId"));
     return loginId
 }
 //读取本地openid
 export function readLocalopenid() {
   // console.log('读取本地openid');
-   let openid=JSON.parse(localStorage.getItem("ltjyopenId"));
+   let openid=JSON.parse(localStorage.getItem("yjqopenId"));
     return openid
 }
 

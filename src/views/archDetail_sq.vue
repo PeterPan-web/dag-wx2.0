@@ -100,7 +100,7 @@ export default {
     return {
       title: '档案利用预约申请',
       cratetime: new Date(),
-        ltjyloginId:"",
+        yjqloginId:"",
       showPickerDate: false,
       popupVisible1: false,
       popupVisible2: false,
@@ -146,10 +146,11 @@ export default {
   },
   methods: {
        readStorage() {
-      this.ltjyloginId = readLocalStorage();
-      if (this.ltjyloginId!=='') {
-       this.item.applicant = this.ltjyloginId.userRealName;
-      this.item.phone = this.ltjyloginId.telephone;
+      this.yjqloginId = readLocalStorage();
+      if (this.yjqloginId!=='') {
+       this.item.applicant = this.yjqloginId.userRealName;
+      this.item.phone = this.yjqloginId.telephone;
+      this.item.address = this.yjqloginId.address;
       }
     },
       onConfirm(date) {

@@ -66,7 +66,7 @@ import {readLocalStorage} from "../utils/index";
 				isOpen:"公开",
 				status:0,
         email:'',
-        ltjyloginId:''
+        yjqloginId:''
 			}
 		},
 		mounted(){
@@ -94,17 +94,20 @@ import {readLocalStorage} from "../utils/index";
 		},
 		methods:{
       readStorage() {
-      this.ltjyloginId = readLocalStorage();
-      if (this.ltjyloginId!=='') {
-       this.username = this.ltjyloginId.userRealName;
-      this.phone = this.ltjyloginId.telephone; 
+      this.yjqloginId = readLocalStorage();
+      if (this.yjqloginId!=='') {
+       this.username = this.yjqloginId.userRealName;
+      this.phone = this.yjqloginId.telephone; 
+      this.address = this.yjqloginId.address; 
+
+      
       }
     },
 
 			isStop(){
 				var _this = this;
 				this.popupVisible = false;
-				var openId = localStorage.getItem("ltjyopenId");
+				var openId = localStorage.getItem("yjqopenId");
 				$.ajax({
 					type:"post",
 					url:FORBIDDEN_URL,
@@ -125,7 +128,7 @@ import {readLocalStorage} from "../utils/index";
 			submitFile(){
         console.log(this.list)
 				var _this = this;
-				var openId = localStorage.getItem("ltjyopenId");
+				var openId = localStorage.getItem("yjqopenId");
         if(_this.username ==""){
           _this.$toast("申请人不能为空~");
           return;

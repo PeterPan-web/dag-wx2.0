@@ -93,7 +93,7 @@ export default{
 			isStop(){
 				var _this = this;
 				// this.popupVisible = false;
-        var openId = JSON.parse(localStorage.getItem("ltjyopenId"))
+        var openId = JSON.parse(localStorage.getItem("yjqopenId"))
 				// $.ajax({
 				// 	type:"post",
 				// 	url:FORBIDDEN_URL,
@@ -115,7 +115,7 @@ export default{
 			},
 			submitFile(){
 				var _this = this;
-        var openId = JSON.parse(localStorage.getItem("ltjyopenId"))
+        var openId = JSON.parse(localStorage.getItem("yjqopenId"))
 				if(_this.value){
 					_this.status = 1;
 				}

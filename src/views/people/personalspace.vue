@@ -10,8 +10,8 @@
                    :src="this.loginId.picture" />
       </div>
         <div class="topword">
-          <p>用户名:{{this.loginId.userName}}</p>
-          <p>手机号:{{this.loginId.telephone?this.loginId.telephone:"未填写"}}</p>
+          <p>用户名:{{userName}}</p>
+          <p>手机号:{{this.telephone?this.telephone:"未填写"}}</p>
         </div>
         <div class="arrow-right" @click="editinfo">
         </div>
@@ -44,6 +44,8 @@ export default {
       code: '',
       openId:"",
       loginId: '',
+      userName:'',
+      telephone:'',
 // //弋江区档案馆
       // wxAppId: "wxa9d5243ac3ae61f2",
       // wxAppSecret: "3027ce3d1e52acacc9a270723af891e9",
@@ -83,7 +85,8 @@ export default {
   },
   methods: {
    clearloacal(){
-    localStorage.removeItem('ltjyopenId')
+    localStorage.removeItem('yjqloginId')
+     location.reload();
 },
     editinfo(){
 this.$router.push('EditInfo')
@@ -122,23 +125,55 @@ this.$router.push('EditInfo')
       }
       return theRequest
     },
-    async readStorage() {
-      if(JSON.parse(localStorage.getItem("ltjyopenId"))==null){
-        let res = await postCode({ code: this.code })
+        readStorage() {
+this.openId= JSON.parse(localStorage.getItem("yjqopenId"))
+       if(this.openId==null){
+         postCode({ code: this.code }).then(
+          res=>{
         this.loginId = res.result[0].userInfo
         this.openId = res.result[0].userInfo.openId,
-        localStorage.setItem('ltjyopenId', JSON.stringify(this.openId))
-        localStorage.setItem('ltjyloginId', JSON.stringify(this.loginId))
-        setTimeout(this.$router.push('personalspace'), 1000)
+        this.pushinfo(this.loginId);
+        localStorage.setItem('yjqopenId', JSON.stringify(this.openId))
+        localStorage.setItem('yjqloginId', JSON.stringify(this.loginId))
+        this.$router.push('interaction')
+          }
+         )
       }else{
-         this.openId= JSON.parse(localStorage.getItem("ltjyopenId"))
            postCode({ openid: this.openId }).then(
             res=>{
-               this.loginId = res.result[0].userInfo
+            this.loginId = res.result[0].userInfo;
+            console.log(this.loginId );
+                localStorage.setItem('yjqloginId', JSON.stringify(this.loginId))
+                this.pushinfo(this.loginId);
+              // if(JSON.parse(localStorage.getItem("yjqloginId"))==null){
+              //   localStorage.setItem('yjqloginId', JSON.stringify(this.loginId))
+              //   this.$router.push('interaction')
+              // }
             }
           )
       }
     },
+            pushinfo(data){
+      this.userName=data.userName;
+      this.telephone=data.telephone;
+    },
+    // async readStorage() {
+    //   if(JSON.parse(localStorage.getItem("yjqopenId"))==null){
+    //     let res = await postCode({ code: this.code })
+    //     this.loginId = res.result[0].userInfo
+    //     this.openId = res.result[0].userInfo.openId,
+    //     localStorage.setItem('yjqopenId', JSON.stringify(this.openId))
+    //     localStorage.setItem('yjqloginId', JSON.stringify(this.loginId))
+    //     setTimeout(this.$router.push('personalspace'), 1000)
+    //   }else{
+    //      this.openId= JSON.parse(localStorage.getItem("yjqopenId"))
+    //        postCode({ openid: this.openId }).then(
+    //         res=>{
+    //            this.loginId = res.result[0].userInfo
+    //         }
+    //       )
+    //   }
+    // },
   },
 }
 </script>
@@ -216,7 +251,7 @@ text-shadow: 0px 3px 6px 0px rgba(0,0,0,0.15);
 .clearnull{
   font-size: 10px;
   width: 140px;
-  margin: 65% auto;
+  margin: 20% auto;
   background-color: #ffffff;
   border: 1px solid #ffffff;
   border-radius: 15px;

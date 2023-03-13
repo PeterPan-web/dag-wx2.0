@@ -20,7 +20,7 @@
 	import headernav from '../components/header.vue'
 	import titlecomponent from '../components/title.vue'
 	import textcomponent from '../components/text.vue'
-	import imgcomponent from '../components/helpFile.vue'
+	import imgcomponent from '../components/lethelpFile.vue'
 	import loadcomponent from '../components/helpMore.vue'
 	import bottomcomponent from '../components/bottomNormal.vue'
 	export default{
